@@ -4,6 +4,9 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
+  <PropertyGroup Condition=" '$(RunConfiguration)' == 'WebAPI.Console.Development' " />
+  <PropertyGroup Condition=" '$(RunConfiguration)' == 'WebAPI.Console.Staging' " />
+  <PropertyGroup Condition=" '$(RunConfiguration)' == 'WebAPI.Console.Production' " />
   <ItemGroup>
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
     <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="7.5.0" />
