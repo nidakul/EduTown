@@ -2,26 +2,24 @@
 using System;
 namespace Domain.Entities
 {
-    public class StudentBook : Entity<int>
+    public class UserBook: Entity<int>
     {
-        public int StudentId { get; set; }
+        public int UserId { get; set; }
         public int BookId { get; set; }
 
-        public virtual Student Student { get; set; }
+        public virtual User User { get; set; }
         public virtual Book Book { get; set; }
 
-        public StudentBook()
+        public UserBook()
         {
         }
 
-        public StudentBook(int id, int studentId, int bookId): this()
+        public UserBook(int id, int userId, int bookId): this()
         {
             Id = id;
-            StudentId = studentId;
+            UserId = userId;
             BookId = bookId;
         }
-
-
     }
 }
 

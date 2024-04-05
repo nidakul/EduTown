@@ -5,20 +5,19 @@ namespace Domain.Entities
     public class Book : Entity<int>
     {
         public int AuthorId { get; set; }
-        public int StudentId { get; set; }
         public string Name { get; set; }
 
-        public virtual Student Student { get; set; }
         public virtual Author Author { get; set; }
+        public virtual ICollection<UserBook> UserBooks { get; set; }
 
         public Book()
         {
         }
 
-        public Book(int authorId, int studentId, string name)
+        public Book(int id, int authorId, string name):this()
         {
+            Id = id;
             AuthorId = authorId;
-            StudentId = studentId;
             Name = name;
         }
     }

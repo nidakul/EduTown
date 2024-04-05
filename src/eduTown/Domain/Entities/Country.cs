@@ -19,7 +19,7 @@ namespace Domain.Entities
 
         public virtual School School { get; set; }
 
-        public virtual ICollection<Student> Student { get; set; }
+        public virtual ICollection<User> Users { get; set; }
         public virtual ICollection<Instructor> Instructor { get; set; }
       
     }

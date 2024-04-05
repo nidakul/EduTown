@@ -4,22 +4,21 @@ namespace Domain.Entities
 {
     public class Exam : Entity<int>
     {
+        public string Name { get; set; }
+        public DateTime Time { get; set; }
+
+        public virtual ICollection<UserExam> UserExams { get; set; }
+
         public Exam()
         {
         }
 
-        public Exam(int studentId, string name, DateTime time)
+        public Exam(int id, string name, DateTime time) : this()
         {
-            StudentId = studentId;
+            Id = id;
             Name = name;
             Time = time;
         }
-
-        public int StudentId { get; set; }
-        public string Name { get; set; }
-        public DateTime Time { get; set; }
-
-        public virtual Student Student { get; set; }
     }
 }
 

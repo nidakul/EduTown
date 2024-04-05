@@ -13,7 +13,7 @@ namespace Domain.Entities
         public virtual Class Class { get; set; }
 
         public virtual ICollection<Lesson> Lessons { get; set; }
-        public virtual ICollection<Student> Student { get; set; }
+        public virtual ICollection<UserGrade> UserGrades { get; set; }
 
         public Grade()
         {
