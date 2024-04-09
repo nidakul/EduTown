@@ -6,6 +6,8 @@ using Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using NArchitecture.Core.Security.Constants;
+using Application.Features.Instructors.Constants;
+using Application.Features.Students.Constants;
 
 namespace Persistence.EntityConfigurations;
 
@@ -97,6 +99,35 @@ public class OperationClaimConfiguration : IEntityTypeConfiguration<OperationCla
         );
         #endregion
 
+        
+        
+        #region Instructors CRUD
+        featureOperationClaims.AddRange(
+            [
+                new() { Id = ++lastId, Name = InstructorsOperationClaims.Admin },
+                new() { Id = ++lastId, Name = InstructorsOperationClaims.Read },
+                new() { Id = ++lastId, Name = InstructorsOperationClaims.Write },
+                new() { Id = ++lastId, Name = InstructorsOperationClaims.Create },
+                new() { Id = ++lastId, Name = InstructorsOperationClaims.Update },
+                new() { Id = ++lastId, Name = InstructorsOperationClaims.Delete },
+            ]
+        );
+        #endregion
+        
+        
+        #region Students CRUD
+        featureOperationClaims.AddRange(
+            [
+                new() { Id = ++lastId, Name = StudentsOperationClaims.Admin },
+                new() { Id = ++lastId, Name = StudentsOperationClaims.Read },
+                new() { Id = ++lastId, Name = StudentsOperationClaims.Write },
+                new() { Id = ++lastId, Name = StudentsOperationClaims.Create },
+                new() { Id = ++lastId, Name = StudentsOperationClaims.Update },
+                new() { Id = ++lastId, Name = StudentsOperationClaims.Delete },
+            ]
+        );
+        #endregion
+        
         return featureOperationClaims;
     }
 #pragma warning restore S1854 // Unused assignments should be removed
