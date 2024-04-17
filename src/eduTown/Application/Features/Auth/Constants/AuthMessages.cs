@@ -13,5 +13,6 @@ public static class AuthMessages
     public const string RefreshDontExists = "RefreshDontExists";
     public const string InvalidRefreshToken = "InvalidRefreshToken";
     public const string UserMailAlreadyExists = "UserMailAlreadyExists";
+    public const string UserNationalIdentityAlreadyExists = "UserNationalIdentityAlreadyExists";
     public const string PasswordDontMatch = "PasswordDontMatch";
 }

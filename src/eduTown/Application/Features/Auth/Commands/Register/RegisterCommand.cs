@@ -3,7 +3,6 @@ using Application.Services.AuthService;
 using Application.Services.Repositories;
 using Domain.Entities;
 using MediatR;
-using NArchitecture.Core.Application.Dtos;
 using NArchitecture.Core.Security.Hashing;
 using NArchitecture.Core.Security.JWT;
 
@@ -11,18 +10,18 @@ namespace Application.Features.Auth.Commands.Register;
 
 public class RegisterCommand : IRequest<RegisteredResponse>
 {
-    public UserForRegisterDto UserForRegisterDto { get; set; }
+    public UserForRegisterCommand UserForRegisterCommand { get; set; }
     public string IpAddress { get; set; }
 
     public RegisterCommand()
     {
-        UserForRegisterDto = null!;
+        UserForRegisterCommand = null!;
         IpAddress = string.Empty;
     }
 
-    public RegisterCommand(UserForRegisterDto userForRegisterDto, string ipAddress)
+    public RegisterCommand(UserForRegisterCommand userForRegisterCommand, string ipAddress)
     {
-        UserForRegisterDto = userForRegisterDto;
+        UserForRegisterCommand = userForRegisterCommand;
         IpAddress = ipAddress;
     }
 
@@ -45,21 +44,9 @@ public class RegisterCommand : IRequest<RegisteredResponse>
 
         public async Task<RegisteredResponse> Handle(RegisterCommand request, CancellationToken cancellationToken)
         {
-            await _authBusinessRules.UserEmailShouldBeNotExists(request.UserForRegisterDto.Email);
+            await _authBusinessRules.UserNationalIdentityShouldBeNotExists(request.UserForRegisterCommand.NationalIdentity);
 
-            HashingHelper.CreatePasswordHash(
-                request.UserForRegisterDto.Password,
-                passwordHash: out byte[] passwordHash,
-                passwordSalt: out byte[] passwordSalt
-            );
-            User newUser =
-                new()
-                {
-                    Email = request.UserForRegisterDto.Email,
-                    PasswordHash = passwordHash,
-                    PasswordSalt = passwordSalt,
-                };
-            User createdUser = await _userRepository.AddAsync(newUser);
+            User createdUser = await _userRepository.CreateUserAsync(request.UserForRegisterCommand);
 
             AccessToken createdAccessToken = await _authService.CreateAccessToken(createdUser);
 

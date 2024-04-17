@@ -7,7 +7,7 @@ public class CreatedUserResponse : IResponse
     public Guid Id { get; set; }
     public string FirstName { get; set; }
     public string LastName { get; set; }
-    public string Email { get; set; }
+    public string? Email { get; set; }
     public bool Status { get; set; }
 
     public CreatedUserResponse()
@@ -20,7 +20,7 @@ public class CreatedUserResponse : IResponse
     public CreatedUserResponse(Guid id, string firstName, string lastName, string email, bool status)
     {
         Id = id;
-        FirstName = firstName;
+        FirstName = firstName; 
         LastName = lastName;
         Email = email;
         Status = status;

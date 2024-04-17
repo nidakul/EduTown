@@ -28,9 +28,9 @@ public class AuthController : BaseController
     }
 
     [HttpPost("Login")]
-    public async Task<IActionResult> Login([FromBody] UserForLoginDto userForLoginDto)
+    public async Task<IActionResult> Login([FromBody] UserForLoginCommand userForLoginCommand)
     {
-        LoginCommand loginCommand = new() { UserForLoginDto = userForLoginDto, IpAddress = getIpAddress() };
+        LoginCommand loginCommand = new() { UserForLoginCommand = userForLoginCommand, IpAddress = getIpAddress() };
         LoggedResponse result = await Mediator.Send(loginCommand);
 
         if (result.RefreshToken is not null)
@@ -40,9 +40,9 @@ public class AuthController : BaseController
     }
 
     [HttpPost("Register")]
-    public async Task<IActionResult> Register([FromBody] UserForRegisterDto userForRegisterDto)
+    public async Task<IActionResult> Register([FromBody] UserForRegisterCommand userForRegisterCommand)
     {
-        RegisterCommand registerCommand = new() { UserForRegisterDto = userForRegisterDto, IpAddress = getIpAddress() };
+        RegisterCommand registerCommand = new() { UserForRegisterCommand = userForRegisterCommand, IpAddress = getIpAddress() };
         RegisteredResponse result = await Mediator.Send(registerCommand);
         setRefreshTokenToCookie(result.RefreshToken);
         return Created(uri: "", result.AccessToken);

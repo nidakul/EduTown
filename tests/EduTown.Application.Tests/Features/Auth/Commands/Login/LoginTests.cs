@@ -91,7 +91,7 @@ public class LoginTests
     [Fact]
     public async Task SuccessfulLoginShouldReturnAccessToken()
     {
-        _loginCommand.UserForLoginDto = new() { Email = "example@kodlama.io", Password = "123456" };
+        _loginCommand.UserForLoginCommand = new() { NationalIdentity = "11111111110", Password = "123456" };
         LoggedResponse result = await _loginCommandHandler.Handle(_loginCommand, CancellationToken.None);
         Assert.NotNull(result.AccessToken.Token);
     }
@@ -99,7 +99,7 @@ public class LoginTests
     [Fact]
     public async Task AccessTokenShouldHaveValidExpirationTime()
     {
-        _loginCommand.UserForLoginDto = new() { Email = "example@kodlama.io", Password = "123456" };
+        _loginCommand.UserForLoginCommand = new() { NationalIdentity = "11111111110", Password = "123456" };
         LoggedResponse result = await _loginCommandHandler.Handle(_loginCommand, CancellationToken.None);
         TokenOptions? tokenOptions = _configuration.GetSection("TokenOptions").Get<TokenOptions>();
         bool tokenExpiresInTime =
@@ -110,7 +110,7 @@ public class LoginTests
     [Fact]
     public async Task LoginWithWrongPasswordShouldThrowException()
     {
-        _loginCommand.UserForLoginDto = new() { Email = "example@kodlama.io", Password = "123456789" };
+        _loginCommand.UserForLoginCommand = new() { NationalIdentity = "11111111110", Password = "123456789" };
         await Assert.ThrowsAsync<BusinessException>(async () =>
         {
             await _loginCommandHandler.Handle(_loginCommand, CancellationToken.None);
@@ -120,7 +120,7 @@ public class LoginTests
     [Fact]
     public async Task LoginWithWrongEmailShouldThrowException()
     {
-        _loginCommand.UserForLoginDto = new() { Email = "halit1@kodlama.io", Password = "123456" };
+        _loginCommand.UserForLoginCommand = new() { NationalIdentity = "11111111110", Password = "123456" };
         await Assert.ThrowsAsync<BusinessException>(async () =>
         {
             await _loginCommandHandler.Handle(_loginCommand, CancellationToken.None);
@@ -130,16 +130,16 @@ public class LoginTests
     [Fact]
     public void LoginWithInvalidLengthPasswordShouldThrowException()
     {
-        _loginCommand.UserForLoginDto = new() { Email = "halit1@kodlama.io", Password = "1" };
+        _loginCommand.UserForLoginCommand = new() { NationalIdentity = "11111111110", Password = "1" };
         TestValidationResult<LoginCommand> validationResult = _validator.TestValidate(_loginCommand);
-        validationResult.ShouldHaveValidationErrorFor(i => i.UserForLoginDto.Password);
+        validationResult.ShouldHaveValidationErrorFor(i => i.UserForLoginCommand.Password);
     }
 
     [Fact]
     public void LoginWithNullPasswordShouldThrowException()
     {
-        _loginCommand.UserForLoginDto = new() { Email = "halit1@kodlama.io", Password = null! };
+        _loginCommand.UserForLoginCommand = new() { NationalIdentity = "11111111110", Password = null! };
         TestValidationResult<LoginCommand> validationResult = _validator.TestValidate(_loginCommand);
-        validationResult.ShouldHaveValidationErrorFor(i => i.UserForLoginDto.Password);
+        validationResult.ShouldHaveValidationErrorFor(i => i.UserForLoginCommand.Password);
     }
 }

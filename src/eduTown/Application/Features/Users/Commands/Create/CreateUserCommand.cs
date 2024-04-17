@@ -14,14 +14,14 @@ public class CreateUserCommand : IRequest<CreatedUserResponse>, ISecuredRequest
 {
     public string FirstName { get; set; }
     public string LastName { get; set; }
-    public string Email { get; set; }
+    public string? Email { get; set; }
     public string Password { get; set; }
 
     public CreateUserCommand()
     {
         FirstName = string.Empty;
         LastName = string.Empty;
-        Email = string.Empty;
+        //Email = string.Empty;
         Password = string.Empty;
     }
 

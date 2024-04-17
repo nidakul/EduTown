@@ -83,6 +83,15 @@ builder.Services.AddSwaggerGen(opt =>
     opt.OperationFilter<BearerSecurityRequirementOperationFilter>();
 });
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("CorsPolicy",
+        builder => builder
+            .AllowAnyOrigin()
+            .AllowAnyMethod()
+            .AllowAnyHeader());
+});
+
 WebApplication app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -100,6 +109,7 @@ if (app.Environment.IsProduction())
 
 app.UseDbMigrationApplier();
 
+app.UseCors("CorsPolicy");
 app.UseAuthentication();
 app.UseAuthorization();
 
