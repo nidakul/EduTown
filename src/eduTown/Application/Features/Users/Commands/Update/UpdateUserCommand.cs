@@ -13,26 +13,32 @@ namespace Application.Features.Users.Commands.Update;
 public class UpdateUserCommand : IRequest<UpdatedUserResponse>, ISecuredRequest
 {
     public Guid Id { get; set; }
+    public string NationalIdentity { get; set; }
     public string FirstName { get; set; }
     public string LastName { get; set; }
     public string Email { get; set; }
     public string Password { get; set; }
+    public string ImageUrl { get; set; }
 
     public UpdateUserCommand()
     {
+        NationalIdentity = string.Empty;
         FirstName = string.Empty;
         LastName = string.Empty;
         Email = string.Empty;
         Password = string.Empty;
+        ImageUrl = string.Empty;
     }
 
-    public UpdateUserCommand(Guid id, string firstName, string lastName, string email, string password)
+    public UpdateUserCommand(Guid id,string nationalIdentity,  string firstName, string lastName, string email, string password, string imageUrl)
     {
         Id = id;
+        NationalIdentity = nationalIdentity;
         FirstName = firstName;
         LastName = lastName;
         Email = email;
         Password = password;
+        ImageUrl = imageUrl;
     }
 
     public string[] Roles => new[] { Admin, Write, UsersOperationClaims.Update };

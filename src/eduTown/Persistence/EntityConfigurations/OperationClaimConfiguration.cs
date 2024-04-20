@@ -8,6 +8,9 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using NArchitecture.Core.Security.Constants;
 using Application.Features.Instructors.Constants;
 using Application.Features.Students.Constants;
+using Application.Features.Schools.Constants;
+using Application.Features.Classrooms.Constants;
+using Application.Features.UserClassrooms.Constants;
 
 namespace Persistence.EntityConfigurations;
 
@@ -124,6 +127,48 @@ public class OperationClaimConfiguration : IEntityTypeConfiguration<OperationCla
                 new() { Id = ++lastId, Name = StudentsOperationClaims.Create },
                 new() { Id = ++lastId, Name = StudentsOperationClaims.Update },
                 new() { Id = ++lastId, Name = StudentsOperationClaims.Delete },
+            ]
+        );
+        #endregion
+        
+        
+        #region Schools CRUD
+        featureOperationClaims.AddRange(
+            [
+                new() { Id = ++lastId, Name = SchoolsOperationClaims.Admin },
+                new() { Id = ++lastId, Name = SchoolsOperationClaims.Read },
+                new() { Id = ++lastId, Name = SchoolsOperationClaims.Write },
+                new() { Id = ++lastId, Name = SchoolsOperationClaims.Create },
+                new() { Id = ++lastId, Name = SchoolsOperationClaims.Update },
+                new() { Id = ++lastId, Name = SchoolsOperationClaims.Delete },
+            ]
+        );
+        #endregion
+        
+        
+        #region Classrooms CRUD
+        featureOperationClaims.AddRange(
+            [
+                new() { Id = ++lastId, Name = ClassroomsOperationClaims.Admin },
+                new() { Id = ++lastId, Name = ClassroomsOperationClaims.Read },
+                new() { Id = ++lastId, Name = ClassroomsOperationClaims.Write },
+                new() { Id = ++lastId, Name = ClassroomsOperationClaims.Create },
+                new() { Id = ++lastId, Name = ClassroomsOperationClaims.Update },
+                new() { Id = ++lastId, Name = ClassroomsOperationClaims.Delete },
+            ]
+        );
+        #endregion
+        
+        
+        #region UserClassrooms CRUD
+        featureOperationClaims.AddRange(
+            [
+                new() { Id = ++lastId, Name = UserClassroomsOperationClaims.Admin },
+                new() { Id = ++lastId, Name = UserClassroomsOperationClaims.Read },
+                new() { Id = ++lastId, Name = UserClassroomsOperationClaims.Write },
+                new() { Id = ++lastId, Name = UserClassroomsOperationClaims.Create },
+                new() { Id = ++lastId, Name = UserClassroomsOperationClaims.Update },
+                new() { Id = ++lastId, Name = UserClassroomsOperationClaims.Delete },
             ]
         );
         #endregion

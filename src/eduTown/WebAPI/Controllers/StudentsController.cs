@@ -6,6 +6,7 @@ using Application.Features.Students.Queries.GetList;
 using NArchitecture.Core.Application.Requests;
 using NArchitecture.Core.Application.Responses;
 using Microsoft.AspNetCore.Mvc;
+using Application.Features.Users.Queries.GetStudentByUserId;
 
 namespace WebAPI.Controllers;
 
@@ -58,4 +59,6 @@ public class StudentsController : BaseController
 
         return Ok(response);
     }
+
+   
 }

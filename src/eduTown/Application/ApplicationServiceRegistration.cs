@@ -22,6 +22,9 @@ using NArchitecture.Core.Security.DependencyInjection;
 using NArchitecture.Core.Security.JWT;
 using Application.Services.Instructors;
 using Application.Services.Students;
+using Application.Services.Schools;
+using Application.Services.Classrooms;
+using Application.Services.UserClassrooms;
 
 namespace Application;
 
@@ -65,6 +68,9 @@ public static class ApplicationServiceRegistration
 
         services.AddScoped<IInstructorService, InstructorManager>();
         services.AddScoped<IStudentService, StudentManager>();
+        services.AddScoped<ISchoolService, SchoolManager>();
+        services.AddScoped<IClassroomService, ClassroomManager>();
+        services.AddScoped<IUserClassroomService, UserClassroomManager>();
         return services;
     }
 

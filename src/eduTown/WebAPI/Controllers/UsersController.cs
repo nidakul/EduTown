@@ -4,6 +4,7 @@ using Application.Features.Users.Commands.Update;
 using Application.Features.Users.Commands.UpdateFromAuth;
 using Application.Features.Users.Queries.GetById;
 using Application.Features.Users.Queries.GetList;
+using Application.Features.Users.Queries.GetStudentByUserId;
 using Microsoft.AspNetCore.Mvc;
 using NArchitecture.Core.Application.Requests;
 using NArchitecture.Core.Application.Responses;
@@ -64,5 +65,12 @@ public class UsersController : BaseController
     {
         DeletedUserResponse result = await Mediator.Send(deleteUserCommand);
         return Ok(result);
+    }
+
+    [HttpGet("getStudentDetail/{id}")]
+    public async Task<IActionResult> GetStudentByUserId([FromRoute] Guid id)
+    {
+        GetStudentByUserIdResponse response = await Mediator.Send(new GetStudentByUserIdQuery { Id = id });
+        return Ok(response);
     }
 }
