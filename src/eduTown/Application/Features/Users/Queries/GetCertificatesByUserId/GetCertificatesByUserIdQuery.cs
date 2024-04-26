@@ -29,7 +29,7 @@ namespace Application.Features.Users.Queries.GetCertificatesByUserId
             {
                 User? user = await _userRepository.GetAsync(predicate: u => u.Id.Equals(request.Id),
                     include: u => u.Include(u => u.UserCertificates).ThenInclude(u => u.Certificate)
-                   .Include(u => u.UserClassrooms).ThenInclude(u => u.Classroom),
+                   .Include(u => u.UserCertificates).ThenInclude(u => u.Classroom),
                     enableTracking: false,
                     cancellationToken: cancellationToken);
                 await _userBusinessRules.UserShouldBeExistsWhenSelected(user);

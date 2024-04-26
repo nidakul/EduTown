@@ -6,10 +6,12 @@ namespace Application.Features.Users.Queries.GetCertificatesByUserId
     {
         
         public Guid Id { get; set; }
+        
         public List<CertificateDto> Certificates { get; set; }
 
         public GetCertificatesByUserIdResponse()
         {
+
         }
 
     }
@@ -20,6 +22,9 @@ namespace Application.Features.Users.Queries.GetCertificatesByUserId
         public int Id { get; set; }
         public string CertificateName { get; set; }
         public string ClassroomName { get; set; }
+        public DateTime Year { get; set; }
+        public int Semester { get; set; }
+
     }
 
 }

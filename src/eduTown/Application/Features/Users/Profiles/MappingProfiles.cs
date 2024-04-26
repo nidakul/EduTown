@@ -42,7 +42,9 @@ public class MappingProfiles : Profile
             {
                 Id = u.Id,
                 CertificateName = u.Certificate.Name,
-                //ClassroomName = u.Classroom.Name
+                ClassroomName = u.Classroom.Name,
+                Year = u.Year,
+                Semester = u.Semester
             }).ToList())).ReverseMap();
 
         CreateMap<IPaginate<User>, GetListResponse<GetListUserListItemDto>>().ReverseMap();
