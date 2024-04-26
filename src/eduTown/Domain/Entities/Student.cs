@@ -8,6 +8,7 @@ namespace Domain.Entities
         public string StudentNo { get; set; }
 
         public virtual User User { get; set; }
+
         public Student()
         {
         }

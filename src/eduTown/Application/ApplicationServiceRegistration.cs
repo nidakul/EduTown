@@ -25,6 +25,8 @@ using Application.Services.Students;
 using Application.Services.Schools;
 using Application.Services.Classrooms;
 using Application.Services.UserClassrooms;
+using Application.Services.UserCertificates;
+using Application.Services.Certificates;
 
 namespace Application;
 
@@ -71,6 +73,8 @@ public static class ApplicationServiceRegistration
         services.AddScoped<ISchoolService, SchoolManager>();
         services.AddScoped<IClassroomService, ClassroomManager>();
         services.AddScoped<IUserClassroomService, UserClassroomManager>();
+        services.AddScoped<IUserCertificateService, UserCertificateManager>();
+        services.AddScoped<ICertificateService, CertificateManager>();
         return services;
     }
 

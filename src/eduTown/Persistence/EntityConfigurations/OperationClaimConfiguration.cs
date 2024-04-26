@@ -11,6 +11,8 @@ using Application.Features.Students.Constants;
 using Application.Features.Schools.Constants;
 using Application.Features.Classrooms.Constants;
 using Application.Features.UserClassrooms.Constants;
+using Application.Features.UserCertificates.Constants;
+using Application.Features.Certificates.Constants;
 
 namespace Persistence.EntityConfigurations;
 
@@ -169,6 +171,34 @@ public class OperationClaimConfiguration : IEntityTypeConfiguration<OperationCla
                 new() { Id = ++lastId, Name = UserClassroomsOperationClaims.Create },
                 new() { Id = ++lastId, Name = UserClassroomsOperationClaims.Update },
                 new() { Id = ++lastId, Name = UserClassroomsOperationClaims.Delete },
+            ]
+        );
+        #endregion
+        
+        
+        #region UserCertificates CRUD
+        featureOperationClaims.AddRange(
+            [
+                new() { Id = ++lastId, Name = UserCertificatesOperationClaims.Admin },
+                new() { Id = ++lastId, Name = UserCertificatesOperationClaims.Read },
+                new() { Id = ++lastId, Name = UserCertificatesOperationClaims.Write },
+                new() { Id = ++lastId, Name = UserCertificatesOperationClaims.Create },
+                new() { Id = ++lastId, Name = UserCertificatesOperationClaims.Update },
+                new() { Id = ++lastId, Name = UserCertificatesOperationClaims.Delete },
+            ]
+        );
+        #endregion
+        
+        
+        #region Certificates CRUD
+        featureOperationClaims.AddRange(
+            [
+                new() { Id = ++lastId, Name = CertificatesOperationClaims.Admin },
+                new() { Id = ++lastId, Name = CertificatesOperationClaims.Read },
+                new() { Id = ++lastId, Name = CertificatesOperationClaims.Write },
+                new() { Id = ++lastId, Name = CertificatesOperationClaims.Create },
+                new() { Id = ++lastId, Name = CertificatesOperationClaims.Update },
+                new() { Id = ++lastId, Name = CertificatesOperationClaims.Delete },
             ]
         );
         #endregion

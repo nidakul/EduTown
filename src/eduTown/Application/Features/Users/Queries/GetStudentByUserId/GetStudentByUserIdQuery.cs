@@ -28,7 +28,8 @@ namespace Application.Features.Users.Queries.GetStudentByUserId
                 User? user = await _userRepository.GetAsync(predicate: b => b.Id.Equals(request.Id),
                     include: b => b.Include(b => b.Student)
                     //.Include(b=>b.School),
-                    .Include(b=>b.UserClassrooms).ThenInclude(b=>b.Classroom),
+                    .Include(b=>b.UserClassrooms).ThenInclude(b=>b.Classroom)
+                    .Include(b=>b.UserCertificates).ThenInclude(b=>b.Certificate),
                     enableTracking: false,
                     cancellationToken: cancellationToken);
                 await _userBusinessRules.UserShouldBeExistsWhenSelected(user);

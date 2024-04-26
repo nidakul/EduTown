@@ -3,6 +3,7 @@ using Application.Features.Users.Commands.Delete;
 using Application.Features.Users.Commands.Update;
 using Application.Features.Users.Commands.UpdateFromAuth;
 using Application.Features.Users.Queries.GetById;
+using Application.Features.Users.Queries.GetCertificatesByUserId;
 using Application.Features.Users.Queries.GetList;
 using Application.Features.Users.Queries.GetStudentByUserId;
 using Microsoft.AspNetCore.Mvc;
@@ -71,6 +72,13 @@ public class UsersController : BaseController
     public async Task<IActionResult> GetStudentByUserId([FromRoute] Guid id)
     {
         GetStudentByUserIdResponse response = await Mediator.Send(new GetStudentByUserIdQuery { Id = id });
+        return Ok(response);
+    }
+
+    [HttpGet("getStudentCertificate/{id}")]
+    public async Task<IActionResult> GetCertificatesByUserId([FromRoute] Guid id)
+    {
+        GetCertificatesByUserIdResponse response = await Mediator.Send(new GetCertificatesByUserIdQuery { Id = id });
         return Ok(response);
     }
 }
