@@ -25,10 +25,12 @@
     <Folder Include="Services\Repositories" />
     <Folder Include="Features\Users\Queries\GetStudentByUserId\" />
     <Folder Include="Features\Users\Queries\GetCertificatesByUserId\" />
+    <Folder Include="Features\Users\Queries\GetStudentGradesByUserId\" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="Features\Users\Queries\GetStudentByUserId\" />
     <None Remove="Features\Users\Queries\GetCertificatesByUserId\" />
+    <None Remove="Features\Users\Queries\GetStudentGradesByUserId\" />
   </ItemGroup>
   <ItemGroup>
     <None Update="Features\**\Resources\Locales\*.*.yaml">

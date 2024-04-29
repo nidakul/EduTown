@@ -6,8 +6,9 @@ namespace Application.Features.Users.Queries.GetCertificatesByUserId
     {
         
         public Guid Id { get; set; }
-        
+
         public List<CertificateDto> Certificates { get; set; }
+
 
         public GetCertificatesByUserIdResponse()
         {

@@ -6,6 +6,7 @@ using Application.Features.Users.Queries.GetById;
 using Application.Features.Users.Queries.GetCertificatesByUserId;
 using Application.Features.Users.Queries.GetList;
 using Application.Features.Users.Queries.GetStudentByUserId;
+using Application.Features.Users.Queries.GetStudentGradesByUserId;
 using AutoMapper;
 using Domain.Entities;
 using NArchitecture.Core.Application.Responses;
@@ -47,6 +48,16 @@ public class MappingProfiles : Profile
                 Semester = u.Semester
             }).ToList())).ReverseMap();
 
+        CreateMap<User, GetStudentGradesByUserIdResponse>()
+            .ForMember(u => u.Id, opt => opt.MapFrom(u => u.Id))
+            .ForMember(dest => dest.StudentGrades, opt => opt.MapFrom(src => src.StudentGrades.Select(u => new StudentGradeDto
+            {
+                Id = u.Id,
+                LessonName = u.Lesson.Name,
+                GradeTypeName = u.GradeType.Name,
+                ExamCount = u.ExamCount,
+                Grade = u.Grade
+            }).ToList())).ReverseMap();
         CreateMap<IPaginate<User>, GetListResponse<GetListUserListItemDto>>().ReverseMap();
     }
 }

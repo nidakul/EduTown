@@ -13,6 +13,10 @@ using Application.Features.Classrooms.Constants;
 using Application.Features.UserClassrooms.Constants;
 using Application.Features.UserCertificates.Constants;
 using Application.Features.Certificates.Constants;
+using Application.Features.Lessons.Constants;
+using Application.Features.StudentGradeLessons.Constants;
+using Application.Features.GradeTypes.Constants;
+using Application.Features.StudentGrades.Constants;
 
 namespace Persistence.EntityConfigurations;
 
@@ -199,6 +203,63 @@ public class OperationClaimConfiguration : IEntityTypeConfiguration<OperationCla
                 new() { Id = ++lastId, Name = CertificatesOperationClaims.Create },
                 new() { Id = ++lastId, Name = CertificatesOperationClaims.Update },
                 new() { Id = ++lastId, Name = CertificatesOperationClaims.Delete },
+            ]
+        );
+        #endregion
+
+        
+        #region Lessons CRUD
+        featureOperationClaims.AddRange(
+            [
+                new() { Id = ++lastId, Name = LessonsOperationClaims.Admin },
+                new() { Id = ++lastId, Name = LessonsOperationClaims.Read },
+                new() { Id = ++lastId, Name = LessonsOperationClaims.Write },
+                new() { Id = ++lastId, Name = LessonsOperationClaims.Create },
+                new() { Id = ++lastId, Name = LessonsOperationClaims.Update },
+                new() { Id = ++lastId, Name = LessonsOperationClaims.Delete },
+            ]
+        );
+        #endregion
+        
+                
+        
+        #region StudentGradeLessons CRUD
+        featureOperationClaims.AddRange(
+            [
+                new() { Id = ++lastId, Name = StudentGradeLessonsOperationClaims.Admin },
+                new() { Id = ++lastId, Name = StudentGradeLessonsOperationClaims.Read },
+                new() { Id = ++lastId, Name = StudentGradeLessonsOperationClaims.Write },
+                new() { Id = ++lastId, Name = StudentGradeLessonsOperationClaims.Create },
+                new() { Id = ++lastId, Name = StudentGradeLessonsOperationClaims.Update },
+                new() { Id = ++lastId, Name = StudentGradeLessonsOperationClaims.Delete },
+            ]
+        );
+        #endregion
+        
+        
+        #region GradeTypes CRUD
+        featureOperationClaims.AddRange(
+            [
+                new() { Id = ++lastId, Name = GradeTypesOperationClaims.Admin },
+                new() { Id = ++lastId, Name = GradeTypesOperationClaims.Read },
+                new() { Id = ++lastId, Name = GradeTypesOperationClaims.Write },
+                new() { Id = ++lastId, Name = GradeTypesOperationClaims.Create },
+                new() { Id = ++lastId, Name = GradeTypesOperationClaims.Update },
+                new() { Id = ++lastId, Name = GradeTypesOperationClaims.Delete },
+            ]
+        );
+        #endregion
+        
+        
+        #region StudentGrades CRUD
+        featureOperationClaims.AddRange(
+            [
+                new() { Id = ++lastId, Name = StudentGradesOperationClaims.Admin },
+                new() { Id = ++lastId, Name = StudentGradesOperationClaims.Read },
+                new() { Id = ++lastId, Name = StudentGradesOperationClaims.Write },
+                new() { Id = ++lastId, Name = StudentGradesOperationClaims.Create },
+                new() { Id = ++lastId, Name = StudentGradesOperationClaims.Update },
+                new() { Id = ++lastId, Name = StudentGradesOperationClaims.Delete },
             ]
         );
         #endregion

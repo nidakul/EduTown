@@ -21,6 +21,12 @@ public class BaseDbContext : DbContext
     public DbSet<UserClassroom> UserClassrooms { get; set; }
     public DbSet<UserCertificate> UserCertificates { get; set; }
     public DbSet<Certificate> Certificates { get; set; }
+    public DbSet<Lesson> Lessons { get; set; }
+    public DbSet<StudentGradeLesson> StudentGradeLessons { get; set; }
+    public DbSet<GradeType> GradeTypes { get; set; }
+    public DbSet<StudentGrade> StudentGrades { get; set; }
+
+
 
     public BaseDbContext()
     {
@@ -42,6 +48,9 @@ public class BaseDbContext : DbContext
     {
         optionsBuilder.UseSqlServer("Server = localhost; Database = EduTown; User Id = SA; Password = rentacardb; TrustServerCertificate=true");
         
+
+
+
 
 
 
