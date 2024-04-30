@@ -27,7 +27,6 @@ public class BaseDbContext : DbContext
     public DbSet<StudentGrade> StudentGrades { get; set; }
 
 
-
     public BaseDbContext()
     {
 
