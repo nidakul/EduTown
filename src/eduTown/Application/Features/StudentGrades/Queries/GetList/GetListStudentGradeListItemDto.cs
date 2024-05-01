@@ -9,5 +9,5 @@ public class GetListStudentGradeListItemDto : IDto
     public int GradeTypeId { get; set; }
     public int LessonId { get; set; }
     public int ExamCount { get; set; }
-    public double Grade { get; set; }
+    public List<double> Grade { get; set; }
 }

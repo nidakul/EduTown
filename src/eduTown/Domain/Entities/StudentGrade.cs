@@ -19,11 +19,8 @@ namespace Domain.Entities
         public StudentGrade()
         {
         }
-    }
+    }  
 }
-
-
-
-
+ 
 
 

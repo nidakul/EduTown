@@ -11,3 +11,4 @@ public class CreatedStudentGradeResponse : IResponse
     public int ExamCount { get; set; }
     public double Grade { get; set; }
 }
+

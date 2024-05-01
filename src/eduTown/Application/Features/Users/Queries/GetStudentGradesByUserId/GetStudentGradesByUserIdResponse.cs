@@ -1,11 +1,12 @@
 ﻿using NArchitecture.Core.Application.Responses;
 using System;
+using System.Collections.Generic;
 namespace Application.Features.Users.Queries.GetStudentGradesByUserId
 {
-    public class GetStudentGradesByUserIdResponse: IResponse
+    public class GetStudentGradesByUserIdResponse : IResponse
     {
         public Guid Id { get; set; }
-        public List<StudentGradeDto> StudentGrades { get; set; }
+        public List<StudentGradesByLessonDto> StudentGrades { get; set; }
 
 
         public GetStudentGradesByUserIdResponse()
@@ -13,15 +14,26 @@ namespace Application.Features.Users.Queries.GetStudentGradesByUserId
         }
     }
 
-    public class StudentGradeDto
+    public class StudentGradesByLessonDto
     {
-        public int Id { get; set; }
         public string LessonName { get; set; }
+        public List<StudentGradeDetailsDto> Grades { get; set; }
+    }
+
+    public class StudentGradeDetailsDto
+    {
         public string GradeTypeName { get; set; }
-        public int ExamCount { get; set; }
-        public double Grade { get; set; }
+        public List<GradeDto> GradesDto { get; set; }
 
     }
+
+    public class GradeDto
+    {
+        public int GradeNumber { get; set; }
+        public double Grade { get; set; }
+    }
 }
+
+
 
 

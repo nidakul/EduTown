@@ -16,7 +16,7 @@ namespace Application.Features.Users.Queries.GetStudentGradesByUserId
             private readonly IUserRepository _userRepository;
             private readonly IMapper _mapper;
             private readonly UserBusinessRules _userBusinessRules;
-
+             
             public GetStudentGradesByUserIdQueryHandler(IUserRepository userRepository, IMapper mapper, UserBusinessRules userBusinessRules)
             {
                 _userRepository = userRepository;
@@ -30,7 +30,7 @@ namespace Application.Features.Users.Queries.GetStudentGradesByUserId
                     include: u => u.Include(u => u.StudentGrades).ThenInclude(u => u.Lesson)
                     .Include(u => u.StudentGrades).ThenInclude(u => u.GradeType),
                     enableTracking: false,
-                    cancellationToken: cancellationToken);
+                    cancellationToken: cancellationToken); 
 
                 await _userBusinessRules.UserShouldBeExistsWhenSelected(user);
 
