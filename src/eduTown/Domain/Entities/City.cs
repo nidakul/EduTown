@@ -6,10 +6,14 @@ namespace Domain.Entities
     {
         public string Name { get; set; }
 
+        public virtual ICollection<School> Schools { get; set; }
+
         public City()
         {
         }
     }
 }
+
+
 
 

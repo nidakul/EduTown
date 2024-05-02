@@ -5,5 +5,6 @@ namespace Application.Features.Schools.Commands.Update;
 public class UpdatedSchoolResponse : IResponse
 {
     public int Id { get; set; }
+    public int CityId { get; set; }
     public string Name { get; set; }
 }

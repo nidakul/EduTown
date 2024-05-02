@@ -6,6 +6,7 @@ public class CreateSchoolCommandValidator : AbstractValidator<CreateSchoolComman
 {
     public CreateSchoolCommandValidator()
     {
+        RuleFor(c => c.CityId).NotEmpty();
         RuleFor(c => c.Name).NotEmpty();
     }
 }

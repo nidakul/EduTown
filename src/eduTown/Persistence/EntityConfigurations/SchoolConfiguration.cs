@@ -11,6 +11,7 @@ public class SchoolConfiguration : IEntityTypeConfiguration<School>
         builder.ToTable("Schools").HasKey(s => s.Id);
 
         builder.Property(s => s.Id).HasColumnName("Id").IsRequired();
+        builder.Property(s => s.CityId).HasColumnName("CityId").IsRequired();
         builder.Property(s => s.Name).HasColumnName("Name").IsRequired();
         builder.Property(s => s.CreatedDate).HasColumnName("CreatedDate").IsRequired();
         builder.Property(s => s.UpdatedDate).HasColumnName("UpdatedDate");

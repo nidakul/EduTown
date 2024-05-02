@@ -17,6 +17,7 @@ using Application.Features.Lessons.Constants;
 using Application.Features.StudentGradeLessons.Constants;
 using Application.Features.GradeTypes.Constants;
 using Application.Features.StudentGrades.Constants;
+using Application.Features.Cities.Constants;
 
 namespace Persistence.EntityConfigurations;
 
@@ -260,6 +261,34 @@ public class OperationClaimConfiguration : IEntityTypeConfiguration<OperationCla
                 new() { Id = ++lastId, Name = StudentGradesOperationClaims.Create },
                 new() { Id = ++lastId, Name = StudentGradesOperationClaims.Update },
                 new() { Id = ++lastId, Name = StudentGradesOperationClaims.Delete },
+            ]
+        );
+        #endregion
+        
+        
+        #region Cities CRUD
+        featureOperationClaims.AddRange(
+            [
+                new() { Id = ++lastId, Name = CitiesOperationClaims.Admin },
+                new() { Id = ++lastId, Name = CitiesOperationClaims.Read },
+                new() { Id = ++lastId, Name = CitiesOperationClaims.Write },
+                new() { Id = ++lastId, Name = CitiesOperationClaims.Create },
+                new() { Id = ++lastId, Name = CitiesOperationClaims.Update },
+                new() { Id = ++lastId, Name = CitiesOperationClaims.Delete },
+            ]
+        );
+        #endregion
+        
+        
+        #region Schools CRUD
+        featureOperationClaims.AddRange(
+            [
+                new() { Id = ++lastId, Name = SchoolsOperationClaims.Admin },
+                new() { Id = ++lastId, Name = SchoolsOperationClaims.Read },
+                new() { Id = ++lastId, Name = SchoolsOperationClaims.Write },
+                new() { Id = ++lastId, Name = SchoolsOperationClaims.Create },
+                new() { Id = ++lastId, Name = SchoolsOperationClaims.Update },
+                new() { Id = ++lastId, Name = SchoolsOperationClaims.Delete },
             ]
         );
         #endregion

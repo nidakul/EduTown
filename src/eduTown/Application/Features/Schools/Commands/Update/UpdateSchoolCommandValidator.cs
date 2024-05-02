@@ -7,6 +7,7 @@ public class UpdateSchoolCommandValidator : AbstractValidator<UpdateSchoolComman
     public UpdateSchoolCommandValidator()
     {
         RuleFor(c => c.Id).NotEmpty();
+        RuleFor(c => c.CityId).NotEmpty();
         RuleFor(c => c.Name).NotEmpty();
     }
 }

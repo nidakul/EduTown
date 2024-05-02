@@ -33,6 +33,8 @@ public static class PersistenceServiceRegistration
         services.AddScoped<IStudentGradeLessonRepository, StudentGradeLessonRepository>();
         services.AddScoped<IGradeTypeRepository, GradeTypeRepository>();
         services.AddScoped<IStudentGradeRepository, StudentGradeRepository>();
+        services.AddScoped<ICityRepository, CityRepository>();
+        services.AddScoped<ISchoolRepository, SchoolRepository>();
         return services;
     }
 }

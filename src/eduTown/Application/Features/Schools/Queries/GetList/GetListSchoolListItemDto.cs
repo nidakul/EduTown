@@ -5,5 +5,6 @@ namespace Application.Features.Schools.Queries.GetList;
 public class GetListSchoolListItemDto : IDto
 {
     public int Id { get; set; }
+    public int CityId { get; set; }
     public string Name { get; set; }
 }

@@ -4,7 +4,12 @@ namespace Domain.Entities
 {
     public class School: Entity<int>
     {
+        public int CityId { get; set; }
         public string Name { get; set; }
+
+        public virtual City City { get; set; }
+
+        public virtual ICollection<UserSchool> UserSchools { get; set; }
 
         public School()
         {
@@ -17,5 +22,6 @@ namespace Domain.Entities
         }
     }
 }
+
 
 
