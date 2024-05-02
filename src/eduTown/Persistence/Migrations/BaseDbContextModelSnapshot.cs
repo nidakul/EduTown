@@ -339,12 +339,17 @@ namespace Persistence.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("SchoolId")
+                        .HasColumnType("int");
+
                     b.Property<DateTime?>("UpdatedDate")
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 
                     b.HasIndex("CityId");
+
+                    b.HasIndex("SchoolId");
 
                     b.ToTable("Schools");
                 });
@@ -494,10 +499,15 @@ namespace Persistence.Migrations
                         .IsRequired()
                         .HasColumnType("varbinary(max)");
 
+                    b.Property<int>("SchoolId")
+                        .HasColumnType("int");
+
                     b.Property<DateTime?>("UpdatedDate")
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("SchoolId");
 
                     b.ToTable("Users");
                 });
@@ -659,6 +669,10 @@ namespace Persistence.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("Domain.Entities.School", null)
+                        .WithMany("Schools")
+                        .HasForeignKey("SchoolId");
+
                     b.Navigation("City");
                 });
 
@@ -709,6 +723,17 @@ namespace Persistence.Migrations
                         .IsRequired();
 
                     b.Navigation("Lesson");
+                });
+
+            modelBuilder.Entity("Domain.Entities.User", b =>
+                {
+                    b.HasOne("Domain.Entities.School", "School")
+                        .WithMany()
+                        .HasForeignKey("SchoolId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("School");
                 });
 
             modelBuilder.Entity("Domain.Entities.UserCertificate", b =>
@@ -801,6 +826,11 @@ namespace Persistence.Migrations
             modelBuilder.Entity("Domain.Entities.Lesson", b =>
                 {
                     b.Navigation("StudentGrade");
+                });
+
+            modelBuilder.Entity("Domain.Entities.School", b =>
+                {
+                    b.Navigation("Schools");
                 });
 
             modelBuilder.Entity("Domain.Entities.User", b =>

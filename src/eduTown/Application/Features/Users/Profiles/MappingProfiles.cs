@@ -33,7 +33,7 @@ public class MappingProfiles : Profile
         CreateMap<User, GetStudentByUserIdResponse>()
             .ForMember(u => u.StudentNo, opt => opt.MapFrom(u => u.Student.StudentNo))
             .ForMember(u => u.Id, opt => opt.MapFrom(u => u.Id))
-            //.ForMember(u => u.SchoolName, opt => opt.MapFrom(u=>u.School.Name))
+            .ForMember(u => u.SchoolName, opt => opt.MapFrom(u=>u.School.Name))
 
             .ReverseMap();
 

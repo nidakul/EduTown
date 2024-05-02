@@ -9,15 +9,16 @@ namespace Domain.Entities
 
         public virtual City City { get; set; }
 
-        public virtual ICollection<UserSchool> UserSchools { get; set; }
+        public virtual ICollection<School> Schools { get; set; }
 
         public School()
         {
         }
 
-        public School(int id, string name): this()
+        public School(int id, int cityId, string name): this()
         {
             Id = id;
+            CityId = cityId;
             Name = name;
         }
     }
