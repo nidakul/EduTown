@@ -10,6 +10,8 @@ namespace Domain.Entities
         public virtual City City { get; set; }
 
         public virtual ICollection<School> Schools { get; set; }
+        public virtual ICollection<SchoolClassroom> SchoolClassrooms { get; set; }
+
 
         public School()
         {

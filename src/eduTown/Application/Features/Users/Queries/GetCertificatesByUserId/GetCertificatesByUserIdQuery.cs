@@ -28,8 +28,8 @@ namespace Application.Features.Users.Queries.GetCertificatesByUserId
             public async Task<GetCertificatesByUserIdResponse> Handle(GetCertificatesByUserIdQuery request, CancellationToken cancellationToken)
             {
                 User? user = await _userRepository.GetAsync(predicate: u => u.Id.Equals(request.Id),
-                    include: u => u.Include(u => u.UserCertificates).ThenInclude(u => u.Certificate)
-                   .Include(u => u.UserCertificates).ThenInclude(u => u.Classroom),
+                    include: u => u.Include(u => u.UserCertificates).ThenInclude(u => u.Certificate),
+                   //.Include(u => u.UserCertificates).ThenInclude(u => u.Classroom),
                     enableTracking: false,
                     cancellationToken: cancellationToken);
                 await _userBusinessRules.UserShouldBeExistsWhenSelected(user);

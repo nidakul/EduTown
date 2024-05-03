@@ -27,6 +27,7 @@ public class UserRepository : EfRepositoryBase<User, Guid, BaseDbContext>, IUser
         User newUser = new User
         {
             SchoolId = userForRegisterCommand.SchoolId,
+            ClassroomId = userForRegisterCommand.ClassroomId,
             NationalIdentity = userForRegisterCommand.NationalIdentity,
             PasswordHash = passwordHash,
             PasswordSalt = passwordSalt,

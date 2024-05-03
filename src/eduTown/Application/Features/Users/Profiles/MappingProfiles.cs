@@ -34,6 +34,7 @@ public class MappingProfiles : Profile
             .ForMember(u => u.StudentNo, opt => opt.MapFrom(u => u.Student.StudentNo))
             .ForMember(u => u.Id, opt => opt.MapFrom(u => u.Id))
             .ForMember(u => u.SchoolName, opt => opt.MapFrom(u=>u.School.Name))
+            .ForMember(u => u.ClassroomName, opt => opt.MapFrom(u=>u.Classroom.Name))
 
             .ReverseMap();
 
@@ -43,7 +44,7 @@ public class MappingProfiles : Profile
             {
                 Id = u.Id,
                 CertificateName = u.Certificate.Name,
-                ClassroomName = u.Classroom.Name,
+                //ClassroomName = u.Classroom.Name,
                 Year = u.Year,
                 Semester = u.Semester
             }).ToList())).ReverseMap();

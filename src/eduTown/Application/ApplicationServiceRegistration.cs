@@ -24,7 +24,6 @@ using Application.Services.Instructors;
 using Application.Services.Students;
 using Application.Services.Schools;
 using Application.Services.Classrooms;
-using Application.Services.UserClassrooms;
 using Application.Services.UserCertificates;
 using Application.Services.Certificates;
 using Application.Services.Lessons;
@@ -32,6 +31,8 @@ using Application.Services.StudentGradeLessons;
 using Application.Services.GradeTypes;
 using Application.Services.StudentGrades;
 using Application.Services.Cities;
+using Application.Services.SchoolClassrooms;
+using Application.Services.LessonClassrooms;
 
 namespace Application;
 
@@ -77,7 +78,6 @@ public static class ApplicationServiceRegistration
         services.AddScoped<IStudentService, StudentManager>();
         services.AddScoped<ISchoolService, SchoolManager>();
         services.AddScoped<IClassroomService, ClassroomManager>();
-        services.AddScoped<IUserClassroomService, UserClassroomManager>();
         services.AddScoped<IUserCertificateService, UserCertificateManager>();
         services.AddScoped<ICertificateService, CertificateManager>();
         services.AddScoped<ILessonService, LessonManager>();
@@ -85,6 +85,11 @@ public static class ApplicationServiceRegistration
         services.AddScoped<IGradeTypeService, GradeTypeManager>();
         services.AddScoped<IStudentGradeService, StudentGradeManager>();
         services.AddScoped<ICityService, CityManager>();
+        services.AddScoped<ISchoolService, SchoolManager>();
+        services.AddScoped<ISchoolClassroomService, SchoolClassroomManager>();
+        services.AddScoped<IClassroomService, ClassroomManager>();
+        services.AddScoped<ILessonService, LessonManager>();
+        services.AddScoped<ILessonClassroomService, LessonClassroomManager>();
         services.AddScoped<ISchoolService, SchoolManager>();
         return services;
     }

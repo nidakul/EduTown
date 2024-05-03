@@ -13,6 +13,7 @@ namespace Application.Features.Users.Commands.Create;
 public class CreateUserCommand : IRequest<CreatedUserResponse>, ISecuredRequest
 {
     public int SchoolId { get; set; }
+    public int ClassroomId { get; set; }
     public string NationalIdentity { get; set; }
     public string FirstName { get; set; }
     public string LastName { get; set; }
@@ -28,9 +29,10 @@ public class CreateUserCommand : IRequest<CreatedUserResponse>, ISecuredRequest
         Password = string.Empty;
     }
 
-    public CreateUserCommand(int schoolId ,string nationalIdentity, string firstName, string lastName, string email, string password)
+    public CreateUserCommand(int schoolId,int classroomId, string nationalIdentity, string firstName, string lastName, string email, string password)
     {
         SchoolId = schoolId;
+        ClassroomId = classroomId;
         NationalIdentity = nationalIdentity;
         FirstName = firstName;
         LastName = lastName;

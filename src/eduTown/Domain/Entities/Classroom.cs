@@ -6,8 +6,11 @@ namespace Domain.Entities
     {
         public string Name { get; set; }
 
-        public virtual ICollection<UserClassroom> UserClassrooms { get; set; }
+        //public virtual ICollection<UserClassroom> UserClassrooms { get; set; }
+        public virtual ICollection<User> Users { get; set; }
         public virtual ICollection<UserCertificate> UserCertificates { get; set; }
+        public virtual ICollection<SchoolClassroom> SchoolClassrooms { get; set; }
+        public virtual ICollection<LessonClassroom> LessonClassrooms { get; set; }
 
 
         public Classroom()
