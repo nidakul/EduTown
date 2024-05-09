@@ -60,11 +60,12 @@ public class MappingProfiles : Profile
                  Grades = g.Select(sg => new StudentGradeDetailsDto
                  {
                      GradeTypeName = sg.GradeType.Name,
+                     //GradeCount = sg.GradeType.GradeCount.GetValueOrDefault(), //sg.GradeType.GradeCount ?? 0;
                      GradesDto = new List<GradeDto>
 {
     new GradeDto
     {
-        GradeNumber = sg.ExamCount,
+        ExamCount = sg.ExamCount,
         Grade = sg.Grade
     }
 }

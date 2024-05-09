@@ -5,6 +5,7 @@ namespace Domain.Entities
     public class GradeType: Entity<int>
     {
         public string Name { get; set; }
+        public int? GradeCount { get; set; }
 
         public virtual ICollection<StudentGrade> StudentGrades { get; set; }
 
@@ -13,6 +14,7 @@ namespace Domain.Entities
         }
     }
 }
+
 
 
 

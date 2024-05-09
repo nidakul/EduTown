@@ -12,6 +12,7 @@ public class GradeTypeConfiguration : IEntityTypeConfiguration<GradeType>
 
         builder.Property(gt => gt.Id).HasColumnName("Id").IsRequired();
         builder.Property(gt => gt.Name).HasColumnName("Name").IsRequired();
+        builder.Property(gt => gt.GradeCount).HasColumnName("GradeCount");
         builder.Property(gt => gt.CreatedDate).HasColumnName("CreatedDate").IsRequired();
         builder.Property(gt => gt.UpdatedDate).HasColumnName("UpdatedDate");
         builder.Property(gt => gt.DeletedDate).HasColumnName("DeletedDate");

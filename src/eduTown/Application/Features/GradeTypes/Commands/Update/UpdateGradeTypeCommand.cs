@@ -10,6 +10,8 @@ public class UpdateGradeTypeCommand : IRequest<UpdatedGradeTypeResponse>
 {
     public int Id { get; set; }
     public required string Name { get; set; }
+    public required int GradeCount { get; set; }
+
 
     public class UpdateGradeTypeCommandHandler : IRequestHandler<UpdateGradeTypeCommand, UpdatedGradeTypeResponse>
     {

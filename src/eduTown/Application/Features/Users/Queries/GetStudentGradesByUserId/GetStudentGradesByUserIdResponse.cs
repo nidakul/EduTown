@@ -23,13 +23,14 @@ namespace Application.Features.Users.Queries.GetStudentGradesByUserId
     public class StudentGradeDetailsDto
     {
         public string GradeTypeName { get; set; }
+        //public int GradeCount { get; set; }
         public List<GradeDto> GradesDto { get; set; }
 
     }
 
     public class GradeDto
     {
-        public int GradeNumber { get; set; }
+        public int ExamCount { get; set; }
         public double Grade { get; set; }
     }
 }

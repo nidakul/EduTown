@@ -9,7 +9,6 @@ public class CreateStudentGradeCommandValidator : AbstractValidator<CreateStuden
         RuleFor(c => c.UserId).NotEmpty();
         RuleFor(c => c.GradeTypeId).NotEmpty();
         RuleFor(c => c.LessonId).NotEmpty();
-        RuleFor(c => c.ExamCount).NotEmpty();
         RuleFor(c => c.Grade).NotEmpty();
     }
 }

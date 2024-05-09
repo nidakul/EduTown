@@ -9,6 +9,7 @@ namespace Application.Features.GradeTypes.Commands.Create;
 public class CreateGradeTypeCommand : IRequest<CreatedGradeTypeResponse>
 {
     public required string Name { get; set; }
+    public int? GradeCount { get; set; }
 
     public class CreateGradeTypeCommandHandler : IRequestHandler<CreateGradeTypeCommand, CreatedGradeTypeResponse>
     {
