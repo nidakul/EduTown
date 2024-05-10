@@ -33,8 +33,8 @@ public class MappingProfiles : Profile
         CreateMap<User, GetStudentByUserIdResponse>()
             .ForMember(u => u.StudentNo, opt => opt.MapFrom(u => u.Student.StudentNo))
             .ForMember(u => u.Id, opt => opt.MapFrom(u => u.Id))
-            .ForMember(u => u.SchoolName, opt => opt.MapFrom(u=>u.School.Name))
-            .ForMember(u => u.ClassroomName, opt => opt.MapFrom(u=>u.Classroom.Name))
+            .ForMember(u => u.SchoolName, opt => opt.MapFrom(u => u.School.Name))
+            .ForMember(u => u.ClassroomName, opt => opt.MapFrom(u => u.Classroom.Name))
 
             .ReverseMap();
 
@@ -50,29 +50,29 @@ public class MappingProfiles : Profile
             }).ToList())).ReverseMap();
 
         CreateMap<User, GetStudentGradesByUserIdResponse>()
-     .ForMember(u => u.Id, opt => opt.MapFrom(u => u.Id))
+      .ForMember(u => u.Id, opt => opt.MapFrom(u => u.Id))
+      .ForMember(dest => dest.StudentGrades, opt => opt.MapFrom(
+          src => src.StudentGrades.GroupBy(sg => sg.Lesson.Name)
+              .Select(g => new StudentGradesByLessonDto
+              {
+                  LessonName = g.Key,
+                  Grades = g.OrderBy(ec => ec.ExamCount)
+                  .GroupBy(grade => grade.GradeType.Name)
+                            .Select(grp => new StudentGradeDetailsDto
+                            {
+                                GradeTypeName = grp.Key,
+                                GradesDto = grp.Select(g => new GradeDto
+                                {
+                                    ExamCount = g.ExamCount,
+                                    Grade = g.Grade
+                                }).ToList()
+                            }).ToList()
+              }).ToList()
+      ))
+      .ReverseMap();
 
-     .ForMember(dest => dest.StudentGrades, opt => opt.MapFrom(
-         src => src.StudentGrades.GroupBy(sg => sg.Lesson.Name)
-             .Select(g => new StudentGradesByLessonDto
-             {
-                 LessonName = g.Key,
-                 Grades = g.Select(sg => new StudentGradeDetailsDto
-                 {
-                     GradeTypeName = sg.GradeType.Name,
-                     //GradeCount = sg.GradeType.GradeCount.GetValueOrDefault(), //sg.GradeType.GradeCount ?? 0;
-                     GradesDto = new List<GradeDto>
-{
-    new GradeDto
-    {
-        ExamCount = sg.ExamCount,
-        Grade = sg.Grade
-    }
-}
-                 }).ToList()
-             }).ToList()
-     ))
-     .ReverseMap();
+
+
 
         CreateMap<IPaginate<User>, GetListResponse<GetListUserListItemDto>>().ReverseMap();
     }
