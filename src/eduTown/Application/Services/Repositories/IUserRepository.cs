@@ -10,5 +10,5 @@ public interface IUserRepository : IAsyncRepository<User, Guid>, IRepository<Use
 
     Task<User> CreateUserAsync(UserForRegisterCommand userForRegisterCommand);
 
-
+    
 }

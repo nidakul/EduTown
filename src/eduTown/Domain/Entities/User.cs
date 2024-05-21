@@ -8,12 +8,13 @@ public class User : NArchitecture.Core.Security.Entities.User<Guid>
     public string FirstName { get; set; }
     public string LastName { get; set; }
     public string Email { get; set; }
-    public string? ImageUrl { get; set; }
+    public string? ImageUrl { get; set; } 
+    //Kayıt Tarihi createdDate'den al
 
     public virtual Student Student { get; set; }
     public virtual School School { get; set; }
     public virtual Classroom Classroom { get; set; }
-
+    
     //public virtual ICollection<UserClassroom> UserClassrooms { get; set; } //değiş current classroom olarak düşün tekil yap
     public virtual ICollection<UserCertificate>? UserCertificates { get; set; }
     public virtual ICollection<StudentGrade>? StudentGrades { get; set; }

@@ -74,3 +74,4 @@ public class CreateUserCommand : IRequest<CreatedUserResponse>, ISecuredRequest
         }
     }
 }
+

@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Persistence.Contexts;
 
@@ -11,9 +12,11 @@ using Persistence.Contexts;
 namespace Persistence.Migrations
 {
     [DbContext(typeof(BaseDbContext))]
-    partial class BaseDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240521122727_UserStudent")]
+    partial class UserStudent
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -451,13 +454,7 @@ namespace Persistence.Migrations
                     b.Property<DateTime?>("UpdatedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<Guid>("UserId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("UserId")
-                        .IsUnique();
 
                     b.ToTable("Students");
                 });
@@ -583,6 +580,9 @@ namespace Persistence.Migrations
                     b.Property<int>("SchoolId")
                         .HasColumnType("int");
 
+                    b.Property<Guid>("StudentId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<DateTime?>("UpdatedDate")
                         .HasColumnType("datetime2");
 
@@ -591,6 +591,8 @@ namespace Persistence.Migrations
                     b.HasIndex("ClassroomId");
 
                     b.HasIndex("SchoolId");
+
+                    b.HasIndex("StudentId");
 
                     b.ToTable("Users");
                 });
@@ -765,17 +767,6 @@ namespace Persistence.Migrations
                     b.Navigation("School");
                 });
 
-            modelBuilder.Entity("Domain.Entities.Student", b =>
-                {
-                    b.HasOne("Domain.Entities.User", "User")
-                        .WithOne("Student")
-                        .HasForeignKey("Domain.Entities.Student", "UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("User");
-                });
-
             modelBuilder.Entity("Domain.Entities.StudentGrade", b =>
                 {
                     b.HasOne("Domain.Entities.GradeType", "GradeType")
@@ -828,9 +819,17 @@ namespace Persistence.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("Domain.Entities.Student", "Student")
+                        .WithMany()
+                        .HasForeignKey("StudentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("Classroom");
 
                     b.Navigation("School");
+
+                    b.Navigation("Student");
                 });
 
             modelBuilder.Entity("Domain.Entities.UserCertificate", b =>
@@ -922,9 +921,6 @@ namespace Persistence.Migrations
                     b.Navigation("OtpAuthenticators");
 
                     b.Navigation("RefreshTokens");
-
-                    b.Navigation("Student")
-                        .IsRequired();
 
                     b.Navigation("StudentGrades");
 

@@ -11,12 +11,14 @@ namespace Domain.Entities
         public virtual ICollection<UserCertificate> UserCertificates { get; set; }
         public virtual ICollection<SchoolClassroom> SchoolClassrooms { get; set; }
         public virtual ICollection<LessonClassroom> LessonClassrooms { get; set; }
-
+        
 
         public Classroom()
         {
         }
     }
 }
+
+
 
 

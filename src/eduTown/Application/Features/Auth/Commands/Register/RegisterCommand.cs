@@ -31,7 +31,7 @@ public class RegisterCommand : IRequest<RegisteredResponse>
         private readonly IAuthService _authService;
         private readonly AuthBusinessRules _authBusinessRules;
 
-        public RegisterCommandHandler(
+        public RegisterCommandHandler( 
             IUserRepository userRepository,
             IAuthService authService,
             AuthBusinessRules authBusinessRules
