@@ -8,7 +8,6 @@ public class CreatedStudentResponse : IResponse
     public Guid UserId { get; set; }
     public required string StudentNo { get; set; }
     public required int SchoolId { get; set; }
-    public required int ClassroomId { get; set; }
     public required string NationalIdentity { get; set; }
     public required string FirstName { get; set; }
     public required string LastName { get; set; }
