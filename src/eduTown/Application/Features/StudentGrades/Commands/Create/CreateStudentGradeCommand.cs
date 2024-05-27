@@ -11,6 +11,7 @@ public class CreateStudentGradeCommand : IRequest<CreatedStudentGradeResponse>
     public required Guid UserId { get; set; }
     public required int GradeTypeId { get; set; }
     public required int LessonId { get; set; }
+    public required int ClassroomId { get; set; }
     public required int ExamCount { get; set; }
     public required double Grade { get; set; }
 

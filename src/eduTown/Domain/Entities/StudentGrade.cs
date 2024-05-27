@@ -7,6 +7,7 @@ namespace Domain.Entities
         public Guid UserId { get; set; }
         public int GradeTypeId { get; set; }
         public int LessonId { get; set; }
+        //public int ClassroomId { get; set; }
         public int ExamCount { get; set; } //GradeType ile ilişkili
         public double Grade { get; set; }
 
@@ -21,6 +22,7 @@ namespace Domain.Entities
         } 
     }  
 }
- 
+
+
 
 

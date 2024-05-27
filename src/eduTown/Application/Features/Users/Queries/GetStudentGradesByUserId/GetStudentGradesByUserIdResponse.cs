@@ -6,13 +6,19 @@ namespace Application.Features.Users.Queries.GetStudentGradesByUserId
     public class GetStudentGradesByUserIdResponse : IResponse
     {
         public Guid Id { get; set; }
-        public List<StudentGradesByLessonDto> StudentGrades { get; set; }
+        public List<StudentGradesByClassroomDto> StudentGrades { get; set; }
 
 
         public GetStudentGradesByUserIdResponse()
         {
         }
     }
+
+    public class StudentGradesByClassroomDto
+    {
+        public string ClassroomName { get; set; }
+        public List<StudentGradesByLessonDto> Lessons { get; set; }
+}
 
     public class StudentGradesByLessonDto
     {

@@ -59,7 +59,6 @@ public class CreateStudentCommand : IRequest<CreatedStudentResponse>
            request.ImageUrl
        );
             User createdUser = await _userRepository.CreateUserAsync(userForRegisterCommand);
-            //await _userRepository.AddAsync(createdUser);
 
             Student student = _mapper.Map<Student>(request);
             student.UserId = createdUser.Id;
