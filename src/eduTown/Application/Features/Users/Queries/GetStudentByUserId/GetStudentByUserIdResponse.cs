@@ -14,7 +14,7 @@ namespace Application.Features.Users.Queries.GetStudentByUserId
         public string ImageUrl { get; set; }
         public string StudentNo { get; set; }
         public string SchoolName { get; set; }
-        public string ClassroomName { get; set; }
+        public List<string> ClassroomName { get; set; }
 
 
         public GetStudentByUserIdResponse()
@@ -22,7 +22,7 @@ namespace Application.Features.Users.Queries.GetStudentByUserId
 
         }
 
-        public GetStudentByUserIdResponse(Guid id, int schoolId, string nationalIdentity, string firstName, string lastName, string email, string imageUrl, string studentNo, string schoolName, string classroomName):this()
+        public GetStudentByUserIdResponse(Guid id, int schoolId, string nationalIdentity, string firstName, string lastName, string email, string imageUrl, string studentNo, string schoolName, List<string> classroomName): this()
         {
             Id = id;
             SchoolId = schoolId;

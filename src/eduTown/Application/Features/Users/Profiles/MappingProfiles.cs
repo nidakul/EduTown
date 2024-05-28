@@ -35,7 +35,7 @@ public class MappingProfiles : Profile
             .ForMember(u => u.StudentNo, opt => opt.MapFrom(u => u.Student.StudentNo))
             .ForMember(u => u.Id, opt => opt.MapFrom(u => u.Id))
             .ForMember(u => u.SchoolName, opt => opt.MapFrom(u => u.School.Name))
-            .ForMember(u => u.ClassroomName, opt => opt.MapFrom(u => string.Join(", ", u.UserClassrooms.Select(sg => sg.Classroom.Name).ToList())))
+            .ForMember(u => u.ClassroomName, opt => opt.MapFrom(u => u.UserClassrooms.Select(sg => sg.Classroom.Name).ToList()))
 
             .ReverseMap();
 
