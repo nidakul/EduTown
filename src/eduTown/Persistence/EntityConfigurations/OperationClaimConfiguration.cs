@@ -20,6 +20,7 @@ using Application.Features.Cities.Constants;
 using Application.Features.SchoolClassrooms.Constants;
 using Application.Features.LessonClassrooms.Constants;
 using Application.Features.UserClassrooms.Constants;
+using Application.Features.SchoolTypes.Constants;
 
 namespace Persistence.EntityConfigurations;
 
@@ -367,6 +368,20 @@ public class OperationClaimConfiguration : IEntityTypeConfiguration<OperationCla
         
                 
                 
+        
+        #region SchoolTypes CRUD
+        featureOperationClaims.AddRange(
+            [
+                new() { Id = ++lastId, Name = SchoolTypesOperationClaims.Admin },
+                new() { Id = ++lastId, Name = SchoolTypesOperationClaims.Read },
+                new() { Id = ++lastId, Name = SchoolTypesOperationClaims.Write },
+                new() { Id = ++lastId, Name = SchoolTypesOperationClaims.Create },
+                new() { Id = ++lastId, Name = SchoolTypesOperationClaims.Update },
+                new() { Id = ++lastId, Name = SchoolTypesOperationClaims.Delete },
+            ]
+        );
+        #endregion
+        
         return featureOperationClaims;
     }
 #pragma warning restore S1854 // Unused assignments should be removed

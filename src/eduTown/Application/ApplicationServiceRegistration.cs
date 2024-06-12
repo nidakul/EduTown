@@ -34,6 +34,7 @@ using Application.Services.Cities;
 using Application.Services.SchoolClassrooms;
 using Application.Services.LessonClassrooms;
 using Application.Services.UserClassrooms;
+using Application.Services.SchoolTypes;
 
 namespace Application;
 
@@ -93,6 +94,7 @@ public static class ApplicationServiceRegistration
         services.AddScoped<ILessonClassroomService, LessonClassroomManager>();
         services.AddScoped<ISchoolService, SchoolManager>();
         services.AddScoped<IUserClassroomService, UserClassroomManager>();
+        services.AddScoped<ISchoolTypeService, SchoolTypeManager>();
         return services;
     }
 

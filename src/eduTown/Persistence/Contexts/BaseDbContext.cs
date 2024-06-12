@@ -28,7 +28,7 @@ public class BaseDbContext : DbContext
     public DbSet<SchoolClassroom> SchoolClassrooms { get; set; } 
     public DbSet<LessonClassroom> LessonClassrooms { get; set; }
     public DbSet<UserClassroom> UserClassrooms { get; set; }
-
+    public DbSet<SchoolType> SchoolTypes { get; set; }
 
 
     public BaseDbContext()
