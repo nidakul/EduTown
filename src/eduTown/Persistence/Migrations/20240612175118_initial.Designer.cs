@@ -12,8 +12,8 @@ using Persistence.Contexts;
 namespace Persistence.Migrations
 {
     [DbContext(typeof(BaseDbContext))]
-    [Migration("20240527081417_ClassroomId")]
-    partial class ClassroomId
+    [Migration("20240612175118_initial")]
+    partial class initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -377,12 +377,17 @@ namespace Persistence.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("SchoolTypeId")
+                        .HasColumnType("int");
+
                     b.Property<DateTime?>("UpdatedDate")
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 
                     b.HasIndex("CityId");
+
+                    b.HasIndex("SchoolTypeId");
 
                     b.ToTable("Schools");
                 });
@@ -407,6 +412,32 @@ namespace Persistence.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("SchoolClassrooms");
+                });
+
+            modelBuilder.Entity("Domain.Entities.SchoolType", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DeletedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("UpdatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("SchoolType");
                 });
 
             modelBuilder.Entity("Domain.Entities.Student", b =>
@@ -650,7 +681,7 @@ namespace Persistence.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("UserClassroom");
+                    b.ToTable("UserClassrooms");
                 });
 
             modelBuilder.Entity("Domain.Entities.UserOperationClaim", b =>
@@ -754,7 +785,15 @@ namespace Persistence.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("Domain.Entities.SchoolType", "SchoolType")
+                        .WithMany("Schools")
+                        .HasForeignKey("SchoolTypeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("City");
+
+                    b.Navigation("SchoolType");
                 });
 
             modelBuilder.Entity("Domain.Entities.Student", b =>
@@ -907,6 +946,11 @@ namespace Persistence.Migrations
                     b.Navigation("LessonClassrooms");
 
                     b.Navigation("StudentGrade");
+                });
+
+            modelBuilder.Entity("Domain.Entities.SchoolType", b =>
+                {
+                    b.Navigation("Schools");
                 });
 
             modelBuilder.Entity("Domain.Entities.User", b =>

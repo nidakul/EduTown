@@ -12,6 +12,7 @@ public class SchoolConfiguration : IEntityTypeConfiguration<School>
 
         builder.Property(s => s.Id).HasColumnName("Id").IsRequired();
         builder.Property(s => s.CityId).HasColumnName("CityId").IsRequired();
+        builder.Property(s => s.SchoolTypeId).HasColumnName("SchoolTypeId").IsRequired();
         builder.Property(s => s.Name).HasColumnName("Name").IsRequired();
         builder.Property(s => s.CreatedDate).HasColumnName("CreatedDate").IsRequired();
         builder.Property(s => s.UpdatedDate).HasColumnName("UpdatedDate");
@@ -19,4 +20,4 @@ public class SchoolConfiguration : IEntityTypeConfiguration<School>
 
         builder.HasQueryFilter(s => !s.DeletedDate.HasValue);
     }
-}
+}  

@@ -32,4 +32,3 @@ public class User : NArchitecture.Core.Security.Entities.User<Guid>
 
 
 
-

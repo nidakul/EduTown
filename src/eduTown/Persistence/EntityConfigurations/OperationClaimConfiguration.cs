@@ -365,6 +365,8 @@ public class OperationClaimConfiguration : IEntityTypeConfiguration<OperationCla
         );
         #endregion
         
+                
+                
         return featureOperationClaims;
     }
 #pragma warning restore S1854 // Unused assignments should be removed

@@ -5,13 +5,15 @@ namespace Domain.Entities
     public class School: Entity<int>
     {
         public int CityId { get; set; }
+        public int SchoolTypeId { get; set; }
         public string Name { get; set; }
 
         public virtual City City { get; set; }
+        public virtual SchoolType SchoolType { get; set; } 
 
         //public virtual ICollection<SchoolClassroom> SchoolClassrooms { get; set; }
 
-        
+
         public School()
         {
         }
@@ -24,6 +26,7 @@ namespace Domain.Entities
         }
     }
 }
+
 
 
 

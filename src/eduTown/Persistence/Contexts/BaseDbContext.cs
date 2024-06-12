@@ -49,9 +49,7 @@ public class BaseDbContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        optionsBuilder.UseSqlServer("Server = localhost; Database = EduTown; User Id = SA; Password = rentacardb; TrustServerCertificate=true");
-        
-
+        optionsBuilder.UseSqlServer("Server = localhost; Database = EduTown; User Id = SA; Password = rentacardb; TrustServerCertificate=true");        
 
     }
 }

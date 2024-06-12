@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Persistence.Migrations
 {
     /// <inheritdoc />
-    public partial class ClassroomId : Migration
+    public partial class initial : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -124,12 +124,11 @@ namespace Persistence.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Schools",
+                name: "SchoolType",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    CityId = table.Column<int>(type: "int", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UpdatedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
@@ -137,13 +136,7 @@ namespace Persistence.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Schools", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Schools_Cities_CityId",
-                        column: x => x.CityId,
-                        principalTable: "Cities",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                    table.PrimaryKey("PK_SchoolType", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -194,6 +187,36 @@ namespace Persistence.Migrations
                         name: "FK_StudentGradeLessons_Lessons_LessonId",
                         column: x => x.LessonId,
                         principalTable: "Lessons",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Schools",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CityId = table.Column<int>(type: "int", nullable: false),
+                    SchoolTypeId = table.Column<int>(type: "int", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UpdatedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    DeletedDate = table.Column<DateTime>(type: "datetime2", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Schools", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Schools_Cities_CityId",
+                        column: x => x.CityId,
+                        principalTable: "Cities",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Schools_SchoolType_SchoolTypeId",
+                        column: x => x.SchoolTypeId,
+                        principalTable: "SchoolType",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -424,7 +447,7 @@ namespace Persistence.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "UserClassroom",
+                name: "UserClassrooms",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -437,15 +460,15 @@ namespace Persistence.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_UserClassroom", x => x.Id);
+                    table.PrimaryKey("PK_UserClassrooms", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_UserClassroom_Classrooms_ClassroomId",
+                        name: "FK_UserClassrooms_Classrooms_ClassroomId",
                         column: x => x.ClassroomId,
                         principalTable: "Classrooms",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_UserClassroom_Users_UserId",
+                        name: "FK_UserClassrooms_Users_UserId",
                         column: x => x.UserId,
                         principalTable: "Users",
                         principalColumn: "Id",
@@ -516,6 +539,11 @@ namespace Persistence.Migrations
                 column: "CityId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Schools_SchoolTypeId",
+                table: "Schools",
+                column: "SchoolTypeId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_StudentGradeLessons_LessonId",
                 table: "StudentGradeLessons",
                 column: "LessonId");
@@ -557,13 +585,13 @@ namespace Persistence.Migrations
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_UserClassroom_ClassroomId",
-                table: "UserClassroom",
+                name: "IX_UserClassrooms_ClassroomId",
+                table: "UserClassrooms",
                 column: "ClassroomId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_UserClassroom_UserId",
-                table: "UserClassroom",
+                name: "IX_UserClassrooms_UserId",
+                table: "UserClassrooms",
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
@@ -616,7 +644,7 @@ namespace Persistence.Migrations
                 name: "UserCertificates");
 
             migrationBuilder.DropTable(
-                name: "UserClassroom");
+                name: "UserClassrooms");
 
             migrationBuilder.DropTable(
                 name: "UserOperationClaims");
@@ -644,6 +672,9 @@ namespace Persistence.Migrations
 
             migrationBuilder.DropTable(
                 name: "Cities");
+
+            migrationBuilder.DropTable(
+                name: "SchoolType");
         }
     }
 }
