@@ -397,16 +397,26 @@ namespace Persistence.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<int>("ClassroomId")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
 
                     b.Property<DateTime?>("DeletedDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<int>("SchoolId")
+                        .HasColumnType("int");
+
                     b.Property<DateTime?>("UpdatedDate")
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("ClassroomId");
+
+                    b.HasIndex("SchoolId");
 
                     b.ToTable("SchoolClassrooms");
                 });
@@ -434,7 +444,7 @@ namespace Persistence.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("SchoolType");
+                    b.ToTable("SchoolTypes");
                 });
 
             modelBuilder.Entity("Domain.Entities.Student", b =>
@@ -791,6 +801,25 @@ namespace Persistence.Migrations
                     b.Navigation("City");
 
                     b.Navigation("SchoolType");
+                });
+
+            modelBuilder.Entity("Domain.Entities.SchoolClassroom", b =>
+                {
+                    b.HasOne("Domain.Entities.Classroom", "Classroom")
+                        .WithMany()
+                        .HasForeignKey("ClassroomId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Domain.Entities.School", "School")
+                        .WithMany()
+                        .HasForeignKey("SchoolId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Classroom");
+
+                    b.Navigation("School");
                 });
 
             modelBuilder.Entity("Domain.Entities.Student", b =>

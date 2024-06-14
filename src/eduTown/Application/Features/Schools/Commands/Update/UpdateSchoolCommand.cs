@@ -10,6 +10,7 @@ public class UpdateSchoolCommand : IRequest<UpdatedSchoolResponse>
 {
     public int Id { get; set; }
     public required int CityId { get; set; }
+    public required int SchoolTypeId { get; set; }
     public required string Name { get; set; }
 
     public class UpdateSchoolCommandHandler : IRequestHandler<UpdateSchoolCommand, UpdatedSchoolResponse>

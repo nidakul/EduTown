@@ -109,22 +109,7 @@ namespace Persistence.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "SchoolClassrooms",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    UpdatedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    DeletedDate = table.Column<DateTime>(type: "datetime2", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_SchoolClassrooms", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "SchoolType",
+                name: "SchoolTypes",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -136,7 +121,7 @@ namespace Persistence.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_SchoolType", x => x.Id);
+                    table.PrimaryKey("PK_SchoolTypes", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -214,9 +199,38 @@ namespace Persistence.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Schools_SchoolType_SchoolTypeId",
+                        name: "FK_Schools_SchoolTypes_SchoolTypeId",
                         column: x => x.SchoolTypeId,
-                        principalTable: "SchoolType",
+                        principalTable: "SchoolTypes",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "SchoolClassrooms",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    SchoolId = table.Column<int>(type: "int", nullable: false),
+                    ClassroomId = table.Column<int>(type: "int", nullable: false),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UpdatedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    DeletedDate = table.Column<DateTime>(type: "datetime2", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_SchoolClassrooms", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_SchoolClassrooms_Classrooms_ClassroomId",
+                        column: x => x.ClassroomId,
+                        principalTable: "Classrooms",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_SchoolClassrooms_Schools_SchoolId",
+                        column: x => x.SchoolId,
+                        principalTable: "Schools",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -534,6 +548,16 @@ namespace Persistence.Migrations
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_SchoolClassrooms_ClassroomId",
+                table: "SchoolClassrooms",
+                column: "ClassroomId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_SchoolClassrooms_SchoolId",
+                table: "SchoolClassrooms",
+                column: "SchoolId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Schools_CityId",
                 table: "Schools",
                 column: "CityId");
@@ -674,7 +698,7 @@ namespace Persistence.Migrations
                 name: "Cities");
 
             migrationBuilder.DropTable(
-                name: "SchoolType");
+                name: "SchoolTypes");
         }
     }
 }
