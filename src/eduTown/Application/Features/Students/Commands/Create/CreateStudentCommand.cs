@@ -12,18 +12,10 @@ public class CreateStudentCommand : IRequest<CreatedStudentResponse>
 {
     //public required Guid UserId { get; set; }
     public required string StudentNo { get; set; }
-    public required int SchoolId { get; set; }
-    public required int ClassroomId { get; set; }
-    public required string NationalIdentity { get; set; }
-    public required string Password { get; set; }
-    public required string FirstName { get; set; }
-    public required string LastName { get; set; }
-    public required string Email { get; set; }
     public required DateTime Birthdate { get; set; }
     public required string Birthplace { get; set; }
     public required string Branch { get; set; } //şube
-    public string? ImageUrl { get; set; }
-
+    public UserForRegisterCommand UserForRegisterCommand { get; set; }
 
 
     public class CreateStudentCommandHandler : IRequestHandler<CreateStudentCommand, CreatedStudentResponse>
@@ -46,22 +38,13 @@ public class CreateStudentCommand : IRequest<CreatedStudentResponse>
 
         public async Task<CreatedStudentResponse> Handle(CreateStudentCommand request, CancellationToken cancellationToken)
         {
-            await _authBusinessRules.UserNationalIdentityShouldBeNotExists(request.NationalIdentity);
-
-            UserForRegisterCommand userForRegisterCommand = new UserForRegisterCommand(
-           request.SchoolId,
-           request.ClassroomId,
-           request.NationalIdentity,
-           request.Password,
-           request.FirstName,
-           request.LastName,
-           request.Email,
-           request.ImageUrl
-       );
-            User createdUser = await _userRepository.CreateUserAsync(userForRegisterCommand);
+            await _authBusinessRules.UserNationalIdentityShouldBeNotExists(request.UserForRegisterCommand.NationalIdentity);
 
             Student student = _mapper.Map<Student>(request);
+            
+            User createdUser = await _userRepository.CreateUserAsync(request.UserForRegisterCommand);
             student.UserId = createdUser.Id;
+
             await _studentRepository.AddAsync(student);
 
             CreatedStudentResponse response = _mapper.Map<CreatedStudentResponse>(student);
