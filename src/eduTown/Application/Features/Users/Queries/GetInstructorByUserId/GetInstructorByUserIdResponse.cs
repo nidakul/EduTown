@@ -5,7 +5,7 @@ namespace Application.Features.Users.Queries.GetInstructorByUserId
     public class GetInstructorByUserIdResponse : IResponse
     {
         public Guid Id { get; set; }
-        public int SchoolId { get; set; }
+        public string SchoolName { get; set; }
         public string NationalIdentity { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
@@ -17,10 +17,10 @@ namespace Application.Features.Users.Queries.GetInstructorByUserId
         {
         }
 
-        public GetInstructorByUserIdResponse(Guid id, int schoolId, string nationalIdentity, string firstName, string lastName, string email, string? imageUrl, string department): this()
+        public GetInstructorByUserIdResponse(Guid id, string schoolName, string nationalIdentity, string firstName, string lastName, string email, string? imageUrl, string department): this()
         {
             Id = id;
-            SchoolId = schoolId;
+            SchoolName = schoolName;
             NationalIdentity = nationalIdentity;
             FirstName = firstName;
             LastName = lastName;

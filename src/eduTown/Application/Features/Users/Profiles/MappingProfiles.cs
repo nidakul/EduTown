@@ -43,6 +43,7 @@ public class MappingProfiles : Profile
         CreateMap<User, GetInstructorByUserIdResponse>()
             .ForMember(u => u.Id, opt => opt.MapFrom(u => u.Id))
             .ForMember(u => u.Department, opt => opt.MapFrom(u => u.Instructor.Department))
+            .ForMember(u => u.SchoolName, opt => opt.MapFrom(u => u.School.Name))
             .ReverseMap();
 
         CreateMap<User, GetCertificatesByUserIdResponse>()
@@ -64,13 +65,13 @@ public class MappingProfiles : Profile
               .Select(g => new StudentGradesByClassroomDto
               {
                   //ClassroomName = g.Key, 
-                  Lessons = g.GroupBy(cl => cl.Lesson.Name)  
-          .Select(g => new StudentGradesByLessonDto   
-          { 
+                  Lessons = g.GroupBy(cl => cl.Lesson.Name)
+          .Select(g => new StudentGradesByLessonDto
+          {
               LessonName = g.Key,
-              Grades = g.OrderBy(ec => ec.ExamCount) 
+              Grades = g.OrderBy(ec => ec.ExamCount)
                   .GroupBy(grade => grade.GradeType.Name)
-                            .Select(grp => new StudentGradeDetailsDto  
+                            .Select(grp => new StudentGradeDetailsDto
                             {
                                 GradeTypeName = grp.Key,
                                 GradesDto = grp.Select(g => new GradeDto

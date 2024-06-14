@@ -10,7 +10,7 @@ namespace Application.Features.Users.Queries.GetInstructorByUserId
 {
     public class GetInstructorByUserIdQuery : IRequest<GetInstructorByUserIdResponse>
     {
-        public Guid Id { get; set; }
+        public Guid Id { get; set; } 
 
         public class GetInstructorByUserIdQueryHandler : IRequestHandler<GetInstructorByUserIdQuery, GetInstructorByUserIdResponse>
         {
@@ -36,7 +36,7 @@ namespace Application.Features.Users.Queries.GetInstructorByUserId
                 GetInstructorByUserIdResponse response = _mapper.Map<GetInstructorByUserIdResponse>(user);
                 return response;
 
-            }
+            } 
         }
     }
 }
