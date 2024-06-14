@@ -100,6 +100,32 @@ namespace Persistence.Migrations
                     b.ToTable("Classrooms");
                 });
 
+            modelBuilder.Entity("Domain.Entities.Department", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DeletedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("UpdatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Department");
+                });
+
             modelBuilder.Entity("Domain.Entities.EmailAuthenticator", b =>
                 {
                     b.Property<Guid>("Id")
@@ -176,6 +202,9 @@ namespace Persistence.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("SchoolId")
+                        .HasColumnType("int");
+
                     b.Property<DateTime?>("UpdatedDate")
                         .HasColumnType("datetime2");
 
@@ -184,9 +213,46 @@ namespace Persistence.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("SchoolId");
+
                     b.HasIndex("UserId");
 
                     b.ToTable("Instructors");
+                });
+
+            modelBuilder.Entity("Domain.Entities.InstructorDepartment", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DeletedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("DepartmentId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("InstructorId")
+                        .HasColumnType("int");
+
+                    b.Property<Guid>("InstructorId1")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime?>("UpdatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("DepartmentId");
+
+                    b.HasIndex("InstructorId1");
+
+                    b.ToTable("InstructorDepartment");
                 });
 
             modelBuilder.Entity("Domain.Entities.Lesson", b =>
@@ -734,6 +800,10 @@ namespace Persistence.Migrations
 
             modelBuilder.Entity("Domain.Entities.Instructor", b =>
                 {
+                    b.HasOne("Domain.Entities.School", null)
+                        .WithMany("Instructors")
+                        .HasForeignKey("SchoolId");
+
                     b.HasOne("Domain.Entities.User", "User")
                         .WithMany()
                         .HasForeignKey("UserId")
@@ -741,6 +811,25 @@ namespace Persistence.Migrations
                         .IsRequired();
 
                     b.Navigation("User");
+                });
+
+            modelBuilder.Entity("Domain.Entities.InstructorDepartment", b =>
+                {
+                    b.HasOne("Domain.Entities.Department", "Department")
+                        .WithMany("InstructorDepartments")
+                        .HasForeignKey("DepartmentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Domain.Entities.Instructor", "Instructor")
+                        .WithMany("InstructorDepartments")
+                        .HasForeignKey("InstructorId1")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Department");
+
+                    b.Navigation("Instructor");
                 });
 
             modelBuilder.Entity("Domain.Entities.LessonClassroom", b =>
@@ -806,13 +895,13 @@ namespace Persistence.Migrations
             modelBuilder.Entity("Domain.Entities.SchoolClassroom", b =>
                 {
                     b.HasOne("Domain.Entities.Classroom", "Classroom")
-                        .WithMany()
+                        .WithMany("SchoolClassrooms")
                         .HasForeignKey("ClassroomId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Domain.Entities.School", "School")
-                        .WithMany()
+                        .WithMany("SchoolClassrooms")
                         .HasForeignKey("SchoolId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -957,9 +1046,16 @@ namespace Persistence.Migrations
                 {
                     b.Navigation("LessonClassrooms");
 
+                    b.Navigation("SchoolClassrooms");
+
                     b.Navigation("UserCertificates");
 
                     b.Navigation("UserClassrooms");
+                });
+
+            modelBuilder.Entity("Domain.Entities.Department", b =>
+                {
+                    b.Navigation("InstructorDepartments");
                 });
 
             modelBuilder.Entity("Domain.Entities.GradeType", b =>
@@ -967,11 +1063,23 @@ namespace Persistence.Migrations
                     b.Navigation("StudentGrades");
                 });
 
+            modelBuilder.Entity("Domain.Entities.Instructor", b =>
+                {
+                    b.Navigation("InstructorDepartments");
+                });
+
             modelBuilder.Entity("Domain.Entities.Lesson", b =>
                 {
                     b.Navigation("LessonClassrooms");
 
                     b.Navigation("StudentGrade");
+                });
+
+            modelBuilder.Entity("Domain.Entities.School", b =>
+                {
+                    b.Navigation("Instructors");
+
+                    b.Navigation("SchoolClassrooms");
                 });
 
             modelBuilder.Entity("Domain.Entities.SchoolType", b =>

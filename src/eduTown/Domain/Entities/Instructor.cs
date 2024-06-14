@@ -9,9 +9,12 @@ namespace Domain.Entities
 
         public virtual User User { get; set; }
 
+        public virtual ICollection<InstructorDepartment> InstructorDepartments { get; set; }
+
+
         public Instructor() 
         {
         }
-    }
+    } 
 }
 
