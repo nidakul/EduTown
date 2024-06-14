@@ -4,6 +4,7 @@ using Application.Features.Users.Commands.Update;
 using Application.Features.Users.Commands.UpdateFromAuth;
 using Application.Features.Users.Queries.GetById;
 using Application.Features.Users.Queries.GetCertificatesByUserId;
+using Application.Features.Users.Queries.GetInstructorByUserId;
 using Application.Features.Users.Queries.GetList;
 using Application.Features.Users.Queries.GetStudentByUserId;
 using Application.Features.Users.Queries.GetStudentGradesByUserId;
@@ -76,6 +77,14 @@ public class UsersController : BaseController
         return Ok(response);
     }
 
+    [HttpGet("getInstructorDetail/{id}")]
+    public async Task<IActionResult> GetInstructorByUserId([FromRoute] Guid id)
+    {
+        GetInstructorByUserIdResponse response = await Mediator.Send(new GetInstructorByUserIdQuery { Id = id });
+        return Ok(response);
+    }
+
+
     [HttpGet("getStudentCertificate/{id}")]
     public async Task<IActionResult> GetCertificatesByUserId([FromRoute] Guid id)
     {
@@ -92,3 +101,4 @@ public class UsersController : BaseController
 
 
 }
+

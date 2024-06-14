@@ -4,6 +4,7 @@ using Application.Features.Users.Commands.Update;
 using Application.Features.Users.Commands.UpdateFromAuth;
 using Application.Features.Users.Queries.GetById;
 using Application.Features.Users.Queries.GetCertificatesByUserId;
+using Application.Features.Users.Queries.GetInstructorByUserId;
 using Application.Features.Users.Queries.GetList;
 using Application.Features.Users.Queries.GetStudentByUserId;
 using Application.Features.Users.Queries.GetStudentGradesByUserId;
@@ -37,6 +38,11 @@ public class MappingProfiles : Profile
             .ForMember(u => u.SchoolName, opt => opt.MapFrom(u => u.School.Name))
             .ForMember(u => u.ClassroomName, opt => opt.MapFrom(u => u.UserClassrooms.Select(sg => sg.Classroom.Name).ToList()))
 
+            .ReverseMap();
+
+        CreateMap<User, GetInstructorByUserIdResponse>()
+            .ForMember(u => u.Id, opt => opt.MapFrom(u => u.Id))
+            .ForMember(u => u.Department, opt => opt.MapFrom(u => u.Instructor.Department))
             .ReverseMap();
 
         CreateMap<User, GetCertificatesByUserIdResponse>()

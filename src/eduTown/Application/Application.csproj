@@ -27,12 +27,14 @@
     <Folder Include="Features\Users\Queries\GetCertificatesByUserId\" />
     <Folder Include="Features\Users\Queries\GetStudentGradesByUserId\" />
     <Folder Include="Features\Lessons\Queries\GetLessonsBySchoolIdAndClassroomId\" />
+    <Folder Include="Features\Users\Queries\GetInstructorByUserId\" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="Features\Users\Queries\GetStudentByUserId\" />
     <None Remove="Features\Users\Queries\GetCertificatesByUserId\" />
     <None Remove="Features\Users\Queries\GetStudentGradesByUserId\" />
     <None Remove="Features\Lessons\Queries\GetLessonsBySchoolIdAndClassroomId\" />
+    <None Remove="Features\Users\Queries\GetInstructorByUserId\" />
   </ItemGroup>
   <ItemGroup>
     <None Update="Features\**\Resources\Locales\*.*.yaml">
