@@ -11,6 +11,7 @@ public class User : NArchitecture.Core.Security.Entities.User<Guid>
     //Kayıt Tarihi createdDate'den al
 
     public virtual Student Student { get; set; }
+    public virtual Instructor Instructor { get; set; }
     public virtual School School { get; set; }
 
     public virtual ICollection<UserClassroom>? UserClassrooms { get; set; }

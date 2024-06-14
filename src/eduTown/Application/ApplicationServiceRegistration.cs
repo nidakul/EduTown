@@ -35,6 +35,8 @@ using Application.Services.SchoolClassrooms;
 using Application.Services.LessonClassrooms;
 using Application.Services.UserClassrooms;
 using Application.Services.SchoolTypes;
+using Application.Services.InstructorDepartments;
+using Application.Services.Departments;
 
 namespace Application;
 
@@ -95,6 +97,8 @@ public static class ApplicationServiceRegistration
         services.AddScoped<ISchoolService, SchoolManager>();
         services.AddScoped<IUserClassroomService, UserClassroomManager>();
         services.AddScoped<ISchoolTypeService, SchoolTypeManager>();
+        services.AddScoped<IInstructorDepartmentService, InstructorDepartmentManager>();
+        services.AddScoped<IDepartmentService, DepartmentManager>();
         return services;
     }
 
