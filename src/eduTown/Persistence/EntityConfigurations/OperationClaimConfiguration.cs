@@ -444,6 +444,8 @@ public class OperationClaimConfiguration : IEntityTypeConfiguration<OperationCla
         #endregion
         
         
+        
+        
         #region StudentExamDates CRUD
         featureOperationClaims.AddRange(
             [

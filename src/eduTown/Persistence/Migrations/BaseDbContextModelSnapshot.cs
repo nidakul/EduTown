@@ -636,10 +636,7 @@ namespace Persistence.Migrations
                     b.Property<int>("ExamDateId")
                         .HasColumnType("int");
 
-                    b.Property<int>("StudentId")
-                        .HasColumnType("int");
-
-                    b.Property<Guid>("StudentId1")
+                    b.Property<Guid>("StudentId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime?>("UpdatedDate")
@@ -649,7 +646,7 @@ namespace Persistence.Migrations
 
                     b.HasIndex("ExamDateId");
 
-                    b.HasIndex("StudentId1");
+                    b.HasIndex("StudentId");
 
                     b.ToTable("StudentExamDates");
                 });
@@ -1044,14 +1041,14 @@ namespace Persistence.Migrations
             modelBuilder.Entity("Domain.Entities.StudentExamDate", b =>
                 {
                     b.HasOne("Domain.Entities.ExamDate", "ExamDate")
-                        .WithMany("ExamDates")
+                        .WithMany()
                         .HasForeignKey("ExamDateId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Domain.Entities.Student", "Student")
-                        .WithMany("ExamDates")
-                        .HasForeignKey("StudentId1")
+                        .WithMany()
+                        .HasForeignKey("StudentId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -1198,8 +1195,6 @@ namespace Persistence.Migrations
 
             modelBuilder.Entity("Domain.Entities.ExamDate", b =>
                 {
-                    b.Navigation("ExamDates");
-
                     b.Navigation("LessonExamDate");
                 });
 
@@ -1232,11 +1227,6 @@ namespace Persistence.Migrations
             modelBuilder.Entity("Domain.Entities.SchoolType", b =>
                 {
                     b.Navigation("Schools");
-                });
-
-            modelBuilder.Entity("Domain.Entities.Student", b =>
-                {
-                    b.Navigation("ExamDates");
                 });
 
             modelBuilder.Entity("Domain.Entities.User", b =>

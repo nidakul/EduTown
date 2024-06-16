@@ -7,6 +7,7 @@ using Application.Features.Users.Queries.GetCertificatesByUserId;
 using Application.Features.Users.Queries.GetInstructorByUserId;
 using Application.Features.Users.Queries.GetList;
 using Application.Features.Users.Queries.GetStudentByUserId;
+using Application.Features.Users.Queries.GetStudentExamDateByUserId;
 using Application.Features.Users.Queries.GetStudentGradesByUserId;
 using AutoMapper;
 using Domain.Entities;
@@ -85,7 +86,11 @@ public class MappingProfiles : Profile
       ))
       .ReverseMap();
 
-
+        //CreateMap<User, GetStudentExamDateByUserIdResponse>()
+        //    .ForMember(u => u.Id, opt => opt.MapFrom(u => u.Id))
+        //    .ForMember(u => u.LessonName, opt => opt.MapFrom(u => u.Les Instructor.Department))
+        //    .ForMember(u => u.SchoolName, opt => opt.MapFrom(u => u.School.Name))
+        //    .ReverseMap();
 
 
         CreateMap<IPaginate<User>, GetListResponse<GetListUserListItemDto>>().ReverseMap();

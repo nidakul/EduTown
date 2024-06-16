@@ -8,7 +8,7 @@ namespace Application.Features.StudentExamDates.Commands.Create;
 
 public class CreateStudentExamDateCommand : IRequest<CreatedStudentExamDateResponse>
 {
-    public required int StudentId { get; set; }
+    public required Guid StudentId { get; set; }
     public required int ExamDateId { get; set; }
 
     public class CreateStudentExamDateCommandHandler : IRequestHandler<CreateStudentExamDateCommand, CreatedStudentExamDateResponse>

@@ -9,7 +9,7 @@ namespace Application.Features.StudentExamDates.Commands.Update;
 public class UpdateStudentExamDateCommand : IRequest<UpdatedStudentExamDateResponse>
 {
     public int Id { get; set; }
-    public required int StudentId { get; set; }
+    public required Guid StudentId { get; set; }
     public required int ExamDateId { get; set; }
 
     public class UpdateStudentExamDateCommandHandler : IRequestHandler<UpdateStudentExamDateCommand, UpdatedStudentExamDateResponse>

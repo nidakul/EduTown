@@ -9,7 +9,7 @@ namespace Domain.Entities
         public DateTime? EndDate { get; set; }
 
         public virtual ICollection<LessonExamDate> LessonExamDate { get; set; }
-        public virtual ICollection<StudentExamDate> ExamDates { get; set; }
+        public virtual ICollection<StudentExamDate> StudentExamDates { get; set; }
 
         public ExamDate()
         {
