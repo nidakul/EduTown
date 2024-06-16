@@ -9,6 +9,8 @@ namespace Domain.Entities
         //public virtual ICollection<StudentGradeLesson> StudentGradeLessons { get; set; }
         public virtual ICollection<StudentGrade> StudentGrade { get; set; }
         public virtual ICollection<LessonClassroom> LessonClassrooms { get; set; }
+        public virtual ICollection<LessonExamDate> LessonExamDate { get; set; }
+
 
         public Lesson()
         {
@@ -16,4 +18,4 @@ namespace Domain.Entities
     }
 }
 
-
+ 
