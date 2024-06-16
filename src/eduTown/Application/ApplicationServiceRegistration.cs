@@ -39,6 +39,7 @@ using Application.Services.InstructorDepartments;
 using Application.Services.Departments;
 using Application.Services.ExamDates;
 using Application.Services.LessonExamDates;
+using Application.Services.StudentExamDates;
 
 namespace Application;
 
@@ -103,6 +104,7 @@ public static class ApplicationServiceRegistration
         services.AddScoped<IDepartmentService, DepartmentManager>();
         services.AddScoped<IExamDateService, ExamDateManager>();
         services.AddScoped<ILessonExamDateService, LessonExamDateManager>();
+        services.AddScoped<IStudentExamDateService, StudentExamDateManager>();
         return services;
     }
 
