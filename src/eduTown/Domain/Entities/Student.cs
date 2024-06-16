@@ -13,6 +13,7 @@ namespace Domain.Entities
         //public int CurrentYearLevel { get; set; } 
 
         public virtual User User { get; set; }
+        public virtual ICollection<StudentExamDate> ExamDates { get; set; }
 
         public Student()
         {
