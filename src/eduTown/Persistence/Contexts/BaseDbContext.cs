@@ -34,6 +34,7 @@ public class BaseDbContext : DbContext
     public DbSet<ExamDate> ExamDates { get; set; }
     public DbSet<LessonExamDate> LessonExamDates { get; set; }
     public DbSet<StudentExamDate> StudentExamDates { get; set; }
+    public DbSet<UserLesson> UserLessons { get; set; }
 
 
     public BaseDbContext()

@@ -26,6 +26,7 @@ using Application.Features.Departments.Constants;
 using Application.Features.ExamDates.Constants;
 using Application.Features.LessonExamDates.Constants;
 using Application.Features.StudentExamDates.Constants;
+using Application.Features.UserLessons.Constants;
 
 namespace Persistence.EntityConfigurations;
 
@@ -455,6 +456,20 @@ public class OperationClaimConfiguration : IEntityTypeConfiguration<OperationCla
                 new() { Id = ++lastId, Name = StudentExamDatesOperationClaims.Create },
                 new() { Id = ++lastId, Name = StudentExamDatesOperationClaims.Update },
                 new() { Id = ++lastId, Name = StudentExamDatesOperationClaims.Delete },
+            ]
+        );
+        #endregion
+        
+        
+        #region UserLessons CRUD
+        featureOperationClaims.AddRange(
+            [
+                new() { Id = ++lastId, Name = UserLessonsOperationClaims.Admin },
+                new() { Id = ++lastId, Name = UserLessonsOperationClaims.Read },
+                new() { Id = ++lastId, Name = UserLessonsOperationClaims.Write },
+                new() { Id = ++lastId, Name = UserLessonsOperationClaims.Create },
+                new() { Id = ++lastId, Name = UserLessonsOperationClaims.Update },
+                new() { Id = ++lastId, Name = UserLessonsOperationClaims.Delete },
             ]
         );
         #endregion
