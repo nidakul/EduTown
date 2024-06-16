@@ -23,6 +23,8 @@ using Application.Features.UserClassrooms.Constants;
 using Application.Features.SchoolTypes.Constants;
 using Application.Features.InstructorDepartments.Constants;
 using Application.Features.Departments.Constants;
+using Application.Features.ExamDates.Constants;
+using Application.Features.LessonExamDates.Constants;
 
 namespace Persistence.EntityConfigurations;
 
@@ -408,6 +410,34 @@ public class OperationClaimConfiguration : IEntityTypeConfiguration<OperationCla
                 new() { Id = ++lastId, Name = DepartmentsOperationClaims.Create },
                 new() { Id = ++lastId, Name = DepartmentsOperationClaims.Update },
                 new() { Id = ++lastId, Name = DepartmentsOperationClaims.Delete },
+            ]
+        );
+        #endregion
+        
+        
+        #region ExamDates CRUD
+        featureOperationClaims.AddRange(
+            [
+                new() { Id = ++lastId, Name = ExamDatesOperationClaims.Admin },
+                new() { Id = ++lastId, Name = ExamDatesOperationClaims.Read },
+                new() { Id = ++lastId, Name = ExamDatesOperationClaims.Write },
+                new() { Id = ++lastId, Name = ExamDatesOperationClaims.Create },
+                new() { Id = ++lastId, Name = ExamDatesOperationClaims.Update },
+                new() { Id = ++lastId, Name = ExamDatesOperationClaims.Delete },
+            ]
+        );
+        #endregion
+        
+        
+        #region LessonExamDates CRUD
+        featureOperationClaims.AddRange(
+            [
+                new() { Id = ++lastId, Name = LessonExamDatesOperationClaims.Admin },
+                new() { Id = ++lastId, Name = LessonExamDatesOperationClaims.Read },
+                new() { Id = ++lastId, Name = LessonExamDatesOperationClaims.Write },
+                new() { Id = ++lastId, Name = LessonExamDatesOperationClaims.Create },
+                new() { Id = ++lastId, Name = LessonExamDatesOperationClaims.Update },
+                new() { Id = ++lastId, Name = LessonExamDatesOperationClaims.Delete },
             ]
         );
         #endregion
