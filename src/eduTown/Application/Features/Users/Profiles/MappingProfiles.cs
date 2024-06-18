@@ -86,16 +86,24 @@ public class MappingProfiles : Profile
       ))
       .ReverseMap();
 
-        //CreateMap<User, GetStudentExamDateByUserIdResponse>()
-        //    .ForMember(u => u.Id, opt => opt.MapFrom(u => u.Id))
-        //    .ForMember(u => u.LessonName, opt => opt.MapFrom(u => u.Les Instructor.Department))
-        //    .ForMember(u => u.SchoolName, opt => opt.MapFrom(u => u.School.Name))
+        //CreateMap<User, GetStudentExamDateByUserIdResponse>() 
+        //    .ForMember(u => u.Id, opt => opt.MapFrom(u => u.Id)) 
+        //    .ForMember(u => u.StudentExamDates, opt => opt.MapFrom(u => u.UserLessons.GroupBy(ul =>ul.Lesson.Name)
+        //    .Select(grp => grp.Select(ul=> new StudentExamDateDto
+        //    {
+        //        LessonName = grp.Key,
+        //        ExamType = ul.Lesson.LessonExamDate.Select(ul=>ul.ExamDate.ExamType),
+        //        StartDate = ul.StartDate, 
+        //        EndDate = ul.EndDate
+        //    })).ToList()))
         //    .ReverseMap();
 
 
         CreateMap<IPaginate<User>, GetListResponse<GetListUserListItemDto>>().ReverseMap();
     }
 }
+
+
 
 
 
