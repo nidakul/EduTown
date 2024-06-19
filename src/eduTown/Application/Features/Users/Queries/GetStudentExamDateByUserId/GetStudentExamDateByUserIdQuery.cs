@@ -27,7 +27,8 @@ namespace Application.Features.Users.Queries.GetStudentExamDateByUserId
             public async Task<GetStudentExamDateByUserIdResponse> Handle(GetStudentExamDateByUserIdQuery request, CancellationToken cancellationToken)
             {
                 User? user = await _userRepository.GetAsync(predicate: u => u.Student.UserId.Equals(request.Id),
-                    include: u => u.Include(u => u.UserLessons).ThenInclude(u => u.Lesson)
+                    include: u => u
+                    //.Include(u => u.UserLessons).ThenInclude(u => u.Lesson)
                     .Include(u=>u.Student).ThenInclude(u => u.StudentExamDates).ThenInclude(u=>u.ExamDate),
                     enableTracking: false,
                     cancellationToken: cancellationToken);
