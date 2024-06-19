@@ -559,7 +559,7 @@ namespace Persistence.Migrations
 
                     b.HasIndex("SchoolId");
 
-                    b.ToTable("SchoolClassLesson");
+                    b.ToTable("SchoolClassLessons");
                 });
 
             modelBuilder.Entity("Domain.Entities.SchoolClassroom", b =>
@@ -579,9 +579,6 @@ namespace Persistence.Migrations
                     b.Property<DateTime?>("DeletedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("SchoolClassroomId")
-                        .HasColumnType("int");
-
                     b.Property<int>("SchoolId")
                         .HasColumnType("int");
 
@@ -591,8 +588,6 @@ namespace Persistence.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("ClassroomId");
-
-                    b.HasIndex("SchoolClassroomId");
 
                     b.HasIndex("SchoolId");
 
@@ -1100,7 +1095,7 @@ namespace Persistence.Migrations
                         .IsRequired();
 
                     b.HasOne("Domain.Entities.SchoolClassroom", "SchoolClassroom")
-                        .WithMany()
+                        .WithMany("SchoolClassroomLessons")
                         .HasForeignKey("SchoolClassroomId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -1121,10 +1116,6 @@ namespace Persistence.Migrations
                         .HasForeignKey("ClassroomId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.HasOne("Domain.Entities.SchoolClassroom", null)
-                        .WithMany("SchoolClassrooms")
-                        .HasForeignKey("SchoolClassroomId");
 
                     b.HasOne("Domain.Entities.School", "School")
                         .WithMany("SchoolClassrooms")
@@ -1365,7 +1356,7 @@ namespace Persistence.Migrations
 
             modelBuilder.Entity("Domain.Entities.SchoolClassroom", b =>
                 {
-                    b.Navigation("SchoolClassrooms");
+                    b.Navigation("SchoolClassroomLessons");
                 });
 
             modelBuilder.Entity("Domain.Entities.SchoolType", b =>

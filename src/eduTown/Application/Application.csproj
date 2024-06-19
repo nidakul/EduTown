@@ -26,19 +26,17 @@
     <Folder Include="Features\Users\Queries\GetStudentByUserId\" />
     <Folder Include="Features\Users\Queries\GetCertificatesByUserId\" />
     <Folder Include="Features\Users\Queries\GetStudentGradesByUserId\" />
-    <Folder Include="Features\Lessons\Queries\GetLessonsBySchoolIdAndClassroomId\" />
     <Folder Include="Features\Users\Queries\GetInstructorByUserId\" />
     <Folder Include="Features\Users\Queries\GetStudentExamDateByUserId\" />
-    <Folder Include="Features\Users\Queries\GetLessonByUserId\" />
+    <Folder Include="Features\SchoolClassLessons\Queries\GetLessonsBySchoolIdAndClassroomId\" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="Features\Users\Queries\GetStudentByUserId\" />
     <None Remove="Features\Users\Queries\GetCertificatesByUserId\" />
     <None Remove="Features\Users\Queries\GetStudentGradesByUserId\" />
-    <None Remove="Features\Lessons\Queries\GetLessonsBySchoolIdAndClassroomId\" />
     <None Remove="Features\Users\Queries\GetInstructorByUserId\" />
     <None Remove="Features\Users\Queries\GetStudentExamDateByUserId\" />
-    <None Remove="Features\Users\Queries\GetLessonByUserId\" />
+    <None Remove="Features\SchoolClassLessons\Queries\GetLessonsBySchoolIdAndClassroomId\" />
   </ItemGroup>
   <ItemGroup>
     <None Update="Features\**\Resources\Locales\*.*.yaml">

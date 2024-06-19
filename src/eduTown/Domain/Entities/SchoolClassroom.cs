@@ -9,7 +9,7 @@ namespace Domain.Entities
 
         public virtual School School { get; set; }
         public virtual Classroom Classroom { get; set; }
-        public virtual ICollection<SchoolClassroom> SchoolClassrooms { get; set; }
+        public virtual ICollection<SchoolClassLesson> SchoolClassroomLessons { get; set; }
 
         public SchoolClassroom()
         {
