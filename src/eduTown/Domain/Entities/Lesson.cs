@@ -11,7 +11,7 @@ namespace Domain.Entities
         public virtual ICollection<LessonClassroom> LessonClassrooms { get; set; }
         public virtual ICollection<LessonExamDate> LessonExamDate { get; set; }
         public virtual ICollection<UserLesson> UserLessons { get; set; }
-
+        public virtual ICollection<SchoolClassLesson> SchoolClassLessons { get; set; }
 
 
         public Lesson()

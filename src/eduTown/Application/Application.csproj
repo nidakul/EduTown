@@ -29,6 +29,7 @@
     <Folder Include="Features\Lessons\Queries\GetLessonsBySchoolIdAndClassroomId\" />
     <Folder Include="Features\Users\Queries\GetInstructorByUserId\" />
     <Folder Include="Features\Users\Queries\GetStudentExamDateByUserId\" />
+    <Folder Include="Features\Users\Queries\GetLessonByUserId\" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="Features\Users\Queries\GetStudentByUserId\" />
@@ -37,6 +38,7 @@
     <None Remove="Features\Lessons\Queries\GetLessonsBySchoolIdAndClassroomId\" />
     <None Remove="Features\Users\Queries\GetInstructorByUserId\" />
     <None Remove="Features\Users\Queries\GetStudentExamDateByUserId\" />
+    <None Remove="Features\Users\Queries\GetLessonByUserId\" />
   </ItemGroup>
   <ItemGroup>
     <None Update="Features\**\Resources\Locales\*.*.yaml">

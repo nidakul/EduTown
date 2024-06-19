@@ -13,6 +13,7 @@ namespace Domain.Entities
 
         public virtual ICollection<Instructor> Instructors { get; set; }
         public virtual ICollection<SchoolClassroom> SchoolClassrooms { get; set; }
+        public virtual ICollection<SchoolClassLesson> SchoolClassLessons { get; set; }
 
 
         public School()
