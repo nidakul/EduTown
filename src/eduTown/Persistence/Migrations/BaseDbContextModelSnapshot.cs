@@ -306,15 +306,10 @@ namespace Persistence.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("SchoolClassLessonId")
-                        .HasColumnType("int");
-
                     b.Property<DateTime?>("UpdatedDate")
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("SchoolClassLessonId");
 
                     b.ToTable("Lessons");
                 });
@@ -523,43 +518,6 @@ namespace Persistence.Migrations
                     b.HasIndex("SchoolTypeId");
 
                     b.ToTable("Schools");
-                });
-
-            modelBuilder.Entity("Domain.Entities.SchoolClassLesson", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("ClassroomId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("DeletedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int?>("SchoolClassroomId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("SchoolId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime?>("UpdatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ClassroomId");
-
-                    b.HasIndex("SchoolClassroomId");
-
-                    b.HasIndex("SchoolId");
-
-                    b.ToTable("SchoolClassLessons");
                 });
 
             modelBuilder.Entity("Domain.Entities.SchoolClassroom", b =>
@@ -975,17 +933,6 @@ namespace Persistence.Migrations
                     b.Navigation("Instructor");
                 });
 
-            modelBuilder.Entity("Domain.Entities.Lesson", b =>
-                {
-                    b.HasOne("Domain.Entities.SchoolClassLesson", "SchoolClassLesson")
-                        .WithMany("Lesson")
-                        .HasForeignKey("SchoolClassLessonId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("SchoolClassLesson");
-                });
-
             modelBuilder.Entity("Domain.Entities.LessonClassroom", b =>
                 {
                     b.HasOne("Domain.Entities.Classroom", "Classroom")
@@ -1063,29 +1010,6 @@ namespace Persistence.Migrations
                     b.Navigation("City");
 
                     b.Navigation("SchoolType");
-                });
-
-            modelBuilder.Entity("Domain.Entities.SchoolClassLesson", b =>
-                {
-                    b.HasOne("Domain.Entities.Classroom", "Classroom")
-                        .WithMany("SchoolClassLessons")
-                        .HasForeignKey("ClassroomId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Domain.Entities.SchoolClassroom", null)
-                        .WithMany("SchoolClassroomLessons")
-                        .HasForeignKey("SchoolClassroomId");
-
-                    b.HasOne("Domain.Entities.School", "School")
-                        .WithMany("SchoolClassLessons")
-                        .HasForeignKey("SchoolId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Classroom");
-
-                    b.Navigation("School");
                 });
 
             modelBuilder.Entity("Domain.Entities.SchoolClassroom", b =>
@@ -1261,8 +1185,6 @@ namespace Persistence.Migrations
                 {
                     b.Navigation("LessonClassrooms");
 
-                    b.Navigation("SchoolClassLessons");
-
                     b.Navigation("SchoolClassrooms");
 
                     b.Navigation("UserCertificates");
@@ -1305,19 +1227,7 @@ namespace Persistence.Migrations
                 {
                     b.Navigation("Instructors");
 
-                    b.Navigation("SchoolClassLessons");
-
                     b.Navigation("SchoolClassrooms");
-                });
-
-            modelBuilder.Entity("Domain.Entities.SchoolClassLesson", b =>
-                {
-                    b.Navigation("Lesson");
-                });
-
-            modelBuilder.Entity("Domain.Entities.SchoolClassroom", b =>
-                {
-                    b.Navigation("SchoolClassroomLessons");
                 });
 
             modelBuilder.Entity("Domain.Entities.SchoolType", b =>
