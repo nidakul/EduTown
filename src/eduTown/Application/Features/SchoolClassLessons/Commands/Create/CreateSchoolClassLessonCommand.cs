@@ -8,8 +8,8 @@ namespace Application.Features.SchoolClassLessons.Commands.Create;
 
 public class CreateSchoolClassLessonCommand : IRequest<CreatedSchoolClassLessonResponse>
 {
-    public required int SchoolClassroomId { get; set; }
-    public required int LessonId { get; set; }
+    public required int SchoolId { get; set; }
+    public required int ClassroomId { get; set; }
 
     public class CreateSchoolClassLessonCommandHandler : IRequestHandler<CreateSchoolClassLessonCommand, CreatedSchoolClassLessonResponse>
     {

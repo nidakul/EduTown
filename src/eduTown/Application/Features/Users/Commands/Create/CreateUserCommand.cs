@@ -18,6 +18,7 @@ public class CreateUserCommand : IRequest<CreatedUserResponse>, ISecuredRequest
     public string FirstName { get; set; }
     public string LastName { get; set; }
     public string? Email { get; set; }
+    public string Gender { get; set; }
     public string Password { get; set; }
     public string ImageUrl { get; set; }
 
@@ -29,7 +30,7 @@ public class CreateUserCommand : IRequest<CreatedUserResponse>, ISecuredRequest
         Password = string.Empty;
     }
 
-    public CreateUserCommand(int schoolId,int classroomId, string nationalIdentity, string firstName, string lastName, string email, string password)
+    public CreateUserCommand(int schoolId, int classroomId, string nationalIdentity, string firstName, string lastName, string? email, string gender, string password, string imageUrl): this()
     {
         SchoolId = schoolId;
         ClassroomId = classroomId;
@@ -37,7 +38,9 @@ public class CreateUserCommand : IRequest<CreatedUserResponse>, ISecuredRequest
         FirstName = firstName;
         LastName = lastName;
         Email = email;
+        Gender = gender;
         Password = password;
+        ImageUrl = imageUrl;
     }
 
     public string[] Roles => new[] { Admin, Write, UsersOperationClaims.Create };

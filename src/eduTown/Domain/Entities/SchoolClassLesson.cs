@@ -5,16 +5,15 @@ namespace Domain.Entities
     //Okulun sınıfına göre ders atanan kısım
     public class SchoolClassLesson: Entity<int>
     {
-        public int SchoolClassroomId { get; set; }
-        public int LessonId { get; set; }
+        public int SchoolId { get; set; }
+        public int ClassroomId { get; set; }
 
-        public virtual SchoolClassroom SchoolClassroom { get; set; }
-        public virtual Lesson Lesson { get; set; }
+        public virtual School School { get; set; }
+        public virtual Classroom Classroom { get; set; }
+        public virtual ICollection<Lesson> Lesson { get; set; }
 
         public SchoolClassLesson()
         {
         }
     }
 }
-
-

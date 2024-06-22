@@ -34,9 +34,9 @@ namespace Application.Features.SchoolClassLessons.Queries.GetLessonsBySchoolIdAn
             public async Task<GetLessonsBySchoolIdAndClassroomIdResponse> Handle(GetLessonsBySchoolIdAndClassroomIdQuery request, CancellationToken cancellationToken)
             {
                 SchoolClassLesson? schoolClassLesson = await _schoolClassLessonRepository.GetAsync(
-                    predicate: scl => scl.SchoolClassroom.ClassroomId == request.ClassroomId && scl.SchoolClassroom.SchoolId == request.SchoolId,
-                    include: scl => scl.Include(scl => scl.SchoolClassroom.Classroom)
-                    .Include(scl => scl.SchoolClassroom.School)
+                    predicate: scl => scl.ClassroomId == request.ClassroomId && scl.SchoolId == request.SchoolId,
+                    include: scl => scl.Include(scl => scl.Classroom)
+                    .Include(scl => scl.School)
                     .Include(scl => scl.Lesson),
                     enableTracking: false,
                     cancellationToken: cancellationToken);

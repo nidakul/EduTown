@@ -14,7 +14,7 @@ namespace Domain.Entities
         public ExamDate()
         {
         }
-    }
+    } 
 }
 
 

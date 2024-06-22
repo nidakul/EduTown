@@ -33,7 +33,8 @@ public class UserRepository : EfRepositoryBase<User, Guid, BaseDbContext>, IUser
             FirstName = userForRegisterCommand.FirstName,
             LastName = userForRegisterCommand.LastName,
             Email = userForRegisterCommand.Email,
-            ImageUrl = userForRegisterCommand.ImageUrl
+            ImageUrl = userForRegisterCommand.ImageUrl,
+            Gender = userForRegisterCommand.Gender
         };
 
         return await AddAsync(newUser);

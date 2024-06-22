@@ -16,7 +16,7 @@ public class CreateStudentCommand : IRequest<CreatedStudentResponse>
     public required DateTime Birthdate { get; set; }
     public required string Birthplace { get; set; }
     public required string Branch { get; set; } //şube
-    public UserForRegisterCommand UserForRegisterCommand { get; set; }
+    public required UserForRegisterCommand UserForRegisterCommand { get; set; }
 
 
     public class CreateStudentCommandHandler : IRequestHandler<CreateStudentCommand, CreatedStudentResponse>

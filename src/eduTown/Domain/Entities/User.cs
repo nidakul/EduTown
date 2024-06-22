@@ -7,7 +7,8 @@ public class User : NArchitecture.Core.Security.Entities.User<Guid>
     public string FirstName { get; set; }
     public string LastName { get; set; }
     public string Email { get; set; }
-    public string? ImageUrl { get; set; } 
+    public string Gender { get; set; } 
+    public string? ImageUrl { get; set; }
     //Kayıt Tarihi createdDate'den al
 
     public virtual Student Student { get; set; }

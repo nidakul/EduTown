@@ -10,6 +10,7 @@ namespace Application.Features.Users.Queries.GetInstructorByUserId
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Email { get; set; }
+        public string Gender { get; set; }
         public string? ImageUrl { get; set; }
         public string Department { get; set; }
 
@@ -17,7 +18,7 @@ namespace Application.Features.Users.Queries.GetInstructorByUserId
         {
         }
 
-        public GetInstructorByUserIdResponse(Guid id, string schoolName, string nationalIdentity, string firstName, string lastName, string email, string? imageUrl, string department): this()
+        public GetInstructorByUserIdResponse(Guid id, string schoolName, string nationalIdentity, string firstName, string lastName, string email, string gender, string? imageUrl, string department): this()
         {
             Id = id;
             SchoolName = schoolName;
@@ -25,6 +26,7 @@ namespace Application.Features.Users.Queries.GetInstructorByUserId
             FirstName = firstName;
             LastName = lastName;
             Email = email;
+            Gender = gender;
             ImageUrl = imageUrl;
             Department = department;
         }

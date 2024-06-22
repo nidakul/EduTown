@@ -11,8 +11,8 @@ public class SchoolClassLessonConfiguration : IEntityTypeConfiguration<SchoolCla
         builder.ToTable("SchoolClassLessons").HasKey(scl => scl.Id);
 
         builder.Property(scl => scl.Id).HasColumnName("Id").IsRequired();
-        builder.Property(scl => scl.SchoolClassroomId).HasColumnName("SchoolClassroomId").IsRequired();
-        builder.Property(scl => scl.LessonId).HasColumnName("LessonId").IsRequired();
+        builder.Property(scl => scl.SchoolId).HasColumnName("SchoolId").IsRequired();
+        builder.Property(scl => scl.ClassroomId).HasColumnName("ClassroomId").IsRequired();
         builder.Property(scl => scl.CreatedDate).HasColumnName("CreatedDate").IsRequired();
         builder.Property(scl => scl.UpdatedDate).HasColumnName("UpdatedDate");
         builder.Property(scl => scl.DeletedDate).HasColumnName("DeletedDate");

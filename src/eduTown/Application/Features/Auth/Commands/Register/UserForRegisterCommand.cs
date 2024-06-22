@@ -12,6 +12,7 @@ namespace Application.Features.Auth.Commands.Register
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Email { get; set; }
+        public string Gender { get; set; }
         public string? ImageUrl { get; set; }
 
 
@@ -21,7 +22,7 @@ namespace Application.Features.Auth.Commands.Register
             Password = string.Empty; 
         }
 
-        public UserForRegisterCommand(int schoolId, int classroomId, string nationalIdentity, string password, string firstName, string lastName, string email, string? imageUrl):this()
+        public UserForRegisterCommand(int schoolId, int classroomId, string nationalIdentity, string password, string firstName, string lastName, string email, string gender, string? imageUrl): this()
         {
             SchoolId = schoolId;
             ClassroomId = classroomId;
@@ -30,6 +31,7 @@ namespace Application.Features.Auth.Commands.Register
             FirstName = firstName;
             LastName = lastName;
             Email = email;
+            Gender = gender;
             ImageUrl = imageUrl;
         }
     }
