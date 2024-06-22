@@ -28,8 +28,8 @@ namespace Application.Features.Users.Queries.GetStudentGradesByUserId
             {
                 User? user = await _userRepository.GetAsync(predicate: u => u.Id.Equals(request.Id),
                     include: u => u.Include(u => u.StudentGrades).ThenInclude(u => u.Lesson)
-                    .Include(u => u.StudentGrades).ThenInclude(u => u.GradeType)
-                    .Include(u => u.UserClassrooms).ThenInclude(u => u.Classroom), 
+                    .Include(u => u.StudentGrades).ThenInclude(u => u.GradeType),
+                    //.Include(u => u.UserClassrooms).ThenInclude(u => u.Classroom), 
                     enableTracking: false,
                     cancellationToken: cancellationToken); 
 

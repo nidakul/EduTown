@@ -10,9 +10,12 @@ namespace Domain.Entities
 
         public virtual School School { get; set; }
         public virtual Lesson Lesson { get; set; }
+
+        public virtual ICollection<Classroom> Classrooms { get; set; }
         public SchoolLesson()
         {
         }
     }
 }
+
 
