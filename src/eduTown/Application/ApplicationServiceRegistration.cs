@@ -31,7 +31,6 @@ using Application.Services.StudentGradeLessons;
 using Application.Services.GradeTypes;
 using Application.Services.StudentGrades;
 using Application.Services.Cities;
-using Application.Services.SchoolClassrooms;
 using Application.Services.LessonClassrooms;
 using Application.Services.UserClassrooms;
 using Application.Services.SchoolTypes;
@@ -95,7 +94,6 @@ public static class ApplicationServiceRegistration
         services.AddScoped<IStudentGradeService, StudentGradeManager>();
         services.AddScoped<ICityService, CityManager>();
         services.AddScoped<ISchoolService, SchoolManager>();
-        services.AddScoped<ISchoolClassroomService, SchoolClassroomManager>();
         services.AddScoped<IClassroomService, ClassroomManager>();
         services.AddScoped<ILessonService, LessonManager>();
         services.AddScoped<ILessonClassroomService, LessonClassroomManager>();

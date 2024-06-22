@@ -11,10 +11,11 @@ public class SchoolLessonClassConfiguration : IEntityTypeConfiguration<SchoolLes
         builder.ToTable("SchoolLessonClasses").HasKey(slc => slc.Id);
 
         builder.Property(slc => slc.Id).HasColumnName("Id").IsRequired();
+        builder.Property(slc => slc.SchoolLessonId).HasColumnName("SchoolLessonId").IsRequired();
         builder.Property(slc => slc.CreatedDate).HasColumnName("CreatedDate").IsRequired();
         builder.Property(slc => slc.UpdatedDate).HasColumnName("UpdatedDate");
         builder.Property(slc => slc.DeletedDate).HasColumnName("DeletedDate");
 
         builder.HasQueryFilter(slc => !slc.DeletedDate.HasValue);
     }
-}
+}  

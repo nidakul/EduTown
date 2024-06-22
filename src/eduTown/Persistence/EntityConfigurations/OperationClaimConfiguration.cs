@@ -17,7 +17,6 @@ using Application.Features.StudentGradeLessons.Constants;
 using Application.Features.GradeTypes.Constants;
 using Application.Features.StudentGrades.Constants;
 using Application.Features.Cities.Constants;
-using Application.Features.SchoolClassrooms.Constants;
 using Application.Features.LessonClassrooms.Constants;
 using Application.Features.UserClassrooms.Constants;
 using Application.Features.SchoolTypes.Constants;
@@ -289,20 +288,7 @@ public class OperationClaimConfiguration : IEntityTypeConfiguration<OperationCla
         );
         #endregion
         
-        
-        #region SchoolClassrooms CRUD
-        featureOperationClaims.AddRange(
-            [
-                new() { Id = ++lastId, Name = SchoolClassroomsOperationClaims.Admin },
-                new() { Id = ++lastId, Name = SchoolClassroomsOperationClaims.Read },
-                new() { Id = ++lastId, Name = SchoolClassroomsOperationClaims.Write },
-                new() { Id = ++lastId, Name = SchoolClassroomsOperationClaims.Create },
-                new() { Id = ++lastId, Name = SchoolClassroomsOperationClaims.Update },
-                new() { Id = ++lastId, Name = SchoolClassroomsOperationClaims.Delete },
-            ]
-        );
-        #endregion
-        
+                
         
         #region Classrooms CRUD
         featureOperationClaims.AddRange(
