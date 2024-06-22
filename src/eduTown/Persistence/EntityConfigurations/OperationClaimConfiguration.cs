@@ -17,8 +17,6 @@ using Application.Features.StudentGradeLessons.Constants;
 using Application.Features.GradeTypes.Constants;
 using Application.Features.StudentGrades.Constants;
 using Application.Features.Cities.Constants;
-using Application.Features.LessonClassrooms.Constants;
-using Application.Features.UserClassrooms.Constants;
 using Application.Features.SchoolTypes.Constants;
 using Application.Features.InstructorDepartments.Constants;
 using Application.Features.Departments.Constants;
@@ -26,7 +24,6 @@ using Application.Features.ExamDates.Constants;
 using Application.Features.LessonExamDates.Constants;
 using Application.Features.StudentExamDates.Constants;
 using Application.Features.SchoolLessons.Constants;
-using Application.Features.SchoolLessonClasses.Constants;
 
 namespace Persistence.EntityConfigurations;
 
@@ -118,8 +115,8 @@ public class OperationClaimConfiguration : IEntityTypeConfiguration<OperationCla
         );
         #endregion
 
-        
-        
+
+
         #region Instructors CRUD
         featureOperationClaims.AddRange(
             [
@@ -132,8 +129,8 @@ public class OperationClaimConfiguration : IEntityTypeConfiguration<OperationCla
             ]
         );
         #endregion
-        
-        
+
+
         #region Students CRUD
         featureOperationClaims.AddRange(
             [
@@ -146,8 +143,8 @@ public class OperationClaimConfiguration : IEntityTypeConfiguration<OperationCla
             ]
         );
         #endregion
-        
-        
+
+
         #region Schools CRUD
         featureOperationClaims.AddRange(
             [
@@ -160,8 +157,8 @@ public class OperationClaimConfiguration : IEntityTypeConfiguration<OperationCla
             ]
         );
         #endregion
-        
-        
+
+
         #region Classrooms CRUD
         featureOperationClaims.AddRange(
             [
@@ -174,8 +171,8 @@ public class OperationClaimConfiguration : IEntityTypeConfiguration<OperationCla
             ]
         );
         #endregion
-        
-        
+
+
         #region UserCertificates CRUD
         featureOperationClaims.AddRange(
             [
@@ -188,8 +185,8 @@ public class OperationClaimConfiguration : IEntityTypeConfiguration<OperationCla
             ]
         );
         #endregion
-        
-        
+
+
         #region Certificates CRUD
         featureOperationClaims.AddRange(
             [
@@ -203,7 +200,7 @@ public class OperationClaimConfiguration : IEntityTypeConfiguration<OperationCla
         );
         #endregion
 
-        
+
         #region Lessons CRUD
         featureOperationClaims.AddRange(
             [
@@ -216,9 +213,9 @@ public class OperationClaimConfiguration : IEntityTypeConfiguration<OperationCla
             ]
         );
         #endregion
-        
-                
-        
+
+
+
         #region StudentGradeLessons CRUD
         featureOperationClaims.AddRange(
             [
@@ -231,8 +228,8 @@ public class OperationClaimConfiguration : IEntityTypeConfiguration<OperationCla
             ]
         );
         #endregion
-        
-        
+
+
         #region GradeTypes CRUD
         featureOperationClaims.AddRange(
             [
@@ -245,8 +242,8 @@ public class OperationClaimConfiguration : IEntityTypeConfiguration<OperationCla
             ]
         );
         #endregion
-        
-        
+
+
         #region StudentGrades CRUD
         featureOperationClaims.AddRange(
             [
@@ -259,8 +256,8 @@ public class OperationClaimConfiguration : IEntityTypeConfiguration<OperationCla
             ]
         );
         #endregion
-        
-        
+
+
         #region Cities CRUD
         featureOperationClaims.AddRange(
             [
@@ -273,8 +270,8 @@ public class OperationClaimConfiguration : IEntityTypeConfiguration<OperationCla
             ]
         );
         #endregion
-        
-        
+
+
         #region Schools CRUD
         featureOperationClaims.AddRange(
             [
@@ -287,9 +284,9 @@ public class OperationClaimConfiguration : IEntityTypeConfiguration<OperationCla
             ]
         );
         #endregion
-        
-                
-        
+
+
+
         #region Classrooms CRUD
         featureOperationClaims.AddRange(
             [
@@ -302,8 +299,8 @@ public class OperationClaimConfiguration : IEntityTypeConfiguration<OperationCla
             ]
         );
         #endregion
-        
-        
+
+
         #region Lessons CRUD
         featureOperationClaims.AddRange(
             [
@@ -316,22 +313,11 @@ public class OperationClaimConfiguration : IEntityTypeConfiguration<OperationCla
             ]
         );
         #endregion
-        
-        
-        #region LessonClassrooms CRUD
-        featureOperationClaims.AddRange(
-            [
-                new() { Id = ++lastId, Name = LessonClassroomsOperationClaims.Admin },
-                new() { Id = ++lastId, Name = LessonClassroomsOperationClaims.Read },
-                new() { Id = ++lastId, Name = LessonClassroomsOperationClaims.Write },
-                new() { Id = ++lastId, Name = LessonClassroomsOperationClaims.Create },
-                new() { Id = ++lastId, Name = LessonClassroomsOperationClaims.Update },
-                new() { Id = ++lastId, Name = LessonClassroomsOperationClaims.Delete },
-            ]
-        );
-        #endregion
-        
-        
+
+
+
+
+
         #region Schools CRUD
         featureOperationClaims.AddRange(
             [
@@ -344,24 +330,11 @@ public class OperationClaimConfiguration : IEntityTypeConfiguration<OperationCla
             ]
         );
         #endregion
-        
-        
-        #region UserClassrooms CRUD
-        featureOperationClaims.AddRange(
-            [
-                new() { Id = ++lastId, Name = UserClassroomsOperationClaims.Admin },
-                new() { Id = ++lastId, Name = UserClassroomsOperationClaims.Read },
-                new() { Id = ++lastId, Name = UserClassroomsOperationClaims.Write },
-                new() { Id = ++lastId, Name = UserClassroomsOperationClaims.Create },
-                new() { Id = ++lastId, Name = UserClassroomsOperationClaims.Update },
-                new() { Id = ++lastId, Name = UserClassroomsOperationClaims.Delete },
-            ]
-        );
-        #endregion
-        
-                
-                
-        
+
+
+
+
+
         #region SchoolTypes CRUD
         featureOperationClaims.AddRange(
             [
@@ -374,8 +347,8 @@ public class OperationClaimConfiguration : IEntityTypeConfiguration<OperationCla
             ]
         );
         #endregion
-        
-        
+
+
         #region InstructorDepartments CRUD
         featureOperationClaims.AddRange(
             [
@@ -388,8 +361,8 @@ public class OperationClaimConfiguration : IEntityTypeConfiguration<OperationCla
             ]
         );
         #endregion
-        
-        
+
+
         #region Departments CRUD
         featureOperationClaims.AddRange(
             [
@@ -402,8 +375,8 @@ public class OperationClaimConfiguration : IEntityTypeConfiguration<OperationCla
             ]
         );
         #endregion
-        
-        
+
+
         #region ExamDates CRUD
         featureOperationClaims.AddRange(
             [
@@ -416,8 +389,8 @@ public class OperationClaimConfiguration : IEntityTypeConfiguration<OperationCla
             ]
         );
         #endregion
-        
-        
+
+
         #region LessonExamDates CRUD
         featureOperationClaims.AddRange(
             [
@@ -430,10 +403,10 @@ public class OperationClaimConfiguration : IEntityTypeConfiguration<OperationCla
             ]
         );
         #endregion
-        
-        
-        
-        
+
+
+
+
         #region StudentExamDates CRUD
         featureOperationClaims.AddRange(
             [
@@ -446,10 +419,10 @@ public class OperationClaimConfiguration : IEntityTypeConfiguration<OperationCla
             ]
         );
         #endregion
-        
-                
-               
-        
+
+
+
+
         #region SchoolLessons CRUD
         featureOperationClaims.AddRange(
             [
@@ -462,21 +435,8 @@ public class OperationClaimConfiguration : IEntityTypeConfiguration<OperationCla
             ]
         );
         #endregion
-        
-        
-        #region SchoolLessonClasses CRUD
-        featureOperationClaims.AddRange(
-            [
-                new() { Id = ++lastId, Name = SchoolLessonClassesOperationClaims.Admin },
-                new() { Id = ++lastId, Name = SchoolLessonClassesOperationClaims.Read },
-                new() { Id = ++lastId, Name = SchoolLessonClassesOperationClaims.Write },
-                new() { Id = ++lastId, Name = SchoolLessonClassesOperationClaims.Create },
-                new() { Id = ++lastId, Name = SchoolLessonClassesOperationClaims.Update },
-                new() { Id = ++lastId, Name = SchoolLessonClassesOperationClaims.Delete },
-            ]
-        );
-        #endregion
-        
+
+
         return featureOperationClaims;
     }
 #pragma warning restore S1854 // Unused assignments should be removed

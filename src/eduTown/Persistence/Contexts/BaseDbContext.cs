@@ -25,8 +25,6 @@ public class BaseDbContext : DbContext
     public DbSet<GradeType> GradeTypes { get; set; }
     public DbSet<StudentGrade> StudentGrades { get; set; }
     public DbSet<City> Cities { get; set; }
-    public DbSet<LessonClassroom> LessonClassrooms { get; set; }
-    public DbSet<UserClassroom> UserClassrooms { get; set; }
     public DbSet<SchoolType> SchoolTypes { get; set; }
     public DbSet<InstructorDepartment> InstructorDepartments { get; set; }
     public DbSet<Department> Departments { get; set; }
@@ -34,7 +32,6 @@ public class BaseDbContext : DbContext
     public DbSet<LessonExamDate> LessonExamDates { get; set; }
     public DbSet<StudentExamDate> StudentExamDates { get; set; }
     public DbSet<SchoolLesson> SchoolLessons { get; set; }
-    public DbSet<SchoolLessonClass> SchoolLessonClasses { get; set; }
 
 
     public BaseDbContext() 

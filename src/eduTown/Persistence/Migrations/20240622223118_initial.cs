@@ -44,22 +44,6 @@ namespace Persistence.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Classrooms",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    UpdatedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    DeletedDate = table.Column<DateTime>(type: "datetime2", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Classrooms", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Departments",
                 columns: table => new
                 {
@@ -159,35 +143,6 @@ namespace Persistence.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "LessonClassrooms",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    LessonId = table.Column<int>(type: "int", nullable: false),
-                    ClassroomId = table.Column<int>(type: "int", nullable: false),
-                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    UpdatedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    DeletedDate = table.Column<DateTime>(type: "datetime2", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_LessonClassrooms", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_LessonClassrooms_Classrooms_ClassroomId",
-                        column: x => x.ClassroomId,
-                        principalTable: "Classrooms",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_LessonClassrooms_Lessons_LessonId",
-                        column: x => x.LessonId,
-                        principalTable: "Lessons",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "LessonExamDates",
                 columns: table => new
                 {
@@ -270,28 +225,28 @@ namespace Persistence.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "SchoolClassrooms",
+                name: "SchoolLessons",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     SchoolId = table.Column<int>(type: "int", nullable: false),
-                    ClassroomId = table.Column<int>(type: "int", nullable: false),
+                    LessonId = table.Column<int>(type: "int", nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UpdatedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     DeletedDate = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_SchoolClassrooms", x => x.Id);
+                    table.PrimaryKey("PK_SchoolLessons", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_SchoolClassrooms_Classrooms_ClassroomId",
-                        column: x => x.ClassroomId,
-                        principalTable: "Classrooms",
+                        name: "FK_SchoolLessons_Lessons_LessonId",
+                        column: x => x.LessonId,
+                        principalTable: "Lessons",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_SchoolClassrooms_Schools_SchoolId",
+                        name: "FK_SchoolLessons_Schools_SchoolId",
                         column: x => x.SchoolId,
                         principalTable: "Schools",
                         principalColumn: "Id",
@@ -324,6 +279,29 @@ namespace Persistence.Migrations
                         name: "FK_Users_Schools_SchoolId",
                         column: x => x.SchoolId,
                         principalTable: "Schools",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Classrooms",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    SchoolLessonId = table.Column<int>(type: "int", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UpdatedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    DeletedDate = table.Column<DateTime>(type: "datetime2", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Classrooms", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Classrooms_SchoolLessons_SchoolLessonId",
+                        column: x => x.SchoolLessonId,
+                        principalTable: "SchoolLessons",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -494,6 +472,34 @@ namespace Persistence.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "UserOperationClaims",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UpdatedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    DeletedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    OperationClaimId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_UserOperationClaims", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_UserOperationClaims_OperationClaims_OperationClaimId",
+                        column: x => x.OperationClaimId,
+                        principalTable: "OperationClaims",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_UserOperationClaims_Users_UserId",
+                        column: x => x.UserId,
+                        principalTable: "Users",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "UserCertificates",
                 columns: table => new
                 {
@@ -524,63 +530,6 @@ namespace Persistence.Migrations
                         principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_UserCertificates_Users_UserId",
-                        column: x => x.UserId,
-                        principalTable: "Users",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "UserClassrooms",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    ClassroomId = table.Column<int>(type: "int", nullable: false),
-                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    UpdatedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    DeletedDate = table.Column<DateTime>(type: "datetime2", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_UserClassrooms", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_UserClassrooms_Classrooms_ClassroomId",
-                        column: x => x.ClassroomId,
-                        principalTable: "Classrooms",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_UserClassrooms_Users_UserId",
-                        column: x => x.UserId,
-                        principalTable: "Users",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "UserOperationClaims",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    UpdatedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    DeletedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    OperationClaimId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_UserOperationClaims", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_UserOperationClaims_OperationClaims_OperationClaimId",
-                        column: x => x.OperationClaimId,
-                        principalTable: "OperationClaims",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_UserOperationClaims_Users_UserId",
                         column: x => x.UserId,
                         principalTable: "Users",
                         principalColumn: "Id",
@@ -647,6 +596,11 @@ namespace Persistence.Migrations
                 });
 
             migrationBuilder.CreateIndex(
+                name: "IX_Classrooms_SchoolLessonId",
+                table: "Classrooms",
+                column: "SchoolLessonId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_EmailAuthenticators_UserId",
                 table: "EmailAuthenticators",
                 column: "UserId");
@@ -673,16 +627,6 @@ namespace Persistence.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_LessonClassrooms_ClassroomId",
-                table: "LessonClassrooms",
-                column: "ClassroomId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_LessonClassrooms_LessonId",
-                table: "LessonClassrooms",
-                column: "LessonId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_LessonExamDates_ExamDateId",
                 table: "LessonExamDates",
                 column: "ExamDateId");
@@ -703,13 +647,13 @@ namespace Persistence.Migrations
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_SchoolClassrooms_ClassroomId",
-                table: "SchoolClassrooms",
-                column: "ClassroomId");
+                name: "IX_SchoolLessons_LessonId",
+                table: "SchoolLessons",
+                column: "LessonId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_SchoolClassrooms_SchoolId",
-                table: "SchoolClassrooms",
+                name: "IX_SchoolLessons_SchoolId",
+                table: "SchoolLessons",
                 column: "SchoolId");
 
             migrationBuilder.CreateIndex(
@@ -774,16 +718,6 @@ namespace Persistence.Migrations
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_UserClassrooms_ClassroomId",
-                table: "UserClassrooms",
-                column: "ClassroomId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_UserClassrooms_UserId",
-                table: "UserClassrooms",
-                column: "UserId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_UserOperationClaims_OperationClaimId",
                 table: "UserOperationClaims",
                 column: "OperationClaimId");
@@ -809,9 +743,6 @@ namespace Persistence.Migrations
                 name: "InstructorDepartments");
 
             migrationBuilder.DropTable(
-                name: "LessonClassrooms");
-
-            migrationBuilder.DropTable(
                 name: "LessonExamDates");
 
             migrationBuilder.DropTable(
@@ -819,9 +750,6 @@ namespace Persistence.Migrations
 
             migrationBuilder.DropTable(
                 name: "RefreshTokens");
-
-            migrationBuilder.DropTable(
-                name: "SchoolClassrooms");
 
             migrationBuilder.DropTable(
                 name: "StudentExamDates");
@@ -834,9 +762,6 @@ namespace Persistence.Migrations
 
             migrationBuilder.DropTable(
                 name: "UserCertificates");
-
-            migrationBuilder.DropTable(
-                name: "UserClassrooms");
 
             migrationBuilder.DropTable(
                 name: "UserOperationClaims");
@@ -857,9 +782,6 @@ namespace Persistence.Migrations
                 name: "GradeTypes");
 
             migrationBuilder.DropTable(
-                name: "Lessons");
-
-            migrationBuilder.DropTable(
                 name: "Certificates");
 
             migrationBuilder.DropTable(
@@ -870,6 +792,12 @@ namespace Persistence.Migrations
 
             migrationBuilder.DropTable(
                 name: "Users");
+
+            migrationBuilder.DropTable(
+                name: "SchoolLessons");
+
+            migrationBuilder.DropTable(
+                name: "Lessons");
 
             migrationBuilder.DropTable(
                 name: "Schools");

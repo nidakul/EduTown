@@ -36,9 +36,7 @@ public static class PersistenceServiceRegistration
         services.AddScoped<ISchoolRepository, SchoolRepository>();
         services.AddScoped<IClassroomRepository, ClassroomRepository>();
         services.AddScoped<ILessonRepository, LessonRepository>();
-        services.AddScoped<ILessonClassroomRepository, LessonClassroomRepository>();
         services.AddScoped<ISchoolRepository, SchoolRepository>();
-        services.AddScoped<IUserClassroomRepository, UserClassroomRepository>();
         services.AddScoped<ISchoolTypeRepository, SchoolTypeRepository>();
         services.AddScoped<IInstructorDepartmentRepository, InstructorDepartmentRepository>();
         services.AddScoped<IDepartmentRepository, DepartmentRepository>();
@@ -46,7 +44,6 @@ public static class PersistenceServiceRegistration
         services.AddScoped<ILessonExamDateRepository, LessonExamDateRepository>();
         services.AddScoped<IStudentExamDateRepository, StudentExamDateRepository>();
         services.AddScoped<ISchoolLessonRepository, SchoolLessonRepository>();
-        services.AddScoped<ISchoolLessonClassRepository, SchoolLessonClassRepository>();
         return services;
     }
 }
