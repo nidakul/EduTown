@@ -6,6 +6,8 @@ namespace Application.Features.Users.Queries.GetStudentByUserId
     public class GetStudentByUserIdResponse : IResponse
     {
         public Guid Id { get; set; }
+        public int SchoolId { get; set; }
+        public int ClassroomId { get; set; }
         public string SchoolName { get; set; }
         public string NationalIdentity { get; set; }
         public string FirstName { get; set; }
@@ -22,9 +24,11 @@ namespace Application.Features.Users.Queries.GetStudentByUserId
 
         }
 
-        public GetStudentByUserIdResponse(Guid id, string schoolName, string nationalIdentity, string firstName, string lastName, string email, string imageUrl, string studentNo, string gender, List<string> classroomName): this()
+        public GetStudentByUserIdResponse(Guid id, int schoolId, int classroomId, string schoolName, string nationalIdentity, string firstName, string lastName, string email, string imageUrl, string studentNo, string gender, List<string> classroomName): this()
         {
             Id = id;
+            SchoolId = schoolId;
+            ClassroomId = classroomId;
             SchoolName = schoolName;
             NationalIdentity = nationalIdentity;
             FirstName = firstName;
@@ -37,5 +41,6 @@ namespace Application.Features.Users.Queries.GetStudentByUserId
         }
     }
 }
+
 
 
