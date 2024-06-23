@@ -6,6 +6,7 @@ using Application.Features.Schools.Queries.GetList;
 using NArchitecture.Core.Application.Requests;
 using NArchitecture.Core.Application.Responses;
 using Microsoft.AspNetCore.Mvc;
+using Application.Features.Schools.Queries.GetClassesBySchoolId;
 
 namespace WebAPI.Controllers;
 
@@ -56,6 +57,13 @@ public class SchoolsController : BaseController
 
         GetListResponse<GetListSchoolListItemDto> response = await Mediator.Send(query);
 
+        return Ok(response);
+    }
+
+    [HttpGet("getClassesBySchoolId/{id}")]
+    public async Task<IActionResult> GetClassesBySchoolId([FromRoute] int id)
+    {
+        GetClassesBySchoolIdResponse response = await Mediator.Send(new GetClassesBySchoolIdQuery { Id = id });
         return Ok(response);
     }
 }
