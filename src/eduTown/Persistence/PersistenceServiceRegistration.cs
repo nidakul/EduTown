@@ -43,7 +43,6 @@ public static class PersistenceServiceRegistration
         services.AddScoped<IExamDateRepository, ExamDateRepository>();
         services.AddScoped<ILessonExamDateRepository, LessonExamDateRepository>();
         services.AddScoped<IStudentExamDateRepository, StudentExamDateRepository>();
-        services.AddScoped<ISchoolLessonRepository, SchoolLessonRepository>();
         services.AddScoped<ISchoolClassRepository, SchoolClassRepository>();
         services.AddScoped<ISchoolClassLessonRepository, SchoolClassLessonRepository>();
         return services;

@@ -23,7 +23,6 @@ using Application.Features.Departments.Constants;
 using Application.Features.ExamDates.Constants;
 using Application.Features.LessonExamDates.Constants;
 using Application.Features.StudentExamDates.Constants;
-using Application.Features.SchoolLessons.Constants;
 using Application.Features.SchoolClasses.Constants;
 using Application.Features.SchoolClassLessons.Constants;
 
@@ -418,22 +417,6 @@ public class OperationClaimConfiguration : IEntityTypeConfiguration<OperationCla
                 new() { Id = ++lastId, Name = StudentExamDatesOperationClaims.Create },
                 new() { Id = ++lastId, Name = StudentExamDatesOperationClaims.Update },
                 new() { Id = ++lastId, Name = StudentExamDatesOperationClaims.Delete },
-            ]
-        );
-        #endregion
-
-
-
-
-        #region SchoolLessons CRUD
-        featureOperationClaims.AddRange(
-            [
-                new() { Id = ++lastId, Name = SchoolLessonsOperationClaims.Admin },
-                new() { Id = ++lastId, Name = SchoolLessonsOperationClaims.Read },
-                new() { Id = ++lastId, Name = SchoolLessonsOperationClaims.Write },
-                new() { Id = ++lastId, Name = SchoolLessonsOperationClaims.Create },
-                new() { Id = ++lastId, Name = SchoolLessonsOperationClaims.Update },
-                new() { Id = ++lastId, Name = SchoolLessonsOperationClaims.Delete },
             ]
         );
         #endregion
