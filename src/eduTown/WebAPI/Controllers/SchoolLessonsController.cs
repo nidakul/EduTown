@@ -6,6 +6,7 @@ using Application.Features.SchoolLessons.Queries.GetList;
 using NArchitecture.Core.Application.Requests;
 using NArchitecture.Core.Application.Responses;
 using Microsoft.AspNetCore.Mvc;
+using Application.Features.SchoolLessons.Queries.GetLessonBySchoolIdAndClassId;
 
 namespace WebAPI.Controllers;
 
@@ -56,6 +57,13 @@ public class SchoolLessonsController : BaseController
 
         GetListResponse<GetListSchoolLessonListItemDto> response = await Mediator.Send(query);
 
+        return Ok(response);
+    }
+
+    [HttpGet("getLessonsBySchoolIdAndClassId/{schoolId}/{classroomId}")]
+    public async Task<IActionResult> GetLessonBySchoolIdAndClassId([FromRoute] int schoolId, [FromRoute] int classroomId)
+    {
+        GetLessonBySchoolIdAndClassIdResponse response = await Mediator.Send(new GetLessonBySchoolIdAndClassIdQuery { SchoolId = schoolId, ClassroomId = classroomId });
         return Ok(response);
     }
 }

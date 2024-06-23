@@ -7,7 +7,6 @@ using AutoMapper;
 using NArchitecture.Core.Application.Responses;
 using Domain.Entities;
 using NArchitecture.Core.Persistence.Paging;
-using Application.Features.Schools.Queries.GetLessonBySchoolId;
 
 namespace Application.Features.Schools.Profiles;
 
@@ -27,11 +26,9 @@ public class MappingProfiles : Profile
         CreateMap<School, GetByIdSchoolResponse>();
 
         CreateMap<School, GetListSchoolListItemDto>();
-        CreateMap<School, GetLessonBySchoolIdResponse>()
-            .ForMember(s => s.LessonName, opt => opt.MapFrom(s => s.SchoolLessons.Select(s => s.Lesson.Name).ToList()))
-            .ForMember(s => s.SchoolName, opt => opt.MapFrom(s => s.Name))
-        .ReverseMap();
 
         CreateMap<IPaginate<School>, GetListResponse<GetListSchoolListItemDto>>();
     }
 }
+
+

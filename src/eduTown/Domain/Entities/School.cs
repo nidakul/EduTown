@@ -12,7 +12,7 @@ namespace Domain.Entities
         public virtual SchoolType SchoolType { get; set; }
 
         public virtual ICollection<Instructor> Instructors { get; set; }
-        public virtual ICollection<SchoolLesson> SchoolLessons { get; set; }
+        public virtual ICollection<SchoolClass> SchoolClasses { get; set; }
 
 
         public School()

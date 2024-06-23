@@ -32,6 +32,8 @@ public class BaseDbContext : DbContext
     public DbSet<LessonExamDate> LessonExamDates { get; set; }
     public DbSet<StudentExamDate> StudentExamDates { get; set; }
     public DbSet<SchoolLesson> SchoolLessons { get; set; }
+    public DbSet<SchoolClass> SchoolClasses { get; set; }
+    public DbSet<SchoolClassLesson> SchoolClassLessons { get; set; }
 
 
     public BaseDbContext() 
@@ -53,6 +55,7 @@ public class BaseDbContext : DbContext
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
         optionsBuilder.UseSqlServer("Server = localhost; Database = EduTown; User Id = SA; Password = rentacardb; TrustServerCertificate=true");                       
+        
 
     }
 }

@@ -28,8 +28,8 @@
     <Folder Include="Features\Users\Queries\GetStudentGradesByUserId\" />
     <Folder Include="Features\Users\Queries\GetInstructorByUserId\" />
     <Folder Include="Features\Users\Queries\GetStudentExamDateByUserId\" />
-    <Folder Include="Features\Schools\Queries\GetLessonBySchoolId\" />
-    <Folder Include="Features\Schools\Queries\GetLessonsBySchoolIdAndClassId\" />
+    <Folder Include="Features\SchoolLessons\Queries\GetLessonBySchoolIdAndClassId\" />
+    <Folder Include="Features\SchoolClasses\Queries\GetLessonsBySchoolIdAndClassId\" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="Features\Users\Queries\GetStudentByUserId\" />
@@ -37,8 +37,8 @@
     <None Remove="Features\Users\Queries\GetStudentGradesByUserId\" />
     <None Remove="Features\Users\Queries\GetInstructorByUserId\" />
     <None Remove="Features\Users\Queries\GetStudentExamDateByUserId\" />
-    <None Remove="Features\Schools\Queries\GetLessonBySchoolId\" />
-    <None Remove="Features\Schools\Queries\GetLessonsBySchoolIdAndClassId\" />
+    <None Remove="Features\SchoolLessons\Queries\GetLessonBySchoolIdAndClassId\" />
+    <None Remove="Features\SchoolClasses\Queries\GetLessonsBySchoolIdAndClassId\" />
   </ItemGroup>
   <ItemGroup>
     <None Update="Features\**\Resources\Locales\*.*.yaml">
