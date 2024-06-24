@@ -6,7 +6,6 @@ namespace Application.Features.Auth.Commands.Register
     public class UserForRegisterCommand : IDto
     {
         public int SchoolId { get; set; }
-        public int ClassroomId { get; set; }
         public string NationalIdentity { get; set; }
         public string Password { get; set; }
         public string FirstName { get; set; }
@@ -22,10 +21,9 @@ namespace Application.Features.Auth.Commands.Register
             Password = string.Empty; 
         }
 
-        public UserForRegisterCommand(int schoolId, int classroomId, string nationalIdentity, string password, string firstName, string lastName, string email, string gender, string? imageUrl): this()
+        public UserForRegisterCommand(int schoolId, string nationalIdentity, string password, string firstName, string lastName, string email, string gender, string? imageUrl): this()
         {
             SchoolId = schoolId;
-            ClassroomId = classroomId;
             NationalIdentity = nationalIdentity;
             Password = password;
             FirstName = firstName;

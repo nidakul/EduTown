@@ -595,6 +595,9 @@ namespace Persistence.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("ClassroomId")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
 
@@ -612,6 +615,8 @@ namespace Persistence.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("ClassroomId");
 
                     b.HasIndex("UserId")
                         .IsUnique();
@@ -1001,11 +1006,19 @@ namespace Persistence.Migrations
 
             modelBuilder.Entity("Domain.Entities.Student", b =>
                 {
+                    b.HasOne("Domain.Entities.Classroom", "Classroom")
+                        .WithMany("Students")
+                        .HasForeignKey("ClassroomId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("Domain.Entities.User", "User")
                         .WithOne("Student")
                         .HasForeignKey("Domain.Entities.Student", "UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Classroom");
 
                     b.Navigation("User");
                 });
@@ -1133,6 +1146,8 @@ namespace Persistence.Migrations
             modelBuilder.Entity("Domain.Entities.Classroom", b =>
                 {
                     b.Navigation("SchoolClasses");
+
+                    b.Navigation("Students");
 
                     b.Navigation("UserCertificates");
                 });
