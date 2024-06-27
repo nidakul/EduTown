@@ -8,7 +8,6 @@ namespace Application.Features.Classrooms.Commands.Create;
 
 public class CreateClassroomCommand : IRequest<CreatedClassroomResponse>
 {
-    public required int SchoolLessonId { get; set; }
     public required string Name { get; set; }
 
     public class CreateClassroomCommandHandler : IRequestHandler<CreateClassroomCommand, CreatedClassroomResponse>

@@ -439,6 +439,7 @@ namespace Persistence.Migrations
                     UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     GradeTypeId = table.Column<int>(type: "int", nullable: false),
                     LessonId = table.Column<int>(type: "int", nullable: false),
+                    ClassroomId = table.Column<int>(type: "int", nullable: false),
                     ExamCount = table.Column<int>(type: "int", nullable: false),
                     Grade = table.Column<double>(type: "float", nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -448,6 +449,12 @@ namespace Persistence.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_StudentGrades", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_StudentGrades_Classrooms_ClassroomId",
+                        column: x => x.ClassroomId,
+                        principalTable: "Classrooms",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_StudentGrades_GradeTypes_GradeTypeId",
                         column: x => x.GradeTypeId,
@@ -714,6 +721,11 @@ namespace Persistence.Migrations
                 name: "IX_StudentGradeLessons_LessonId",
                 table: "StudentGradeLessons",
                 column: "LessonId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_StudentGrades_ClassroomId",
+                table: "StudentGrades",
+                column: "ClassroomId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_StudentGrades_GradeTypeId",

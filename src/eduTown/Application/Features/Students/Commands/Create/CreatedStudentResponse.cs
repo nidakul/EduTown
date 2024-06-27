@@ -6,9 +6,9 @@ public class CreatedStudentResponse : IResponse
 {
     public Guid Id { get; set; }
     public Guid UserId { get; set; }
-    public string StudentNo { get; set; }
     public int SchoolId { get; set; }
     public int ClassroomId { get; set; }
+    public string StudentNo { get; set; }
     public string NationalIdentity { get; set; }
     public string FirstName { get; set; }
     public string LastName { get; set; }

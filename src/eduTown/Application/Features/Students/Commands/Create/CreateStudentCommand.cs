@@ -12,6 +12,7 @@ namespace Application.Features.Students.Commands.Create;
 public class CreateStudentCommand : IRequest<CreatedStudentResponse>
 {
     //public required Guid UserId { get; set; }
+    public int ClassroomId { get; set; }
     public required string StudentNo { get; set; }
     public required DateTime Birthdate { get; set; }
     public required string Birthplace { get; set; }

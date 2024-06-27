@@ -664,6 +664,9 @@ namespace Persistence.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<int>("ClassroomId")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
 
@@ -689,6 +692,8 @@ namespace Persistence.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("ClassroomId");
 
                     b.HasIndex("GradeTypeId");
 
@@ -1044,6 +1049,12 @@ namespace Persistence.Migrations
 
             modelBuilder.Entity("Domain.Entities.StudentGrade", b =>
                 {
+                    b.HasOne("Domain.Entities.Classroom", "Classroom")
+                        .WithMany("StudentGrades")
+                        .HasForeignKey("ClassroomId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("Domain.Entities.GradeType", "GradeType")
                         .WithMany("StudentGrades")
                         .HasForeignKey("GradeTypeId")
@@ -1061,6 +1072,8 @@ namespace Persistence.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Classroom");
 
                     b.Navigation("GradeType");
 
@@ -1146,6 +1159,8 @@ namespace Persistence.Migrations
             modelBuilder.Entity("Domain.Entities.Classroom", b =>
                 {
                     b.Navigation("SchoolClasses");
+
+                    b.Navigation("StudentGrades");
 
                     b.Navigation("Students");
 
