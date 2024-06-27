@@ -5,4 +5,5 @@ namespace Application.Services.Repositories;
 
 public interface IStudentGradeRepository : IAsyncRepository<StudentGrade, int>, IRepository<StudentGrade, int>
 {
+    //List<StudentGrade> GetStudentGradesByUserId(Guid userId);
 }

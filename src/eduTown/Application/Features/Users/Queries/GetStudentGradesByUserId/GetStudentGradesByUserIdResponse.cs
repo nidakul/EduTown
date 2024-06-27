@@ -12,11 +12,11 @@ namespace Application.Features.Users.Queries.GetStudentGradesByUserId
         public GetStudentGradesByUserIdResponse()
         {
         }
-    }
-
+    }  
+    
     public class StudentGradesByClassroomDto
     {
-        public List<string> ClassroomName { get; set; }
+        public string ClassroomName { get; set; }
         public List<StudentGradesByLessonDto> Lessons { get; set; }
 }
 

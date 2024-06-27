@@ -59,50 +59,58 @@ public class MappingProfiles : Profile
                 Semester = u.Semester
             }).ToList())).ReverseMap();
 
-      //  CreateMap<User, GetStudentGradesByUserIdResponse>()
-      //.ForMember(u => u.Id, opt => opt.MapFrom(u => u.Id))
-      //.ForMember(dest => dest.StudentGrades, opt => opt.MapFrom(
-          //src => src.StudentGrades.GroupBy(sg => sg.Lesson.Name) 
-      //    src => src.StudentGrades.GroupBy(sg => sg.User.UserClassrooms.Select(sg => sg.Classroom.Name))
-      //        .Select(g => new StudentGradesByClassroomDto
-      //        {
-      //            //ClassroomName = g.Key, 
-      //            Lessons = g.GroupBy(cl => cl.Lesson.Name)
-      //    .Select(g => new StudentGradesByLessonDto
-      //    {
-      //        LessonName = g.Key,
-      //        Grades = g.OrderBy(ec => ec.ExamCount)
-      //            .GroupBy(grade => grade.GradeType.Name)
-      //                      .Select(grp => new StudentGradeDetailsDto
-      //                      {
-      //                          GradeTypeName = grp.Key,
-      //                          GradesDto = grp.Select(g => new GradeDto
-      //                          {
-      //                              ExamCount = g.ExamCount,
-      //                              Grade = g.Grade
-      //                          }).ToList()
-      //                      }).ToList()
-      //    }).ToList()
-      //        }).ToList()
-      //))
-      //.ReverseMap();
+        //CreateMap<User, GetStudentGradesByUserIdResponse>()
+        //    .ForMember(u => u.Id, opt => opt.MapFrom(u => u.Id))
+        //    .ForMember(u => u.StudentGrades, opt => opt.MapFrom(
+        
+        //        )
+        
+        
 
-     //   CreateMap<User, GetStudentExamDateByUserIdResponse>()
-     //.ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id))
-     //.ForMember(dest => dest.StudentExamDates, opt => opt.MapFrom(src => src.UserLessons
-     //    .SelectMany(ul => ul.Lesson.LessonExamDate
-     //        .Select(led => new StudentExamDateDto
-     //        {
-     //            LessonName = ul.Lesson.Name,
-     //            ExamType = led.ExamDate.ExamType,
-     //            StartDate = led.ExamDate.StartDate,
-     //            EndDate = led.ExamDate.EndDate
-     //        })
-     //    )
-     //    .GroupBy(se => se.LessonName)
-     //    .SelectMany(g => g)
-     //    .ToList()))
-     //.ReverseMap();
+        CreateMap<User, GetStudentGradesByUserIdResponse>()
+            .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id))
+            .ForMember(dest => dest.StudentGrades, opt => opt.MapFrom(src => src.StudentGrades
+                .GroupBy(sg => sg.Classroom.Name)
+                .Select(g => new StudentGradesByClassroomDto
+                {
+                    ClassroomName = g.Key,
+                    Lessons = g.GroupBy(cl => cl.Lesson.Name) 
+                        .Select(gl => new StudentGradesByLessonDto
+                        {
+                            LessonName = gl.Key,
+                            Grades = gl.OrderBy(ec => ec.ExamCount) 
+                                .GroupBy(grade => grade.GradeType.Name)
+                                .Select(grp => new StudentGradeDetailsDto
+                                {
+                                    GradeTypeName = grp.Key,
+                                    //GradeCount = grp.Count(), 
+                                    GradesDto = grp.Select(g => new GradeDto
+                                    {
+                                        ExamCount = g.ExamCount,
+                                        Grade = g.Grade
+                                    }).ToList()
+                                }).ToList()
+                        }).ToList()
+                }).ToList()
+            ))
+            .ReverseMap();
+
+        //   CreateMap<User, GetStudentExamDateByUserIdResponse>()
+        //.ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id))
+        //.ForMember(dest => dest.StudentExamDates, opt => opt.MapFrom(src => src.UserLessons
+        //    .SelectMany(ul => ul.Lesson.LessonExamDate
+        //        .Select(led => new StudentExamDateDto
+        //        {
+        //            LessonName = ul.Lesson.Name,
+        //            ExamType = led.ExamDate.ExamType,
+        //            StartDate = led.ExamDate.StartDate,
+        //            EndDate = led.ExamDate.EndDate
+        //        })
+        //    )
+        //    .GroupBy(se => se.LessonName)
+        //    .SelectMany(g => g)
+        //    .ToList()))
+        //.ReverseMap();
 
 
 
