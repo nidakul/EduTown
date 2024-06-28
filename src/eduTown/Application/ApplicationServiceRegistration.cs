@@ -27,7 +27,6 @@ using Application.Services.Classrooms;
 using Application.Services.UserCertificates;
 using Application.Services.Certificates;
 using Application.Services.Lessons;
-using Application.Services.StudentGradeLessons;
 using Application.Services.GradeTypes;
 using Application.Services.StudentGrades;
 using Application.Services.Cities;
@@ -87,7 +86,6 @@ public static class ApplicationServiceRegistration
         services.AddScoped<IUserCertificateService, UserCertificateManager>();
         services.AddScoped<ICertificateService, CertificateManager>();
         services.AddScoped<ILessonService, LessonManager>();
-        services.AddScoped<IStudentGradeLessonService, StudentGradeLessonManager>();
         services.AddScoped<IGradeTypeService, GradeTypeManager>();
         services.AddScoped<IStudentGradeService, StudentGradeManager>();
         services.AddScoped<ICityService, CityManager>();

@@ -13,7 +13,6 @@ using Application.Features.Classrooms.Constants;
 using Application.Features.UserCertificates.Constants;
 using Application.Features.Certificates.Constants;
 using Application.Features.Lessons.Constants;
-using Application.Features.StudentGradeLessons.Constants;
 using Application.Features.GradeTypes.Constants;
 using Application.Features.StudentGrades.Constants;
 using Application.Features.Cities.Constants;
@@ -211,21 +210,6 @@ public class OperationClaimConfiguration : IEntityTypeConfiguration<OperationCla
                 new() { Id = ++lastId, Name = LessonsOperationClaims.Create },
                 new() { Id = ++lastId, Name = LessonsOperationClaims.Update },
                 new() { Id = ++lastId, Name = LessonsOperationClaims.Delete },
-            ]
-        );
-        #endregion
-
-
-
-        #region StudentGradeLessons CRUD
-        featureOperationClaims.AddRange(
-            [
-                new() { Id = ++lastId, Name = StudentGradeLessonsOperationClaims.Admin },
-                new() { Id = ++lastId, Name = StudentGradeLessonsOperationClaims.Read },
-                new() { Id = ++lastId, Name = StudentGradeLessonsOperationClaims.Write },
-                new() { Id = ++lastId, Name = StudentGradeLessonsOperationClaims.Create },
-                new() { Id = ++lastId, Name = StudentGradeLessonsOperationClaims.Update },
-                new() { Id = ++lastId, Name = StudentGradeLessonsOperationClaims.Delete },
             ]
         );
         #endregion

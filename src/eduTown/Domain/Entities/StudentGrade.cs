@@ -17,14 +17,13 @@ namespace Domain.Entities
         public virtual Lesson Lesson { get; set; }
         public virtual Classroom Classroom { get; set; }
 
-        //public virtual ICollection<StudentGradeLesson> StudentGradeLessons { get; set; }
 
         public StudentGrade()
         {
         } 
-    }  
+    }   
 }
 
 
 
-
+ 
