@@ -38,6 +38,7 @@ using Application.Services.LessonExamDates;
 using Application.Services.StudentExamDates;
 using Application.Services.SchoolClasses;
 using Application.Services.SchoolClassLessons;
+using Application.Services.Terms;
 
 namespace Application;
 
@@ -101,6 +102,7 @@ public static class ApplicationServiceRegistration
         services.AddScoped<IStudentExamDateService, StudentExamDateManager>();
         services.AddScoped<ISchoolClassService, SchoolClassManager>();
         services.AddScoped<ISchoolClassLessonService, SchoolClassLessonManager>();
+        services.AddScoped<ITermService, TermManager>();
         return services;
     }
 

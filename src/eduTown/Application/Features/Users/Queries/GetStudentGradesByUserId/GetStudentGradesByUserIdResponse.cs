@@ -12,15 +12,21 @@ namespace Application.Features.Users.Queries.GetStudentGradesByUserId
         public GetStudentGradesByUserIdResponse()
         {
         }
-    }  
-    
+    }
+
     public class StudentGradesByClassroomDto
     {
-        public string ClassroomName { get; set; }
-        public List<StudentGradesByLessonDto> Lessons { get; set; }
-}
+        public string ClassroomName { get; set; } 
+        public List<StudentGradesByTermDto> TermNames { get; set; }
+    }
 
-    public class StudentGradesByLessonDto 
+    public class StudentGradesByTermDto
+    {
+        public string TermName { get; set; }
+        public List<StudentGradesByLessonDto> Lessons { get; set; }
+    }
+
+    public class StudentGradesByLessonDto
     {
         public string LessonName { get; set; }
         public List<StudentGradeDetailsDto> Grades { get; set; }
@@ -28,7 +34,7 @@ namespace Application.Features.Users.Queries.GetStudentGradesByUserId
 
     public class StudentGradeDetailsDto
     {
-        public string GradeTypeName { get; set; } 
+        public string GradeTypeName { get; set; }
         //public int GradeCount { get; set; }
         public List<GradeDto> GradesDto { get; set; }
 

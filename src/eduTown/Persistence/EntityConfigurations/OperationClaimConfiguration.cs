@@ -435,6 +435,7 @@ public class OperationClaimConfiguration : IEntityTypeConfiguration<OperationCla
         );
         #endregion
         
+                
         
         #region Terms CRUD
         featureOperationClaims.AddRange(

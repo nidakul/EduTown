@@ -9,6 +9,7 @@ namespace Domain.Entities
         public int GradeTypeId { get; set; }
         public int LessonId { get; set; }
         public int ClassroomId { get; set; }
+        public int TermId { get; set; }
         public int ExamCount { get; set; } //GradeType ile ilişkili
         public double Grade { get; set; }
         
@@ -16,7 +17,7 @@ namespace Domain.Entities
         public virtual GradeType GradeType { get; set; }
         public virtual Lesson Lesson { get; set; }
         public virtual Classroom Classroom { get; set; }
-
+        public virtual Term Term { get; set; }
 
         public StudentGrade()
         {
@@ -26,4 +27,6 @@ namespace Domain.Entities
 
 
 
- 
+
+
+
