@@ -32,6 +32,7 @@ public class BaseDbContext : DbContext
     public DbSet<StudentExamDate> StudentExamDates { get; set; }
     public DbSet<SchoolClass> SchoolClasses { get; set; }
     public DbSet<SchoolClassLesson> SchoolClassLessons { get; set; }
+    public DbSet<Term> Terms { get; set; }
 
 
     public BaseDbContext() 
