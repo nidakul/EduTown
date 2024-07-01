@@ -10,6 +10,7 @@ public class UpdateStudentCommand : IRequest<UpdatedStudentResponse>
 {
     public Guid Id { get; set; }
     public required Guid UserId { get; set; }
+    public required int ClassroomId { get; set; }
     public required string StudentNo { get; set; }
 
     public class UpdateStudentCommandHandler : IRequestHandler<UpdateStudentCommand, UpdatedStudentResponse>
