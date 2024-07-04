@@ -16,12 +16,14 @@ namespace Application.Features.Users.Queries.GetStudentGradesByUserId
 
     public class StudentGradesByClassroomDto
     {
-        public string ClassroomName { get; set; } 
+        public int ClassroomId { get; set; } 
+        public string ClassroomName { get; set; }
         public List<StudentGradesByTermDto> TermNames { get; set; }
     }
 
     public class StudentGradesByTermDto
     {
+        public int TermId { get; set; }
         public string TermName { get; set; }
         public List<StudentGradesByLessonDto> Lessons { get; set; }
     }

@@ -63,14 +63,15 @@ public class MappingProfiles : Profile
         CreateMap<User, GetStudentGradesByUserIdResponse>()
     .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id))
     .ForMember(dest => dest.StudentGrades, opt => opt.MapFrom(src => src.StudentGrades
-        .GroupBy(sg => sg.Classroom.Name)
-        .Select(g => new StudentGradesByClassroomDto
-        {
-            ClassroomName = g.Key,
-            TermNames = g.GroupBy(cl => cl.Term.Name)
+.GroupBy(sg => new { sg.Classroom.Id, sg.Classroom.Name }).Select(g => new StudentGradesByClassroomDto
+{
+    ClassroomId = g.Key.Id,
+    ClassroomName = g.Key.Name,
+    TermNames = g.GroupBy(cl => new { cl.Term.Id, cl.Term.Name })
                 .Select(gl => new StudentGradesByTermDto
                 {
-                    TermName = gl.Key,
+                    TermId = gl.Key.Id,
+                    TermName = gl.Key.Name,
                     Lessons = gl.GroupBy(lesson => lesson.Lesson.Name)
                         .Select(lessonGroup => new StudentGradesByLessonDto
                         {
@@ -87,7 +88,7 @@ public class MappingProfiles : Profile
                                 }).ToList()
                         }).ToList()
                 }).ToList()
-        }).ToList()
+}).ToList()
     ))
     .ReverseMap();
 
