@@ -7,6 +7,7 @@ using NArchitecture.Core.Application.Requests;
 using NArchitecture.Core.Application.Responses;
 using Microsoft.AspNetCore.Mvc;
 using Application.Features.Users.Queries.GetStudentByUserId;
+using Application.Features.Students.Queries.GetStudentDetail;
 
 namespace WebAPI.Controllers;
 
@@ -60,5 +61,15 @@ public class StudentsController : BaseController
         return Ok(response);
     }
 
-   
+    [HttpGet("getListStudentDetail")] 
+    public async Task<ActionResult<GetListStudentDetailQuery>> GetListStudentDetail([FromQuery] PageRequest pageRequest)
+    {
+        GetListStudentDetailQuery query = new() { PageRequest = pageRequest };
+
+        GetListResponse<GetListStudentDetailResponse> response = await Mediator.Send(query);
+
+        return Ok(response);
+    }
+
+
 }
