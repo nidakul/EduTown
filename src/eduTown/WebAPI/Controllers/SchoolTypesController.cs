@@ -6,6 +6,7 @@ using Application.Features.SchoolTypes.Queries.GetList;
 using NArchitecture.Core.Application.Requests;
 using NArchitecture.Core.Application.Responses;
 using Microsoft.AspNetCore.Mvc;
+using Application.Features.SchoolTypes.Queries.GetClassesBySchoolTypeId;
 
 namespace WebAPI.Controllers;
 
@@ -58,4 +59,15 @@ public class SchoolTypesController : BaseController
 
         return Ok(response);
     }
+
+    [HttpGet("getClassesBySchoolTypeId/{id}")]
+    public async Task<ActionResult<GetClassesBySchoolTypeIdResponse>> GetClassesBySchoolTypeId([FromRoute] int id)
+    {
+        GetClassesBySchoolTypeIdQuery query = new() { Id = id };
+
+        GetClassesBySchoolTypeIdResponse response = await Mediator.Send(query);
+
+        return Ok(response);
+    }
 }
+

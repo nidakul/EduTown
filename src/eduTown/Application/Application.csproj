@@ -32,6 +32,7 @@
     <Folder Include="Features\Schools\Queries\GetClassesBySchoolId\" />
     <Folder Include="Features\Schools\Queries\GetLessonsBySchoolId\" />
     <Folder Include="Features\Students\Queries\GetStudentDetail \" />
+    <Folder Include="Features\SchoolTypes\Queries\GetClassesBySchoolTypeId\" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="Features\Users\Queries\GetStudentByUserId\" />
@@ -43,6 +44,7 @@
     <None Remove="Features\Schools\Queries\GetClassesBySchoolId\" />
     <None Remove="Features\Schools\Queries\GetLessonsBySchoolId\" />
     <None Remove="Features\Students\Queries\GetStudentDetail \" />
+    <None Remove="Features\SchoolTypes\Queries\GetClassesBySchoolTypeId\" />
   </ItemGroup>
   <ItemGroup>
     <None Update="Features\**\Resources\Locales\*.*.yaml">
