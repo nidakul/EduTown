@@ -33,7 +33,7 @@ public class BaseDbContext : DbContext
     public DbSet<SchoolClass> SchoolClasses { get; set; }
     public DbSet<SchoolClassLesson> SchoolClassLessons { get; set; }
     public DbSet<Term> Terms { get; set; }
-
+    public DbSet<SchoolTypeClass> SchoolTypeClasses { get; set; }
 
     public BaseDbContext() 
     {
