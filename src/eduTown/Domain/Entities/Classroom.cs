@@ -10,6 +10,7 @@ namespace Domain.Entities
         public virtual ICollection<UserCertificate> UserCertificates { get; set; }
         public virtual ICollection<Student> Students { get; set; }
         public virtual ICollection<StudentGrade> StudentGrades { get; set; }
+        public virtual ICollection<SchoolTypeClass> SchoolTypeClasses { get; set; }
 
 
         public Classroom()
