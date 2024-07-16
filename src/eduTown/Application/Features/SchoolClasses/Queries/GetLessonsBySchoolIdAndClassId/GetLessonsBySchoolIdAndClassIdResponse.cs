@@ -6,11 +6,17 @@ namespace Application.Features.SchoolClasses.Queries.GetLessonsBySchoolIdAndClas
     {
         public string SchoolName { get; set; }
         public string ClassroomName { get; set; }
-        public List<string> LessonName { get; set; }
+        public List<LessonDto> Lessons { get; set; }
 
         public GetLessonsBySchoolIdAndClassIdResponse()
         {
         }
+    }
+
+    public class LessonDto
+    {
+        public int LessonId { get; set; }
+        public string LessonName { get; set; }
     }
 }
 
