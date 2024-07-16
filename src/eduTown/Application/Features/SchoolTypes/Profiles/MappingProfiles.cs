@@ -30,9 +30,12 @@ public class MappingProfiles : Profile
         CreateMap<IPaginate<SchoolType>, GetListResponse<GetListSchoolTypeListItemDto>>();
 
         CreateMap<SchoolType, GetClassesBySchoolTypeIdResponse>()
-            .ForMember(st => st.SchoolTypeId, opt => opt.MapFrom(st=> st.Id))
-            .ForMember(st => st.SchoolTypeName, opt => opt.MapFrom(st=> st.Name))
-            .ForMember(st => st.ClassroomName, opt => opt.MapFrom(st=> st.SchoolTypeClasses.Select(st => st.Classroom.Name).ToList()))
+            .ForMember(dest => dest.Classes, opt =>opt.MapFrom(src =>src.SchoolTypeClasses
+            .Select(stc => new ClassInfo
+            {
+                ClassroomId = stc.Classroom.Id,
+                ClassroomName = stc.Classroom.Name
+            }).ToList()))
            .ReverseMap();
 
     }
