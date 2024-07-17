@@ -31,8 +31,6 @@ using Application.Services.GradeTypes;
 using Application.Services.StudentGrades;
 using Application.Services.Cities;
 using Application.Services.SchoolTypes;
-using Application.Services.InstructorDepartments;
-using Application.Services.Departments;
 using Application.Services.ExamDates;
 using Application.Services.LessonExamDates;
 using Application.Services.StudentExamDates;
@@ -98,8 +96,6 @@ public static class ApplicationServiceRegistration
         services.AddScoped<ILessonService, LessonManager>();
         services.AddScoped<ISchoolService, SchoolManager>();
         services.AddScoped<ISchoolTypeService, SchoolTypeManager>();
-        services.AddScoped<IInstructorDepartmentService, InstructorDepartmentManager>();
-        services.AddScoped<IDepartmentService, DepartmentManager>();
         services.AddScoped<IExamDateService, ExamDateManager>();
         services.AddScoped<ILessonExamDateService, LessonExamDateManager>();
         services.AddScoped<IStudentExamDateService, StudentExamDateManager>();

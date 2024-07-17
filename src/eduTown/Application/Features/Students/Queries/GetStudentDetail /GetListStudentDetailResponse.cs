@@ -7,7 +7,9 @@ namespace Application.Features.Students.Queries.GetStudentDetail
         public Guid Id { get; set; }
         public int SchoolId { get; set; }
         public int ClassroomId { get; set; }
+        public int BranchId { get; set; }
         public string SchoolName { get; set; }
+        public string BranchName { get; set; }
         public string NationalIdentity { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
@@ -18,18 +20,19 @@ namespace Application.Features.Students.Queries.GetStudentDetail
         public string ClassroomName { get; set; }
         public DateTime Birthdate { get; set; }
         public string Birthplace { get; set; }
-        public string Branch { get; set; } 
 
         public GetListStudentDetailResponse()
         {
         }
 
-        public GetListStudentDetailResponse(Guid id, int schoolId, int classroomId, string schoolName, string nationalIdentity, string firstName, string lastName, string email, string imageUrl, string studentNo, string gender, string classroomName, DateTime birthdate, string birthplace, string branch)
+        public GetListStudentDetailResponse(Guid id, int schoolId, int classroomId, int branchId, string schoolName, string branchName, string nationalIdentity, string firstName, string lastName, string email, string imageUrl, string studentNo, string gender, string classroomName, DateTime birthdate, string birthplace): this()
         {
             Id = id;
             SchoolId = schoolId;
             ClassroomId = classroomId;
+            BranchId = branchId;
             SchoolName = schoolName;
+            BranchName = branchName;
             NationalIdentity = nationalIdentity;
             FirstName = firstName;
             LastName = lastName;
@@ -40,7 +43,6 @@ namespace Application.Features.Students.Queries.GetStudentDetail
             ClassroomName = classroomName;
             Birthdate = birthdate;
             Birthplace = birthplace;
-            Branch = branch;
         }
     }
 }

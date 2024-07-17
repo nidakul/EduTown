@@ -17,8 +17,6 @@ using Application.Features.GradeTypes.Constants;
 using Application.Features.StudentGrades.Constants;
 using Application.Features.Cities.Constants;
 using Application.Features.SchoolTypes.Constants;
-using Application.Features.InstructorDepartments.Constants;
-using Application.Features.Departments.Constants;
 using Application.Features.ExamDates.Constants;
 using Application.Features.LessonExamDates.Constants;
 using Application.Features.StudentExamDates.Constants;
@@ -337,33 +335,6 @@ public class OperationClaimConfiguration : IEntityTypeConfiguration<OperationCla
         );
         #endregion
 
-
-        #region InstructorDepartments CRUD
-        featureOperationClaims.AddRange(
-            [
-                new() { Id = ++lastId, Name = InstructorDepartmentsOperationClaims.Admin },
-                new() { Id = ++lastId, Name = InstructorDepartmentsOperationClaims.Read },
-                new() { Id = ++lastId, Name = InstructorDepartmentsOperationClaims.Write },
-                new() { Id = ++lastId, Name = InstructorDepartmentsOperationClaims.Create },
-                new() { Id = ++lastId, Name = InstructorDepartmentsOperationClaims.Update },
-                new() { Id = ++lastId, Name = InstructorDepartmentsOperationClaims.Delete },
-            ]
-        );
-        #endregion
-
-
-        #region Departments CRUD
-        featureOperationClaims.AddRange(
-            [
-                new() { Id = ++lastId, Name = DepartmentsOperationClaims.Admin },
-                new() { Id = ++lastId, Name = DepartmentsOperationClaims.Read },
-                new() { Id = ++lastId, Name = DepartmentsOperationClaims.Write },
-                new() { Id = ++lastId, Name = DepartmentsOperationClaims.Create },
-                new() { Id = ++lastId, Name = DepartmentsOperationClaims.Update },
-                new() { Id = ++lastId, Name = DepartmentsOperationClaims.Delete },
-            ]
-        );
-        #endregion
 
 
         #region ExamDates CRUD

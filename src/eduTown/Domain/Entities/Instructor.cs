@@ -5,11 +5,7 @@ namespace Domain.Entities
     public class Instructor: Entity<Guid>
     {
         public Guid UserId { get; set; }
-        public string Department { get; set; }
-
         public virtual User User { get; set; }
-
-        public virtual ICollection<InstructorDepartment> InstructorDepartments { get; set; }
 
 
         public Instructor() 

@@ -44,7 +44,6 @@ public class MappingProfiles : Profile
 
         CreateMap<User, GetInstructorByUserIdResponse>()
             .ForMember(u => u.Id, opt => opt.MapFrom(u => u.Id))
-            .ForMember(u => u.Department, opt => opt.MapFrom(u => u.Instructor.Department))
             .ForMember(u => u.SchoolName, opt => opt.MapFrom(u => u.School.Name))
             .ReverseMap();
 

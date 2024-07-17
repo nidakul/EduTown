@@ -29,7 +29,8 @@ namespace Application.Features.Students.Queries.GetStudentDetail
                 IPaginate<Student> students = await _studentRepository.GetListAsync(
                     include: s => s.Include(s=> s.User)
                     .Include(s => s.User).ThenInclude(s=> s.School)
-                    .Include(s => s.Classroom),
+                    .Include(s => s.Classroom)
+                    .Include(s => s.Branch),
                     index: request.PageRequest.PageIndex,
                     size: request.PageRequest.PageSize,
                     cancellationToken: cancellationToken

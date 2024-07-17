@@ -11,12 +11,17 @@ namespace Application.Features.Students.Commands.Create;
 
 public class CreateStudentCommand : IRequest<CreatedStudentResponse>
 {
-    //public required Guid UserId { get; set; }
+    public int SchoolId { get; set; }
+    public int BranchId { get; set; }
     public int ClassroomId { get; set; }
-    public required string StudentNo { get; set; }
-    public required DateTime Birthdate { get; set; }
-    public required string Birthplace { get; set; }
-    public required string Branch { get; set; } //şube
+    public string StudentNo { get; set; }
+    public string NationalIdentity { get; set; }
+    public string FirstName { get; set; }
+    public string LastName { get; set; }
+    public string Email { get; set; }
+    public DateTime Birthdate { get; set; }
+    public string Birthplace { get; set; }
+    public string? ImageUrl { get; set; }
     public required UserForRegisterCommand UserForRegisterCommand { get; set; }
 
 
