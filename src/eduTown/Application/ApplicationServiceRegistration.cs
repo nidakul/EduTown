@@ -40,6 +40,8 @@ using Application.Services.SchoolClasses;
 using Application.Services.SchoolClassLessons;
 using Application.Services.Terms;
 using Application.Services.SchoolTypeClasses;
+using Application.Services.Branches;
+using Application.Services.SchoolClassBranches;
 
 namespace Application;
 
@@ -105,6 +107,8 @@ public static class ApplicationServiceRegistration
         services.AddScoped<ISchoolClassLessonService, SchoolClassLessonManager>();
         services.AddScoped<ITermService, TermManager>();
         services.AddScoped<ISchoolTypeClassService, SchoolTypeClassManager>();
+        services.AddScoped<IBranchService, BranchManager>();
+        services.AddScoped<ISchoolClassBranchService, SchoolClassBranchManager>();
         return services;
     }
 

@@ -26,6 +26,8 @@ using Application.Features.SchoolClasses.Constants;
 using Application.Features.SchoolClassLessons.Constants;
 using Application.Features.Terms.Constants;
 using Application.Features.SchoolTypeClasses.Constants;
+using Application.Features.Branches.Constants;
+using Application.Features.SchoolClassBranches.Constants;
 
 namespace Persistence.EntityConfigurations;
 
@@ -461,6 +463,34 @@ public class OperationClaimConfiguration : IEntityTypeConfiguration<OperationCla
                 new() { Id = ++lastId, Name = SchoolTypeClassesOperationClaims.Create },
                 new() { Id = ++lastId, Name = SchoolTypeClassesOperationClaims.Update },
                 new() { Id = ++lastId, Name = SchoolTypeClassesOperationClaims.Delete },
+            ]
+        );
+        #endregion
+        
+        
+        #region Branches CRUD
+        featureOperationClaims.AddRange(
+            [
+                new() { Id = ++lastId, Name = BranchesOperationClaims.Admin },
+                new() { Id = ++lastId, Name = BranchesOperationClaims.Read },
+                new() { Id = ++lastId, Name = BranchesOperationClaims.Write },
+                new() { Id = ++lastId, Name = BranchesOperationClaims.Create },
+                new() { Id = ++lastId, Name = BranchesOperationClaims.Update },
+                new() { Id = ++lastId, Name = BranchesOperationClaims.Delete },
+            ]
+        );
+        #endregion
+        
+        
+        #region SchoolClassBranches CRUD
+        featureOperationClaims.AddRange(
+            [
+                new() { Id = ++lastId, Name = SchoolClassBranchesOperationClaims.Admin },
+                new() { Id = ++lastId, Name = SchoolClassBranchesOperationClaims.Read },
+                new() { Id = ++lastId, Name = SchoolClassBranchesOperationClaims.Write },
+                new() { Id = ++lastId, Name = SchoolClassBranchesOperationClaims.Create },
+                new() { Id = ++lastId, Name = SchoolClassBranchesOperationClaims.Update },
+                new() { Id = ++lastId, Name = SchoolClassBranchesOperationClaims.Delete },
             ]
         );
         #endregion

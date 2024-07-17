@@ -1,4 +1,5 @@
-﻿using NArchitecture.Core.Persistence.Repositories;
+﻿using Domain.Entities;
+using NArchitecture.Core.Persistence.Repositories;
 using System;
 namespace Domain.Entities
 {
@@ -12,12 +13,14 @@ namespace Domain.Entities
         public virtual Classroom Classroom { get; set; }
 
         public virtual ICollection<SchoolClassLesson> SchoolClassLessons { get; set; }
+        public virtual ICollection<SchoolClassBranch> SchoolClassBranches { get; set; }
 
         public SchoolClass()
         {
         }
     }
 }
+
 
 
 

@@ -46,6 +46,8 @@ public static class PersistenceServiceRegistration
         services.AddScoped<ISchoolClassLessonRepository, SchoolClassLessonRepository>();
         services.AddScoped<ITermRepository, TermRepository>();
         services.AddScoped<ISchoolTypeClassRepository, SchoolTypeClassRepository>();
+        services.AddScoped<IBranchRepository, BranchRepository>();
+        services.AddScoped<ISchoolClassBranchRepository, SchoolClassBranchRepository>();
         return services;
     }
 }

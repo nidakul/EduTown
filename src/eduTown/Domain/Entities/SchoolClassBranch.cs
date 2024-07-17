@@ -12,7 +12,7 @@ namespace Domain.Entities
         public virtual Branch Branch { get; set; }
 
         public SchoolClassBranch()
-        {
+        { 
         }
     }
 }

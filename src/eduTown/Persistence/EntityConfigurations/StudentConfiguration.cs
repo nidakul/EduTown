@@ -12,14 +12,14 @@ public class StudentConfiguration : IEntityTypeConfiguration<Student>
 
         builder.Property(s => s.Id).HasColumnName("Id").IsRequired();
         builder.Property(s => s.UserId).HasColumnName("UserId").IsRequired();
+        builder.Property(s => s.BranchId).HasColumnName("BranchId").IsRequired();
         builder.Property(s => s.StudentNo).HasColumnName("StudentNo").IsRequired();
         builder.Property(s => s.Birthdate).HasColumnName("Birthdate").IsRequired();
         builder.Property(s => s.Birthplace).HasColumnName("Birthplace").IsRequired();
-        builder.Property(s => s.Branch).HasColumnName("Branch").IsRequired();
         builder.Property(s => s.CreatedDate).HasColumnName("CreatedDate").IsRequired();
         builder.Property(s => s.UpdatedDate).HasColumnName("UpdatedDate");
         builder.Property(s => s.DeletedDate).HasColumnName("DeletedDate");
 
         builder.HasQueryFilter(s => !s.DeletedDate.HasValue);
     }
-}
+}  
