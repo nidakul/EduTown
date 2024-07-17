@@ -32,7 +32,7 @@ public class MappingProfiles : Profile
         CreateMap<IPaginate<Student>, GetListResponse<GetListStudentDetailResponse>>();
         CreateMap<Student, GetListStudentDetailResponse>()
             .ForMember(s => s.SchoolId, opt => opt.MapFrom(s => s.User.School.Id))
-            .ForMember(s => s.ClassroomId, opt => opt.MapFrom(s => s.Classroom.Name))
+            .ForMember(s => s.ClassroomId, opt => opt.MapFrom(s => s.Classroom.Id))
             .ForMember(s => s.SchoolName, opt => opt.MapFrom(s => s.User.School.Name))
             .ForMember(s => s.NationalIdentity, opt => opt.MapFrom(s => s.User.NationalIdentity))
             .ForMember(s => s.FirstName, opt => opt.MapFrom(s => s.User.FirstName))

@@ -11,8 +11,6 @@ namespace Domain.Entities
         public string Birthplace { get; set; }
         public string Branch { get; set; } //şube
 
-        //public int CurrentYearLevel { get; set; } 
-
         public virtual User User { get; set; }
         public virtual Classroom Classroom { get; set; }
         public virtual ICollection<StudentExamDate> StudentExamDates { get; set; }
