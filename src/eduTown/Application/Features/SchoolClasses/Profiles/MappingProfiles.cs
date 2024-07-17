@@ -8,6 +8,7 @@ using NArchitecture.Core.Application.Responses;
 using Domain.Entities;
 using NArchitecture.Core.Persistence.Paging;
 using Application.Features.SchoolClasses.Queries.GetLessonsBySchoolIdAndClassId;
+using Application.Features.SchoolClasses.GetBranchesBySchoolIdAndClassId;
 
 namespace Application.Features.SchoolClasses.Profiles;
 
@@ -38,6 +39,18 @@ public class MappingProfiles : Profile
                 LessonName = scl.Lesson.Name
             }).ToList()))
             .ReverseMap();
+
+        CreateMap<SchoolClass, GetBranchesBySchoolIdAndClassIdResponse>()
+           .ForMember(sc => sc.ClassroomName, opt => opt.MapFrom(sc => sc.Classroom.Name))
+           .ForMember(sc => sc.SchoolName, opt => opt.MapFrom(sc => sc.School.Name))
+           .ForMember(sc => sc.Branches, opt => opt.MapFrom(sc => sc.SchoolClassBranches
+           .Select(scl => new BranchDto
+           { 
+               BranchId = scl.Branch.Id,
+               BranchName = scl.Branch.Name
+           }).ToList()))
+           .ReverseMap();
+
         CreateMap<IPaginate<SchoolClass>, GetListResponse<GetListSchoolClassListItemDto>>();
     }
 }
