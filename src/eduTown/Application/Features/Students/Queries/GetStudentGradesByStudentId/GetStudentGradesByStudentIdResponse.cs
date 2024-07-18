@@ -1,22 +1,19 @@
 ﻿using NArchitecture.Core.Application.Responses;
 using System;
-using System.Collections.Generic;
-namespace Application.Features.Users.Queries.GetStudentGradesByUserId
+namespace Application.Features.Students.Queries.GetStudentGradesByStudentId
 {
-    public class GetStudentGradesByUserIdResponse : IResponse
+    public class GetStudentGradesByStudentIdResponse : IResponse
     {
         public Guid Id { get; set; }
         public List<StudentGradesByClassroomDto> StudentGrades { get; set; }
 
-
-        public GetStudentGradesByUserIdResponse()
+        public GetStudentGradesByStudentIdResponse()
         {
         }
     }
-
     public class StudentGradesByClassroomDto
     {
-        public int ClassroomId { get; set; } 
+        public int ClassroomId { get; set; }
         public string ClassroomName { get; set; }
         public List<StudentGradesByTermDto> TermNames { get; set; }
     }
@@ -37,7 +34,6 @@ namespace Application.Features.Users.Queries.GetStudentGradesByUserId
     public class StudentGradeDetailsDto
     {
         public string GradeTypeName { get; set; }
-        //public int GradeCount { get; set; }
         public List<GradeDto> GradesDto { get; set; }
 
     }
@@ -47,8 +43,5 @@ namespace Application.Features.Users.Queries.GetStudentGradesByUserId
         public int ExamCount { get; set; }
         public double Grade { get; set; }
     }
+
 }
-
-
-
-

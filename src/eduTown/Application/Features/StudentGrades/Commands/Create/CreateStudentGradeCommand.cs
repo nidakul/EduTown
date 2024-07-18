@@ -8,7 +8,7 @@ namespace Application.Features.StudentGrades.Commands.Create;
 
 public class CreateStudentGradeCommand : IRequest<CreatedStudentGradeResponse>
 {
-    public required Guid UserId { get; set; }
+    public required Guid StudentId { get; set; }
     public required int GradeTypeId { get; set; }
     public required int LessonId { get; set; }
     public required int ClassroomId { get; set; }

@@ -11,9 +11,8 @@ public class StudentGradeConfiguration : IEntityTypeConfiguration<StudentGrade>
         builder.ToTable("StudentGrades").HasKey(sg => sg.Id);
 
         builder.Property(sg => sg.Id).HasColumnName("Id").IsRequired();
-        builder.Property(sg => sg.UserId).HasColumnName("UserId").IsRequired();
+        builder.Property(sg => sg.StudentId).HasColumnName("StudentId").IsRequired();
         builder.Property(sg => sg.GradeTypeId).HasColumnName("GradeTypeId").IsRequired();
-        //builder.Property(sg => sg.ClassroomId).HasColumnName("ClassroomId").IsRequired();
         builder.Property(sg => sg.TermId).HasColumnName("TermId").IsRequired();
         builder.Property(sg => sg.LessonId).HasColumnName("LessonId").IsRequired();
         builder.Property(sg => sg.ExamCount).HasColumnName("ExamCount").IsRequired();

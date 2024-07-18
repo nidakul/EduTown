@@ -8,6 +8,7 @@ using NArchitecture.Core.Application.Responses;
 using Microsoft.AspNetCore.Mvc;
 using Application.Features.Users.Queries.GetStudentByUserId;
 using Application.Features.Students.Queries.GetStudentDetail;
+using Application.Features.Students.Queries.GetStudentGradesByStudentId;
 
 namespace WebAPI.Controllers;
 
@@ -71,5 +72,12 @@ public class StudentsController : BaseController
         return Ok(response);
     }
 
+    [HttpGet("getStudentGrades/{id}")]
+    public async Task<IActionResult> GetStudentGradesByStudentId([FromRoute] Guid id)
+    {
+        GetStudentGradesByStudentIdResponse response = await Mediator.Send(new GetStudentGradesByStudentIdQuery { Id = id });
+        return Ok(response);
+    }
 
 }
+

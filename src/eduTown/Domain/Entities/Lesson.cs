@@ -12,7 +12,6 @@ namespace Domain.Entities
         public virtual ICollection<LessonExamDate> LessonExamDate { get; set; }
         public virtual ICollection<SchoolClassLesson> SchoolClassLessons { get; set; }
 
-
         
         public Lesson()
         {

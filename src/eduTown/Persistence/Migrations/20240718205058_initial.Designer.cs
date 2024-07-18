@@ -12,7 +12,7 @@ using Persistence.Contexts;
 namespace Persistence.Migrations
 {
     [DbContext(typeof(BaseDbContext))]
-    [Migration("20240717210134_initial")]
+    [Migration("20240718205058_initial")]
     partial class initial
     {
         /// <inheritdoc />
@@ -693,7 +693,7 @@ namespace Persistence.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("ClassroomId")
+                    b.Property<int?>("ClassroomId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedDate")
@@ -714,14 +714,14 @@ namespace Persistence.Migrations
                     b.Property<int>("LessonId")
                         .HasColumnType("int");
 
+                    b.Property<Guid>("StudentId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<int>("TermId")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("UpdatedDate")
                         .HasColumnType("datetime2");
-
-                    b.Property<Guid>("UserId")
-                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
 
@@ -731,9 +731,9 @@ namespace Persistence.Migrations
 
                     b.HasIndex("LessonId");
 
-                    b.HasIndex("TermId");
+                    b.HasIndex("StudentId");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("TermId");
 
                     b.ToTable("StudentGrades");
                 });
@@ -1106,11 +1106,9 @@ namespace Persistence.Migrations
 
             modelBuilder.Entity("Domain.Entities.StudentGrade", b =>
                 {
-                    b.HasOne("Domain.Entities.Classroom", "Classroom")
+                    b.HasOne("Domain.Entities.Classroom", null)
                         .WithMany("StudentGrades")
-                        .HasForeignKey("ClassroomId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ClassroomId");
 
                     b.HasOne("Domain.Entities.GradeType", "GradeType")
                         .WithMany("StudentGrades")
@@ -1124,27 +1122,25 @@ namespace Persistence.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("Domain.Entities.Student", "Student")
+                        .WithMany("StudentGrades")
+                        .HasForeignKey("StudentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("Domain.Entities.Term", "Term")
                         .WithMany("StudentGrades")
                         .HasForeignKey("TermId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Domain.Entities.User", "User")
-                        .WithMany("StudentGrades")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Classroom");
-
                     b.Navigation("GradeType");
 
                     b.Navigation("Lesson");
 
-                    b.Navigation("Term");
+                    b.Navigation("Student");
 
-                    b.Navigation("User");
+                    b.Navigation("Term");
                 });
 
             modelBuilder.Entity("Domain.Entities.User", b =>
@@ -1275,6 +1271,8 @@ namespace Persistence.Migrations
             modelBuilder.Entity("Domain.Entities.Student", b =>
                 {
                     b.Navigation("StudentExamDates");
+
+                    b.Navigation("StudentGrades");
                 });
 
             modelBuilder.Entity("Domain.Entities.Term", b =>
@@ -1295,8 +1293,6 @@ namespace Persistence.Migrations
 
                     b.Navigation("Student")
                         .IsRequired();
-
-                    b.Navigation("StudentGrades");
 
                     b.Navigation("UserCertificates");
 

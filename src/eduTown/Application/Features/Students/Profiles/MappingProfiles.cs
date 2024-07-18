@@ -8,6 +8,7 @@ using NArchitecture.Core.Application.Responses;
 using Domain.Entities;
 using NArchitecture.Core.Persistence.Paging;
 using Application.Features.Students.Queries.GetStudentDetail;
+using Application.Features.Students.Queries.GetStudentGradesByStudentId;
 
 namespace Application.Features.Students.Profiles;
 
@@ -43,7 +44,41 @@ public class MappingProfiles : Profile
             .ForMember(s => s.ImageUrl, opt => opt.MapFrom(s => s.User.ImageUrl))
             .ForMember(s => s.Gender, opt => opt.MapFrom(s => s.User.Gender))
             .ForMember(s => s.ClassroomName, opt => opt.MapFrom(s => s.Classroom.Name))
+            .ReverseMap();
 
-            .ReverseMap(); 
+        CreateMap<Student, GetStudentGradesByStudentIdResponse>()
+     .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id))
+     .ForMember(dest => dest.StudentGrades, opt => opt.MapFrom(src => src.StudentGrades
+         .GroupBy(sg => new { sg.Student.Classroom.Id, sg.Student.Classroom.Name })
+         .Select(g => new StudentGradesByClassroomDto
+         {
+             ClassroomId = g.Key.Id,
+             ClassroomName = g.Key.Name,
+             TermNames = g.GroupBy(cl => new { cl.Term.Id, cl.Term.Name })
+                 .Select(gl => new StudentGradesByTermDto
+                 {
+                     TermId = gl.Key.Id,
+                     TermName = gl.Key.Name,
+                     Lessons = gl.GroupBy(lesson => lesson.Lesson.Name)
+                         .Select(lessonGroup => new StudentGradesByLessonDto
+                         {
+                             LessonName = lessonGroup.Key,
+                             Grades = lessonGroup.GroupBy(grade => grade.GradeType.Name)
+                                 .Select(gradeGroup => new StudentGradeDetailsDto
+                                 {
+                                     GradeTypeName = gradeGroup.Key,
+                                     GradesDto = gradeGroup.Select(gr => new GradeDto
+                                     {
+                                         ExamCount = gr.ExamCount,
+                                         Grade = gr.Grade
+                                     }).ToList()
+                                 }).ToList()
+                         }).ToList()
+                 }).ToList()
+         }).ToList()
+     ))
+     .ReverseMap();
+
+
     }
 }

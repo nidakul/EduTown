@@ -14,6 +14,8 @@ namespace Domain.Entities
         public virtual User User { get; set; }
         public virtual Branch Branch { get; set; }
         public virtual Classroom Classroom { get; set; }
+
+        public virtual ICollection<StudentGrade>? StudentGrades { get; set; }
         public virtual ICollection<StudentExamDate> StudentExamDates { get; set; }
 
         public Student()

@@ -8,7 +8,6 @@ using Application.Features.Users.Queries.GetInstructorByUserId;
 using Application.Features.Users.Queries.GetList;
 using Application.Features.Users.Queries.GetStudentByUserId;
 using Application.Features.Users.Queries.GetStudentExamDateByUserId;
-using Application.Features.Users.Queries.GetStudentGradesByUserId;
 using Microsoft.AspNetCore.Mvc;
 using NArchitecture.Core.Application.Requests;
 using NArchitecture.Core.Application.Responses;
@@ -93,13 +92,7 @@ public class UsersController : BaseController
         return Ok(response);
     }
 
-    [HttpGet("getStudentGrades/{id}")]
-    public async Task<IActionResult> GetStudentGradesByUserId([FromRoute] Guid id)
-    {
-        GetStudentGradesByUserIdResponse response = await Mediator.Send(new GetStudentGradesByUserIdQuery { Id = id });
-        return Ok(response);
-    }
-
+    
     [HttpGet("getStudentExamDate/{id}")]
     public async Task<IActionResult> GetStudentExamDateByUserId([FromRoute] Guid id)
     {
