@@ -27,12 +27,14 @@ namespace Application.Features.Students.Queries.GetStudentGradesByStudentId
 
     public class StudentGradesByLessonDto
     {
+        public int LessonId { get; set; }
         public string LessonName { get; set; }
         public List<StudentGradeDetailsDto> Grades { get; set; }
     }
 
     public class StudentGradeDetailsDto
     {
+        public int GradeTypeId { get; set; }
         public string GradeTypeName { get; set; }
         public List<GradeDto> GradesDto { get; set; }
 

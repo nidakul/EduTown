@@ -59,19 +59,23 @@ public class MappingProfiles : Profile
                  {
                      TermId = gl.Key.Id,
                      TermName = gl.Key.Name,
-                     Lessons = gl.GroupBy(lesson => lesson.Lesson.Name)
+                     Lessons = gl.GroupBy(lesson => new { lesson.Lesson.Id, lesson.Lesson.Name })
                          .Select(lessonGroup => new StudentGradesByLessonDto
                          {
-                             LessonName = lessonGroup.Key,
-                             Grades = lessonGroup.GroupBy(grade => grade.GradeType.Name)
+                             LessonId = lessonGroup.Key.Id,
+                             LessonName = lessonGroup.Key.Name,
+                             Grades = lessonGroup.GroupBy(grade => new { grade.GradeType.Id, grade.GradeType.Name })
                                  .Select(gradeGroup => new StudentGradeDetailsDto
                                  {
-                                     GradeTypeName = gradeGroup.Key,
+                                     GradeTypeId = gradeGroup.Key.Id,
+                                     GradeTypeName = gradeGroup.Key.Name,
                                      GradesDto = gradeGroup.Select(gr => new GradeDto
                                      {
                                          ExamCount = gr.ExamCount,
                                          Grade = gr.Grade
-                                     }).ToList()
+                                     })
+                                     .OrderBy(gd => gd.ExamCount)
+                                     .ToList()
                                  }).ToList()
                          }).ToList()
                  }).ToList()
