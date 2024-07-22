@@ -10,7 +10,7 @@ namespace Application.Features.Students.Queries.GetStudentGradesByStudentId
         public GetStudentGradesByStudentIdResponse()
         {
         }
-    }
+    } 
     public class StudentGradesByClassroomDto
     {
         public int ClassroomId { get; set; }
@@ -18,7 +18,7 @@ namespace Application.Features.Students.Queries.GetStudentGradesByStudentId
         public List<StudentGradesByTermDto> TermNames { get; set; }
     }
 
-    public class StudentGradesByTermDto
+    public class StudentGradesByTermDto 
     {
         public int TermId { get; set; }
         public string TermName { get; set; }

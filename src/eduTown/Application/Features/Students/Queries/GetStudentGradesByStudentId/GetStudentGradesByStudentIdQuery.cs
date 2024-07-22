@@ -32,8 +32,8 @@ namespace Application.Features.Students.Queries.GetStudentGradesByStudentId
                 Student? student = await _studentRepository.GetAsync(predicate: u => u.Id.Equals(request.Id),
                    include: u => u.Include(u => u.StudentGrades).ThenInclude(u => u.Lesson)
                    .Include(u => u.StudentGrades).ThenInclude(u => u.GradeType)
-                   .Include(u => u.Classroom)
-                   .Include(u => u.StudentGrades).ThenInclude(u => u.Term),
+                   .Include(u => u.StudentGrades).ThenInclude(u => u.Term)
+                   .Include(u => u.StudentGrades).ThenInclude(u => u.Classroom),
                    enableTracking: false,
                    cancellationToken: cancellationToken);
                 await _studentBusinessRules.StudentShouldExistWhenSelected(student);

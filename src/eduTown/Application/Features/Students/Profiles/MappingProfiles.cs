@@ -49,14 +49,14 @@ public class MappingProfiles : Profile
         CreateMap<Student, GetStudentGradesByStudentIdResponse>()
      .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id))
      .ForMember(dest => dest.StudentGrades, opt => opt.MapFrom(src => src.StudentGrades
-         .GroupBy(sg => new { sg.Student.Classroom.Id, sg.Student.Classroom.Name })
+         .GroupBy(sg => new { sg.Classroom.Id, sg.Classroom.Name })
          .Select(g => new StudentGradesByClassroomDto
          {
-             ClassroomId = g.Key.Id,
+             ClassroomId = g.Key.Id,  
              ClassroomName = g.Key.Name,
-             TermNames = g.GroupBy(cl => new { cl.Term.Id, cl.Term.Name })
-                 .Select(gl => new StudentGradesByTermDto
-                 {
+             TermNames = g.GroupBy(cl => new { cl.Term.Id , cl.Term.Name })
+                 .Select(gl => new StudentGradesByTermDto 
+                 { 
                      TermId = gl.Key.Id,
                      TermName = gl.Key.Name,
                      Lessons = gl.GroupBy(lesson => new { lesson.Lesson.Id, lesson.Lesson.Name })
