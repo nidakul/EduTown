@@ -33,12 +33,17 @@ public class MappingProfiles : Profile
         CreateMap<User, GetByIdUserResponse>().ReverseMap();
         CreateMap<User, GetListUserListItemDto>().ReverseMap();
         CreateMap<User, GetStudentByUserIdResponse>()
-            .ForMember(u => u.StudentNo, opt => opt.MapFrom(u => u.Student.StudentNo))
             .ForMember(u => u.Id, opt => opt.MapFrom(u => u.Id))
+            .ForMember(u => u.StudentId, opt => opt.MapFrom(u => u.Student.Id))
+            .ForMember(u => u.StudentNo, opt => opt.MapFrom(u => u.Student.StudentNo))
             .ForMember(u => u.SchoolName, opt => opt.MapFrom(u => u.School.Name))
             .ForMember(u => u.SchoolId, opt => opt.MapFrom(u => u.School.Id))
             .ForMember(u => u.ClassroomId, opt => opt.MapFrom(u => u.Student.Classroom.Id))
             .ForMember(u => u.ClassroomName, opt => opt.MapFrom(u => u.Student.Classroom.Name))
+            .ForMember(u => u.BranchId, opt => opt.MapFrom(u => u.Student.Branch.Id))
+            .ForMember(u => u.BranchName, opt => opt.MapFrom(u => u.Student.Branch.Name))
+            .ForMember(u => u.Birthdate, opt => opt.MapFrom(u => u.Student.Birthdate))
+            .ForMember(u => u.Birthplace, opt => opt.MapFrom(u => u.Student.Birthplace))
             .ReverseMap();
 
         CreateMap<User, GetInstructorByUserIdResponse>()

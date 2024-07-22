@@ -28,6 +28,7 @@ namespace Application.Features.Users.Queries.GetStudentByUserId
                 User? user = await _userRepository.GetAsync(predicate: b => b.Id.Equals(request.Id),
                     include: b => b.Include(b => b.Student)
                     .Include(b=>b.School)
+                    .Include(b=>b.Student).ThenInclude(b=>b.Branch)
                     .Include(b=>b.UserCertificates).ThenInclude(b=>b.Certificate)
                     .Include(b=>b.Student).ThenInclude(b=>b.Classroom),
                     enableTracking: false,
