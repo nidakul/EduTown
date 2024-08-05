@@ -40,6 +40,8 @@ using Application.Services.Terms;
 using Application.Services.SchoolTypeClasses;
 using Application.Services.Branches;
 using Application.Services.SchoolClassBranches;
+using Application.Services.Posts;
+using Application.Services.PostInteractions;
 
 namespace Application;
 
@@ -105,6 +107,8 @@ public static class ApplicationServiceRegistration
         services.AddScoped<ISchoolTypeClassService, SchoolTypeClassManager>();
         services.AddScoped<IBranchService, BranchManager>();
         services.AddScoped<ISchoolClassBranchService, SchoolClassBranchManager>();
+        services.AddScoped<IPostService, PostManager>();
+        services.AddScoped<IPostInteractionService, PostInteractionManager>();
         return services;
     }
 

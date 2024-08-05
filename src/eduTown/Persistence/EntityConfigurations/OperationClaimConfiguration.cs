@@ -26,6 +26,8 @@ using Application.Features.Terms.Constants;
 using Application.Features.SchoolTypeClasses.Constants;
 using Application.Features.Branches.Constants;
 using Application.Features.SchoolClassBranches.Constants;
+using Application.Features.Posts.Constants;
+using Application.Features.PostInteractions.Constants;
 
 namespace Persistence.EntityConfigurations;
 
@@ -462,6 +464,35 @@ public class OperationClaimConfiguration : IEntityTypeConfiguration<OperationCla
                 new() { Id = ++lastId, Name = SchoolClassBranchesOperationClaims.Create },
                 new() { Id = ++lastId, Name = SchoolClassBranchesOperationClaims.Update },
                 new() { Id = ++lastId, Name = SchoolClassBranchesOperationClaims.Delete },
+            ]
+        );
+        #endregion
+        
+        
+        #region Posts CRUD
+        featureOperationClaims.AddRange(
+            [
+                new() { Id = ++lastId, Name = PostsOperationClaims.Admin },
+                new() { Id = ++lastId, Name = PostsOperationClaims.Read },
+                new() { Id = ++lastId, Name = PostsOperationClaims.Write },
+                new() { Id = ++lastId, Name = PostsOperationClaims.Create },
+                new() { Id = ++lastId, Name = PostsOperationClaims.Update },
+                new() { Id = ++lastId, Name = PostsOperationClaims.Delete },
+            ]
+        );
+        #endregion
+        
+               
+        
+        #region PostInteractions CRUD
+        featureOperationClaims.AddRange(
+            [
+                new() { Id = ++lastId, Name = PostInteractionsOperationClaims.Admin },
+                new() { Id = ++lastId, Name = PostInteractionsOperationClaims.Read },
+                new() { Id = ++lastId, Name = PostInteractionsOperationClaims.Write },
+                new() { Id = ++lastId, Name = PostInteractionsOperationClaims.Create },
+                new() { Id = ++lastId, Name = PostInteractionsOperationClaims.Update },
+                new() { Id = ++lastId, Name = PostInteractionsOperationClaims.Delete },
             ]
         );
         #endregion

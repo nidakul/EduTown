@@ -34,6 +34,8 @@ public class BaseDbContext : DbContext
     public DbSet<SchoolTypeClass> SchoolTypeClasses { get; set; }
     public DbSet<Branch> Branches { get; set; }
     public DbSet<SchoolClassBranch> SchoolClassBranches { get; set; }
+    public DbSet<Post> Posts { get; set; }
+    public DbSet<PostInteraction> PostInteractions { get; set; }
 
     public BaseDbContext() 
     { 
@@ -54,6 +56,7 @@ public class BaseDbContext : DbContext
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
         optionsBuilder.UseSqlServer("Server = localhost; Database = EduTown; User Id = SA; Password = rentacardb; TrustServerCertificate=true");                       
+        
         
         
 
