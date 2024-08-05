@@ -36,6 +36,7 @@ public class BaseDbContext : DbContext
     public DbSet<SchoolClassBranch> SchoolClassBranches { get; set; }
     public DbSet<Post> Posts { get; set; }
     public DbSet<PostInteraction> PostInteractions { get; set; }
+    public DbSet<PostFile> PostFiles { get; set; }
 
     public BaseDbContext() 
     { 

@@ -28,6 +28,7 @@ using Application.Features.Branches.Constants;
 using Application.Features.SchoolClassBranches.Constants;
 using Application.Features.Posts.Constants;
 using Application.Features.PostInteractions.Constants;
+using Application.Features.PostFiles.Constants;
 
 namespace Persistence.EntityConfigurations;
 
@@ -493,6 +494,20 @@ public class OperationClaimConfiguration : IEntityTypeConfiguration<OperationCla
                 new() { Id = ++lastId, Name = PostInteractionsOperationClaims.Create },
                 new() { Id = ++lastId, Name = PostInteractionsOperationClaims.Update },
                 new() { Id = ++lastId, Name = PostInteractionsOperationClaims.Delete },
+            ]
+        );
+        #endregion
+        
+        
+        #region PostFiles CRUD
+        featureOperationClaims.AddRange(
+            [
+                new() { Id = ++lastId, Name = PostFilesOperationClaims.Admin },
+                new() { Id = ++lastId, Name = PostFilesOperationClaims.Read },
+                new() { Id = ++lastId, Name = PostFilesOperationClaims.Write },
+                new() { Id = ++lastId, Name = PostFilesOperationClaims.Create },
+                new() { Id = ++lastId, Name = PostFilesOperationClaims.Update },
+                new() { Id = ++lastId, Name = PostFilesOperationClaims.Delete },
             ]
         );
         #endregion

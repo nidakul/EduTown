@@ -10,7 +10,6 @@ namespace Domain.Entities
         public int BranchId { get; set; }
         public int LikeCount { get; set; } 
         public string Message { get; set; }
-        public List<string> FilePath { get; set; }
         public bool IsCommentable { get; set; }
 
         public virtual User User { get; set; }
