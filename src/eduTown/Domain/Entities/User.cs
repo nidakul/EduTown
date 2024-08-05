@@ -16,6 +16,8 @@ public class User : NArchitecture.Core.Security.Entities.User<Guid>
     public virtual School School { get; set; }
 
     public virtual ICollection<UserCertificate>? UserCertificates { get; set; }
+    public virtual ICollection<Post> Posts { get; set; }
+    public virtual ICollection<PostInteraction> PostInteractions { get; set; }
     public virtual ICollection<UserOperationClaim> UserOperationClaims { get; set; } = default!;
     public virtual ICollection<RefreshToken> RefreshTokens { get; set; } = default!;
     public virtual ICollection<OtpAuthenticator> OtpAuthenticators { get; set; } = default!;
