@@ -2,7 +2,7 @@
 using System;
 namespace Domain.Entities
 {
-    public class Post: Entity<int>
+    public class Post: Entity<int> 
     {
         public Guid UserId { get; set; }
         public int SchoolId { get; set; }
@@ -16,12 +16,18 @@ namespace Domain.Entities
 
         public virtual ICollection<PostInteraction> PostInteractions { get; set; }
         public virtual ICollection<PostFile> PostFiles { get; set; }
+        public virtual ICollection<PostComment> PostComments { get; set; }
 
         public Post()
         {
         }
     }
 }
+
+
+
+
+
 
 
 

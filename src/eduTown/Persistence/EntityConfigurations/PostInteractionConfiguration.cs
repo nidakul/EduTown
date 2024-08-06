@@ -13,7 +13,6 @@ public class PostInteractionConfiguration : IEntityTypeConfiguration<PostInterac
         builder.Property(pi => pi.Id).HasColumnName("Id").IsRequired();
         builder.Property(pi => pi.PostId).HasColumnName("PostId").IsRequired();
         builder.Property(pi => pi.UserId).HasColumnName("UserId").IsRequired();
-        builder.Property(pi => pi.Comment).HasColumnName("Comment").IsRequired();
         builder.Property(pi => pi.IsFavorite).HasColumnName("IsFavorite").IsRequired();
         builder.Property(pi => pi.IsLiked).HasColumnName("IsLiked").IsRequired();
         builder.Property(pi => pi.CreatedDate).HasColumnName("CreatedDate").IsRequired();

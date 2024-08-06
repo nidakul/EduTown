@@ -27,8 +27,9 @@ using Application.Features.SchoolTypeClasses.Constants;
 using Application.Features.Branches.Constants;
 using Application.Features.SchoolClassBranches.Constants;
 using Application.Features.Posts.Constants;
-using Application.Features.PostInteractions.Constants;
 using Application.Features.PostFiles.Constants;
+using Application.Features.PostInteractions.Constants;
+using Application.Features.PostComments.Constants;
 
 namespace Persistence.EntityConfigurations;
 
@@ -484,6 +485,21 @@ public class OperationClaimConfiguration : IEntityTypeConfiguration<OperationCla
         #endregion
         
                
+                
+        
+        #region PostFiles CRUD
+        featureOperationClaims.AddRange(
+            [
+                new() { Id = ++lastId, Name = PostFilesOperationClaims.Admin },
+                new() { Id = ++lastId, Name = PostFilesOperationClaims.Read },
+                new() { Id = ++lastId, Name = PostFilesOperationClaims.Write },
+                new() { Id = ++lastId, Name = PostFilesOperationClaims.Create },
+                new() { Id = ++lastId, Name = PostFilesOperationClaims.Update },
+                new() { Id = ++lastId, Name = PostFilesOperationClaims.Delete },
+            ]
+        );
+        #endregion
+        
         
         #region PostInteractions CRUD
         featureOperationClaims.AddRange(
@@ -499,15 +515,15 @@ public class OperationClaimConfiguration : IEntityTypeConfiguration<OperationCla
         #endregion
         
         
-        #region PostFiles CRUD
+        #region PostComments CRUD
         featureOperationClaims.AddRange(
             [
-                new() { Id = ++lastId, Name = PostFilesOperationClaims.Admin },
-                new() { Id = ++lastId, Name = PostFilesOperationClaims.Read },
-                new() { Id = ++lastId, Name = PostFilesOperationClaims.Write },
-                new() { Id = ++lastId, Name = PostFilesOperationClaims.Create },
-                new() { Id = ++lastId, Name = PostFilesOperationClaims.Update },
-                new() { Id = ++lastId, Name = PostFilesOperationClaims.Delete },
+                new() { Id = ++lastId, Name = PostCommentsOperationClaims.Admin },
+                new() { Id = ++lastId, Name = PostCommentsOperationClaims.Read },
+                new() { Id = ++lastId, Name = PostCommentsOperationClaims.Write },
+                new() { Id = ++lastId, Name = PostCommentsOperationClaims.Create },
+                new() { Id = ++lastId, Name = PostCommentsOperationClaims.Update },
+                new() { Id = ++lastId, Name = PostCommentsOperationClaims.Delete },
             ]
         );
         #endregion
