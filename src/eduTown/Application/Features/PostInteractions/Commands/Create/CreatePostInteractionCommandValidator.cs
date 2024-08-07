@@ -8,7 +8,6 @@ public class CreatePostInteractionCommandValidator : AbstractValidator<CreatePos
     {
         RuleFor(c => c.PostId).NotEmpty();
         RuleFor(c => c.UserId).NotEmpty();
-        RuleFor(c => c.Comment).NotEmpty();
         RuleFor(c => c.IsFavorite).NotEmpty();
         RuleFor(c => c.IsLiked).NotEmpty();
     }

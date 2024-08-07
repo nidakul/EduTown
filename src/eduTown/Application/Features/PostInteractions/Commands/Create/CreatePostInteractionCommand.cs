@@ -10,7 +10,6 @@ public class CreatePostInteractionCommand : IRequest<CreatedPostInteractionRespo
 {
     public required int PostId { get; set; }
     public required Guid UserId { get; set; }
-    public required string Comment { get; set; }
     public required bool IsFavorite { get; set; }
     public required bool IsLiked { get; set; }
 

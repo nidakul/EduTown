@@ -6,6 +6,8 @@ using Application.Features.Posts.Queries.GetList;
 using NArchitecture.Core.Application.Requests;
 using NArchitecture.Core.Application.Responses;
 using Microsoft.AspNetCore.Mvc;
+using Application.Features.Posts.Queries.GetCommentByPostId;
+using Application.Features.Posts.Queries.GetDetail;
 
 namespace WebAPI.Controllers;
 
@@ -56,6 +58,20 @@ public class PostsController : BaseController
 
         GetListResponse<GetListPostListItemDto> response = await Mediator.Send(query);
 
+        return Ok(response);
+    }
+
+    [HttpGet("getPostComment/{id}")]
+    public async Task<IActionResult> GetCommentByPostId([FromRoute] int id)
+    {
+        GetCommentByPostIdResponse response = await Mediator.Send(new GetCommentByPostIdQuery { Id = id });
+        return Ok(response);
+    }
+
+    [HttpGet("getPostDetail/{id}")]
+    public async Task<IActionResult> GetDetailByPostId([FromRoute] int id)
+    {
+        GetDetailByPostIdResponse response = await Mediator.Send(new GetDetailByPostIdQuery { Id = id });
         return Ok(response);
     }
 }

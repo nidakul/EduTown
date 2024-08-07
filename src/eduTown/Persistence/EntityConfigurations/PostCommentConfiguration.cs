@@ -13,6 +13,7 @@ public class PostCommentConfiguration : IEntityTypeConfiguration<PostComment>
         builder.Property(pc => pc.Id).HasColumnName("Id").IsRequired();
         builder.Property(pc => pc.UserId).HasColumnName("UserId").IsRequired();
         builder.Property(pc => pc.PostId).HasColumnName("PostId").IsRequired();
+        builder.Property(pc => pc.TaggedUserId).HasColumnName("TaggedUserId").IsRequired();
         builder.Property(pc => pc.Comment).HasColumnName("Comment").IsRequired();
         builder.Property(pc => pc.CreatedDate).HasColumnName("CreatedDate").IsRequired();
         builder.Property(pc => pc.UpdatedDate).HasColumnName("UpdatedDate");

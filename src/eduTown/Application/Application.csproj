@@ -34,6 +34,8 @@
     <Folder Include="Features\SchoolTypes\Queries\GetClassesBySchoolTypeId\" />
     <Folder Include="Features\SchoolClasses\Queries\GetBranchesBySchoolIdAndClassId\" />
     <Folder Include="Features\Students\Queries\GetStudentGradesByStudentId\" />
+    <Folder Include="Features\Posts\Queries\GetDetail\" />
+    <Folder Include="Features\Posts\Queries\GetCommentByPostId\" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="Features\Users\Queries\GetStudentByUserId\" />
@@ -47,6 +49,8 @@
     <None Remove="Features\SchoolTypes\Queries\GetClassesBySchoolTypeId\" />
     <None Remove="Features\SchoolClasses\Queries\GetBranchesBySchoolIdAndClassId\" />
     <None Remove="Features\Students\Queries\GetStudentGradesByStudentId\" />
+    <None Remove="Features\Posts\Queries\GetDetail\" />
+    <None Remove="Features\Posts\Queries\GetCommentByPostId\" />
   </ItemGroup>
   <ItemGroup>
     <None Update="Features\**\Resources\Locales\*.*.yaml">
