@@ -47,7 +47,6 @@ public static class PersistenceServiceRegistration
         services.AddScoped<IBranchRepository, BranchRepository>();
         services.AddScoped<ISchoolClassBranchRepository, SchoolClassBranchRepository>();
         services.AddScoped<IPostRepository, PostRepository>();
-        services.AddScoped<IPostFileRepository, PostFileRepository>();
         services.AddScoped<IPostInteractionRepository, PostInteractionRepository>();
         services.AddScoped<IPostCommentRepository, PostCommentRepository>();
         return services;

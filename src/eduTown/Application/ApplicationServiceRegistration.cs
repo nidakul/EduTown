@@ -41,7 +41,6 @@ using Application.Services.SchoolTypeClasses;
 using Application.Services.Branches;
 using Application.Services.SchoolClassBranches;
 using Application.Services.Posts;
-using Application.Services.PostFiles;
 using Application.Services.PostInteractions;
 using Application.Services.PostComments;
 
@@ -110,7 +109,6 @@ public static class ApplicationServiceRegistration
         services.AddScoped<IBranchService, BranchManager>();
         services.AddScoped<ISchoolClassBranchService, SchoolClassBranchManager>();
         services.AddScoped<IPostService, PostManager>();
-        services.AddScoped<IPostFileService, PostFileManager>();
         services.AddScoped<IPostInteractionService, PostInteractionManager>();
         services.AddScoped<IPostCommentService, PostCommentManager>();
         return services;

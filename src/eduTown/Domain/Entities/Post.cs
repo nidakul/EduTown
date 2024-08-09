@@ -17,7 +17,6 @@ namespace Domain.Entities
         public virtual User User { get; set; }
 
         public virtual ICollection<PostInteraction> PostInteractions { get; set; }
-        public virtual ICollection<PostFile> PostFiles { get; set; }
         public virtual ICollection<PostComment> PostComments { get; set; }
 
         public Post()
