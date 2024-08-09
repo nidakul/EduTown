@@ -10,7 +10,7 @@ namespace Application.Features.Posts.Queries.GetCommentByPostId
         public List<Guid> TaggedUserId { get; set; }
         public List<string> TaggedFirstName { get; set; }
         public List<string> TaggedLastName { get; set; }
-        public List<string> Comment { get; set; }
+        public List<string> Comments { get; set; }
         public DateTime CommentCreatedDate { get; set; }
 
         public GetCommentByPostIdResponse()

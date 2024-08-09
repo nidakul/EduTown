@@ -5,7 +5,7 @@ namespace Domain.Entities
     public class PostComment : Entity<int>
     {
         public Guid UserId { get; set; } //yorum yapan
-        public Guid TaggedUserId { get; set; } //Etiketlenen, yorum yapılan kullanıcılar
+        public List<Guid> TaggedUserId { get; set; } //Etiketlenen, yorum yapılan kullanıcılar
         public int PostId { get; set; }
         public string Comment { get; set; }
 

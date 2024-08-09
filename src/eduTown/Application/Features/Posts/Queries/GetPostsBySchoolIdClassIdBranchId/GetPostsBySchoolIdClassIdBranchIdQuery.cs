@@ -11,13 +11,13 @@ using NArchitecture.Core.Persistence.Paging;
 using System;
 namespace Application.Features.Posts.Queries.GetPostsBySchoolIdClassIdBranchId
 {
-    public class GetPostsBySchoolIdClassIdBranchIdQuery: IRequest<GetPostsBySchoolIdClassIdBranchIdResponse>
+    public class GetPostsBySchoolIdClassIdBranchIdQuery : IRequest<GetPostsBySchoolIdClassIdBranchIdResponse>
     {
         public int SchoolId { get; set; }
         public int ClassroomId { get; set; }
         public int BranchId { get; set; }
 
-        public class GetPostsBySchoolIdClassIdBranchIdQueryHandler: IRequestHandler<GetPostsBySchoolIdClassIdBranchIdQuery, GetPostsBySchoolIdClassIdBranchIdResponse>
+        public class GetPostsBySchoolIdClassIdBranchIdQueryHandler : IRequestHandler<GetPostsBySchoolIdClassIdBranchIdQuery, GetPostsBySchoolIdClassIdBranchIdResponse>
         {
             private readonly IMapper _mapper;
             private readonly IPostRepository _postRepository;
@@ -43,7 +43,9 @@ namespace Application.Features.Posts.Queries.GetPostsBySchoolIdClassIdBranchId
                 .Include(p => p.User.Student.Classroom)
                 .Include(p => p.User.Student.Branch)
                 .Include(p => p.User),
-                enableTracking: false, cancellationToken: cancellationToken);
+                enableTracking: false, cancellationToken: cancellationToken,
+                index: 0,
+                size: int.MaxValue);
 
                 await _schoolBusinessRules.SchoolIdShouldExistWhenSelected(request.SchoolId, cancellationToken);
                 await _classroomBusinessRules.ClassroomIdShouldExistWhenSelected(request.ClassroomId, cancellationToken);

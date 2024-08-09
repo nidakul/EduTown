@@ -18,6 +18,7 @@ public class PostConfiguration : IEntityTypeConfiguration<Post>
         builder.Property(p => p.LikeCount).HasColumnName("LikeCount").IsRequired();
         builder.Property(p => p.Message).HasColumnName("Message").IsRequired();
         builder.Property(p => p.IsCommentable).HasColumnName("IsCommentable").IsRequired();
+        builder.Property(p => p.FilePath).HasColumnName("FilePath");
         builder.Property(p => p.CreatedDate).HasColumnName("CreatedDate").IsRequired();
         builder.Property(p => p.UpdatedDate).HasColumnName("UpdatedDate");
         builder.Property(p => p.DeletedDate).HasColumnName("DeletedDate");
@@ -25,3 +26,5 @@ public class PostConfiguration : IEntityTypeConfiguration<Post>
         builder.HasQueryFilter(p => !p.DeletedDate.HasValue);
     }
 }
+
+

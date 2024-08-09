@@ -12,7 +12,7 @@ using Persistence.Contexts;
 namespace Persistence.Migrations
 {
     [DbContext(typeof(BaseDbContext))]
-    [Migration("20240806132157_initial")]
+    [Migration("20240809163738_initial")]
     partial class initial
     {
         /// <inheritdoc />
@@ -388,6 +388,9 @@ namespace Persistence.Migrations
                     b.Property<DateTime?>("DeletedDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("FilePath")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<bool>("IsCommentable")
                         .HasColumnType("bit");
 
@@ -434,6 +437,10 @@ namespace Persistence.Migrations
 
                     b.Property<int>("PostId")
                         .HasColumnType("int");
+
+                    b.Property<string>("TaggedUserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("UpdatedDate")
                         .HasColumnType("datetime2");
@@ -957,9 +964,6 @@ namespace Persistence.Migrations
                         .IsRequired()
                         .HasColumnType("varbinary(max)");
 
-                    b.Property<int?>("PostCommentId")
-                        .HasColumnType("int");
-
                     b.Property<int>("SchoolId")
                         .HasColumnType("int");
 
@@ -967,8 +971,6 @@ namespace Persistence.Migrations
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("PostCommentId");
 
                     b.HasIndex("SchoolId");
 
@@ -1339,10 +1341,6 @@ namespace Persistence.Migrations
 
             modelBuilder.Entity("Domain.Entities.User", b =>
                 {
-                    b.HasOne("Domain.Entities.PostComment", null)
-                        .WithMany("TaggedUserId")
-                        .HasForeignKey("PostCommentId");
-
                     b.HasOne("Domain.Entities.School", "School")
                         .WithMany()
                         .HasForeignKey("SchoolId")
@@ -1452,11 +1450,6 @@ namespace Persistence.Migrations
                     b.Navigation("PostFiles");
 
                     b.Navigation("PostInteractions");
-                });
-
-            modelBuilder.Entity("Domain.Entities.PostComment", b =>
-                {
-                    b.Navigation("TaggedUserId");
                 });
 
             modelBuilder.Entity("Domain.Entities.School", b =>

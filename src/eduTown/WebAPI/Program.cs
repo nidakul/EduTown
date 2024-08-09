@@ -101,7 +101,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI(opt =>
     {
         opt.DocExpansion(DocExpansion.None);
-    });
+    }); 
 }
 
 if (app.Environment.IsProduction())

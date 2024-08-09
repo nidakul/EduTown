@@ -33,12 +33,14 @@ public class MappingProfiles : Profile
         CreateMap<IPaginate<Post>, GetListResponse<GetListPostListItemDto>>();
 
         CreateMap<Post, GetCommentByPostIdResponse>()
-            .ForMember(p => p.CommenterUserId, opt => opt.MapFrom(p => p.User.Id))
-            .ForMember(p => p.CommenterFirstName, opt => opt.MapFrom(p => p.User.FirstName))
-            .ForMember(p => p.CommenterLastName, opt => opt.MapFrom(p => p.User.LastName))
-            .ForMember(p => p.TaggedUserId, opt => opt.MapFrom(p => p.User.Id))
-            .ForMember(p => p.TaggedFirstName, opt => opt.MapFrom(p => p.User.FirstName))
-            .ForMember(p => p.TaggedLastName, opt => opt.MapFrom(p => p.User.LastName))
+            .ForMember(p => p.CommenterUserId, opt => opt.MapFrom(p => p.PostComments.Select(p=> p.Post.User.Id).FirstOrDefault()))
+            .ForMember(p => p.CommenterFirstName, opt => opt.MapFrom(p => p.PostComments.Select(p => p.Post.User.FirstName).FirstOrDefault()))
+            .ForMember(p => p.CommenterLastName, opt => opt.MapFrom(p => p.PostComments.Select(p => p.Post.User.LastName).FirstOrDefault()))
+            .ForMember(p => p.TaggedUserId, opt => opt.MapFrom(p => p.PostComments.Select(p => p.Post.User.Id).ToList()))
+            .ForMember(p => p.TaggedFirstName,opt=> opt.MapFrom(p => p.PostComments.Select(p => p.Post.User.FirstName).ToList()))
+            .ForMember(p => p.TaggedLastName, opt=>opt.MapFrom(p => p.PostComments.Select(p => p.Post.User.LastName).ToList()))
+            .ForMember(p => p.Comments, opt => opt.MapFrom(p => p.PostComments.Select(p => p.Comment).ToList()))
+            .ForMember(p => p.CommentCreatedDate, opt => opt.MapFrom(p => p.PostComments.Select(p => p.CreatedDate).FirstOrDefault()))
             .ReverseMap();
 
         CreateMap<Post, GetDetailByPostIdResponse>()
@@ -86,7 +88,8 @@ public class MappingProfiles : Profile
         //  .ReverseMap();
 
         CreateMap<Paginate<Post>, GetPostsBySchoolIdClassIdBranchIdResponse>()
-            .ForMember(dest => dest.Posts, opt => opt.MapFrom(src => src.Items
+            .ForMember(dest => dest.Posts, opt => opt.MapFrom(p => p.Items
+            .OrderByDescending(post => post.CreatedDate)
                 .Select(p => new PostDto
                 {
                     UserId = p.User.Id,
@@ -97,13 +100,14 @@ public class MappingProfiles : Profile
                     LikeCount = p.LikeCount,
                     Message = p.Message,
                     IsCommentable = p.IsCommentable,
+                    FilePaths = p.FilePath,
                     CreatedDate = p.CreatedDate
                 }).ToList()))
-            .ForMember(dest => dest.SchoolId, opt => opt.MapFrom(src => src.Items.FirstOrDefault().SchoolId))
-            .ForMember(dest => dest.ClassroomId, opt => opt.MapFrom(src => src.Items.FirstOrDefault().ClassroomId))
-            .ForMember(dest => dest.BranchId, opt => opt.MapFrom(src => src.Items.FirstOrDefault().BranchId))
-            .ForMember(dest => dest.ClassroomName, opt => opt.MapFrom(src => src.Items.FirstOrDefault().User.Student.Classroom.Name))
-            .ForMember(dest => dest.BranchName, opt => opt.MapFrom(src => src.Items.FirstOrDefault().User.Student.Branch.Name))
+            .ForMember(dest => dest.SchoolId, opt => opt.MapFrom(p => p.Items.FirstOrDefault().SchoolId))
+            .ForMember(dest => dest.ClassroomId, opt => opt.MapFrom(p => p.Items.FirstOrDefault().ClassroomId))
+            .ForMember(dest => dest.BranchId, opt => opt.MapFrom(p => p.Items.FirstOrDefault().BranchId))
+            .ForMember(dest => dest.ClassroomName, opt => opt.MapFrom(p => p.Items.FirstOrDefault().User.Student.Classroom.Name))
+            .ForMember(dest => dest.BranchName, opt => opt.MapFrom(p => p.Items.FirstOrDefault().User.Student.Branch.Name))
                   .ReverseMap();
 
 

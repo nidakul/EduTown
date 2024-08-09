@@ -15,6 +15,8 @@ public class CreatePostCommand : IRequest<CreatedPostResponse>
     public required int LikeCount { get; set; }
     public required string Message { get; set; }
     public required bool IsCommentable { get; set; }
+    public List<string> FilePath { get; set; }
+
 
     public class CreatePostCommandHandler : IRequestHandler<CreatePostCommand, CreatedPostResponse>
     {

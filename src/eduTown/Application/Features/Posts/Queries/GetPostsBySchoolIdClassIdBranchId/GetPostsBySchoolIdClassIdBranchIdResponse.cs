@@ -27,6 +27,7 @@ namespace Application.Features.Posts.Queries.GetPostsBySchoolIdClassIdBranchId
         public int LikeCount { get; set; }
         public string Message { get; set; }
         public bool IsCommentable { get; set; }
+        public List<string> FilePaths { get; set; }
         public DateTime CreatedDate { get; set; }
     }
 }

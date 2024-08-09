@@ -385,6 +385,9 @@ namespace Persistence.Migrations
                     b.Property<DateTime?>("DeletedDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("FilePath")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<bool>("IsCommentable")
                         .HasColumnType("bit");
 
@@ -433,6 +436,7 @@ namespace Persistence.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("TaggedUserId")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("UpdatedDate")
