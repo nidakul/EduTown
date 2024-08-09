@@ -8,6 +8,7 @@ using NArchitecture.Core.Application.Responses;
 using Microsoft.AspNetCore.Mvc;
 using Application.Features.Posts.Queries.GetCommentByPostId;
 using Application.Features.Posts.Queries.GetDetail;
+using Application.Features.Posts.Queries.GetPostsBySchoolIdClassIdBranchId;
 
 namespace WebAPI.Controllers;
 
@@ -72,6 +73,13 @@ public class PostsController : BaseController
     public async Task<IActionResult> GetDetailByPostId([FromRoute] int id)
     {
         GetDetailByPostIdResponse response = await Mediator.Send(new GetDetailByPostIdQuery { Id = id });
+        return Ok(response);
+    }
+
+    [HttpGet("getPostsBySchoolIdClassIdBranchId/{schoolId}/{classroomId}/{branchId}")]
+    public async Task<IActionResult> GetPostsBySchoolIdClassIdBranchId([FromRoute] int schoolId, [FromRoute] int classroomId, [FromRoute] int branchId)
+    {
+        GetPostsBySchoolIdClassIdBranchIdResponse response = await Mediator.Send(new GetPostsBySchoolIdClassIdBranchIdQuery { SchoolId = schoolId, ClassroomId = classroomId, BranchId = branchId });
         return Ok(response);
     }
 }

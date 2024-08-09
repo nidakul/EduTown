@@ -36,6 +36,7 @@
     <Folder Include="Features\Students\Queries\GetStudentGradesByStudentId\" />
     <Folder Include="Features\Posts\Queries\GetDetail\" />
     <Folder Include="Features\Posts\Queries\GetCommentByPostId\" />
+    <Folder Include="Features\Posts\Queries\GetPostsBySchoolIdClassIdBranchId\" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="Features\Users\Queries\GetStudentByUserId\" />
@@ -51,6 +52,7 @@
     <None Remove="Features\Students\Queries\GetStudentGradesByStudentId\" />
     <None Remove="Features\Posts\Queries\GetDetail\" />
     <None Remove="Features\Posts\Queries\GetCommentByPostId\" />
+    <None Remove="Features\Posts\Queries\GetPostsBySchoolIdClassIdBranchId\" />
   </ItemGroup>
   <ItemGroup>
     <None Update="Features\**\Resources\Locales\*.*.yaml">

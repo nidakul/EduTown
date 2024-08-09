@@ -10,6 +10,7 @@ using NArchitecture.Core.Persistence.Paging;
 using Application.Features.Posts.Queries.GetCommentByPostId;
 using OtpNet;
 using Application.Features.Posts.Queries.GetDetail;
+using Application.Features.Posts.Queries.GetPostsBySchoolIdClassIdBranchId;
 
 namespace Application.Features.Posts.Profiles;
 
@@ -51,8 +52,60 @@ public class MappingProfiles : Profile
            .ForMember(p => p.BranchId, opt => opt.MapFrom(p => p.User.Student.Branch.Id))
            .ForMember(p => p.BranchName, opt => opt.MapFrom(p => p.User.Student.Branch.Name))
            .ForMember(p => p.CreatedDate, opt => opt.MapFrom(p => p.CreatedDate))
-
            .ReverseMap();
+
+        //CreateMap<Paginate<Post>, GetPostsBySchoolIdClassIdBranchIdResponse>()
+
+        //          .ForMember(p => p.SchoolId, opt => opt.MapFrom(p => p.User.School.Id))
+        //  .ForMember(p => p.ClassroomId, opt => opt.MapFrom(p => p.User.Student.Classroom.Id))
+        //  .ForMember(p => p.ClassroomName, opt => opt.MapFrom(p => p.User.Student.Classroom.Name))
+        //  .ForMember(p => p.BranchId, opt => opt.MapFrom(p => p.User.Student.Branch.Id))
+        //  .ForMember(p => p.BranchName, opt => opt.MapFrom(p => p.User.Student.Branch.Name))
+        //  .ForMember(p => p.UserId, opt => opt.MapFrom(p => p.User.Id))
+        //   .ForMember(p => p.FirstName, opt => opt.MapFrom(p => p.User.FirstName))
+        //   .ForMember(p => p.LastName, opt => opt.MapFrom(p => p.User.LastName))
+        //   .ForMember(p => p.ImageUrl, opt => opt.MapFrom(p => p.User.ImageUrl))
+        //   .ForMember(p => p.PostId, opt => opt.MapFrom(p => p.Id))
+        //   .ForMember(p => p.LikeCount, opt => opt.MapFrom(p => p.LikeCount))
+        //   .ForMember(p => p.Message, opt => opt.MapFrom(p => p.Message))
+        //   .ForMember(p => p.IsCommentable, opt => opt.MapFrom(p => p.IsCommentable))
+        //   .ForMember(p => p.CreatedDate, opt => opt.MapFrom(p => p.CreatedDate))
+        //  //.ForMember(p => p.Posts, opt => opt.MapFrom(p => p.User.Posts
+        //  //.Select(p => new PostDto
+        //  //{
+        //  //    UserId = p.User.Id,
+        //  //    FirstName = p.User.FirstName,
+        //  //    LastName = p.User.LastName,
+        //  //    ImageUrl = p.User.ImageUrl,
+        //  //    PostId = p.Id,
+        //  //    LikeCount = p.LikeCount,
+        //  //    Message = p.Message,
+        //  //    IsCommentable = p.IsCommentable,
+        //  //    CreatedDate = p.CreatedDate
+        //  //}).ToList()))
+        //  .ReverseMap();
+
+        CreateMap<Paginate<Post>, GetPostsBySchoolIdClassIdBranchIdResponse>()
+            .ForMember(dest => dest.Posts, opt => opt.MapFrom(src => src.Items
+                .Select(p => new PostDto
+                {
+                    UserId = p.User.Id,
+                    FirstName = p.User.FirstName,
+                    LastName = p.User.LastName,
+                    ImageUrl = p.User.ImageUrl,
+                    PostId = p.Id,
+                    LikeCount = p.LikeCount,
+                    Message = p.Message,
+                    IsCommentable = p.IsCommentable,
+                    CreatedDate = p.CreatedDate
+                }).ToList()))
+            .ForMember(dest => dest.SchoolId, opt => opt.MapFrom(src => src.Items.FirstOrDefault().SchoolId))
+            .ForMember(dest => dest.ClassroomId, opt => opt.MapFrom(src => src.Items.FirstOrDefault().ClassroomId))
+            .ForMember(dest => dest.BranchId, opt => opt.MapFrom(src => src.Items.FirstOrDefault().BranchId))
+            .ForMember(dest => dest.ClassroomName, opt => opt.MapFrom(src => src.Items.FirstOrDefault().User.Student.Classroom.Name))
+            .ForMember(dest => dest.BranchName, opt => opt.MapFrom(src => src.Items.FirstOrDefault().User.Student.Branch.Name))
+                  .ReverseMap();
+
 
 
     }
