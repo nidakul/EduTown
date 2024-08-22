@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Persistence.Contexts;
 
@@ -11,9 +12,11 @@ using Persistence.Contexts;
 namespace Persistence.Migrations
 {
     [DbContext(typeof(BaseDbContext))]
-    partial class BaseDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240822155029_StudentGrade")]
+    partial class StudentGrade
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -1259,7 +1262,7 @@ namespace Persistence.Migrations
 
             modelBuilder.Entity("Domain.Entities.StudentGrade", b =>
                 {
-                    b.HasOne("Domain.Entities.Classroom", "Classroom")
+                    b.HasOne("Domain.Entities.Classroom", null)
                         .WithMany("StudentGrades")
                         .HasForeignKey("ClassroomId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -1277,7 +1280,7 @@ namespace Persistence.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Domain.Entities.Student", "Student")
+                    b.HasOne("Domain.Entities.Student", null)
                         .WithMany("StudentGrades")
                         .HasForeignKey("StudentId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -1289,13 +1292,9 @@ namespace Persistence.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Classroom");
-
                     b.Navigation("GradeType");
 
                     b.Navigation("Lesson");
-
-                    b.Navigation("Student");
 
                     b.Navigation("Term");
                 });
