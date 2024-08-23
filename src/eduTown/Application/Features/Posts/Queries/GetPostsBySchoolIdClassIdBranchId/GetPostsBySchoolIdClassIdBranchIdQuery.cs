@@ -40,7 +40,7 @@ namespace Application.Features.Posts.Queries.GetPostsBySchoolIdClassIdBranchId
             {
                 IPaginate<Post>? post = await _postRepository.GetListAsync(predicate: p => p.SchoolId.Equals(request.SchoolId) && p.ClassroomId.Equals(request.ClassroomId) && p.BranchId.Equals(request.BranchId),
                 include: p => p.Include(p => p.User.School)
-                .Include(p => p.User.Student.Classroom)
+                .Include(p => p.User. Student.Classroom)
                 .Include(p => p.User.Student.Branch)
                 .Include(p => p.User),
                 enableTracking: false, cancellationToken: cancellationToken,

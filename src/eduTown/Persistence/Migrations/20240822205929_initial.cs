@@ -638,29 +638,6 @@ namespace Persistence.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "PostFiles",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    PostId = table.Column<int>(type: "int", nullable: false),
-                    FilePath = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    UpdatedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    DeletedDate = table.Column<DateTime>(type: "datetime2", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_PostFiles", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_PostFiles_Posts_PostId",
-                        column: x => x.PostId,
-                        principalTable: "Posts",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "PostInteractions",
                 columns: table => new
                 {
@@ -720,13 +697,13 @@ namespace Persistence.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    StudentId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     GradeTypeId = table.Column<int>(type: "int", nullable: false),
                     LessonId = table.Column<int>(type: "int", nullable: false),
                     ClassroomId = table.Column<int>(type: "int", nullable: false),
                     TermId = table.Column<int>(type: "int", nullable: false),
                     ExamCount = table.Column<int>(type: "int", nullable: false),
                     Grade = table.Column<double>(type: "float", nullable: false),
-                    StudentId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UpdatedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     DeletedDate = table.Column<DateTime>(type: "datetime2", nullable: true)
@@ -734,12 +711,6 @@ namespace Persistence.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_StudentGrades", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_StudentGrades_Classrooms_ClassroomId",
-                        column: x => x.ClassroomId,
-                        principalTable: "Classrooms",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_StudentGrades_GradeTypes_GradeTypeId",
                         column: x => x.GradeTypeId,
@@ -756,7 +727,8 @@ namespace Persistence.Migrations
                         name: "FK_StudentGrades_Students_StudentId",
                         column: x => x.StudentId,
                         principalTable: "Students",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_StudentGrades_Terms_TermId",
                         column: x => x.TermId,
@@ -799,11 +771,6 @@ namespace Persistence.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_PostComments_PostId",
                 table: "PostComments",
-                column: "PostId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_PostFiles_PostId",
-                table: "PostFiles",
                 column: "PostId");
 
             migrationBuilder.CreateIndex(
@@ -880,11 +847,6 @@ namespace Persistence.Migrations
                 name: "IX_StudentExamDates_StudentId",
                 table: "StudentExamDates",
                 column: "StudentId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_StudentGrades_ClassroomId",
-                table: "StudentGrades",
-                column: "ClassroomId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_StudentGrades_GradeTypeId",
@@ -970,9 +932,6 @@ namespace Persistence.Migrations
 
             migrationBuilder.DropTable(
                 name: "PostComments");
-
-            migrationBuilder.DropTable(
-                name: "PostFiles");
 
             migrationBuilder.DropTable(
                 name: "PostInteractions");

@@ -845,8 +845,6 @@ namespace Persistence.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ClassroomId");
-
                     b.HasIndex("GradeTypeId");
 
                     b.HasIndex("LessonId");
@@ -1259,12 +1257,6 @@ namespace Persistence.Migrations
 
             modelBuilder.Entity("Domain.Entities.StudentGrade", b =>
                 {
-                    b.HasOne("Domain.Entities.Classroom", "Classroom")
-                        .WithMany("StudentGrades")
-                        .HasForeignKey("ClassroomId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("Domain.Entities.GradeType", "GradeType")
                         .WithMany("StudentGrades")
                         .HasForeignKey("GradeTypeId")
@@ -1277,7 +1269,7 @@ namespace Persistence.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Domain.Entities.Student", "Student")
+                    b.HasOne("Domain.Entities.Student", null)
                         .WithMany("StudentGrades")
                         .HasForeignKey("StudentId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -1289,13 +1281,9 @@ namespace Persistence.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Classroom");
-
                     b.Navigation("GradeType");
 
                     b.Navigation("Lesson");
-
-                    b.Navigation("Student");
 
                     b.Navigation("Term");
                 });
@@ -1375,8 +1363,6 @@ namespace Persistence.Migrations
                     b.Navigation("SchoolClasses");
 
                     b.Navigation("SchoolTypeClasses");
-
-                    b.Navigation("StudentGrades");
 
                     b.Navigation("Students");
 

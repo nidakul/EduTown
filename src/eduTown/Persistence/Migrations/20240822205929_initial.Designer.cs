@@ -12,8 +12,8 @@ using Persistence.Contexts;
 namespace Persistence.Migrations
 {
     [DbContext(typeof(BaseDbContext))]
-    [Migration("20240822155029_StudentGrade")]
-    partial class StudentGrade
+    [Migration("20240822205929_initial")]
+    partial class initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -848,8 +848,6 @@ namespace Persistence.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ClassroomId");
-
                     b.HasIndex("GradeTypeId");
 
                     b.HasIndex("LessonId");
@@ -1262,12 +1260,6 @@ namespace Persistence.Migrations
 
             modelBuilder.Entity("Domain.Entities.StudentGrade", b =>
                 {
-                    b.HasOne("Domain.Entities.Classroom", null)
-                        .WithMany("StudentGrades")
-                        .HasForeignKey("ClassroomId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("Domain.Entities.GradeType", "GradeType")
                         .WithMany("StudentGrades")
                         .HasForeignKey("GradeTypeId")
@@ -1374,8 +1366,6 @@ namespace Persistence.Migrations
                     b.Navigation("SchoolClasses");
 
                     b.Navigation("SchoolTypeClasses");
-
-                    b.Navigation("StudentGrades");
 
                     b.Navigation("Students");
 
