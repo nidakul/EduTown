@@ -2,8 +2,10 @@
 using Application.Services.Repositories;
 using Domain.Entities;
 using NArchitecture.Core.Persistence.Repositories;
+using NArchitecture.Core.Security.Entities;
 using NArchitecture.Core.Security.Hashing;
 using Persistence.Contexts;
+using System.Reflection.Metadata.Ecma335;
 
 namespace Persistence.Repositories;
 
@@ -38,6 +40,21 @@ public class UserRepository : EfRepositoryBase<User, Guid, BaseDbContext>, IUser
         };
 
         return await AddAsync(newUser);
+    }
+
+    public async Task<User> UpdateUserAsync(Guid userId, UserForRegisterCommand userForRegisterCommand)
+    {
+        User updateUser = await GetAsync(predicate: u => u.Id == userId);
+
+        updateUser.SchoolId = userForRegisterCommand.SchoolId;
+        updateUser.NationalIdentity = userForRegisterCommand.NationalIdentity;
+        updateUser.FirstName = userForRegisterCommand.FirstName;
+        updateUser.LastName = userForRegisterCommand.LastName;
+        updateUser.Email = userForRegisterCommand.Email;
+        updateUser.Gender = userForRegisterCommand.Gender;
+        updateUser.ImageUrl = userForRegisterCommand.ImageUrl;
+
+        return await UpdateAsync(updateUser);
     }
 
 }

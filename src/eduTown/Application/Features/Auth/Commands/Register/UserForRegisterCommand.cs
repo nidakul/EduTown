@@ -5,7 +5,7 @@ namespace Application.Features.Auth.Commands.Register
 {
     public class UserForRegisterCommand : IDto
     {
-        public int SchoolId { get; set; }
+        public int SchoolId { get; set; } 
         public string NationalIdentity { get; set; }
         public string Password { get; set; }
         public string FirstName { get; set; }
