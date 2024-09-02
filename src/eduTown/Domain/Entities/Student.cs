@@ -8,7 +8,7 @@ namespace Domain.Entities
         public int ClassroomId { get; set; }
         public int BranchId { get; set; }
         public string StudentNo { get; set; }
-        public DateTime Birthdate { get; set; }
+        public DateOnly Birthdate { get; set; }
         public string Birthplace { get; set; }
 
         public virtual User User { get; set; }
@@ -21,7 +21,7 @@ namespace Domain.Entities
         public Student()
         {
         } 
-    }
+    } 
 }
-  
+    
  

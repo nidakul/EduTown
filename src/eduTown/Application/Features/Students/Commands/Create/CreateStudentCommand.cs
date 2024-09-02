@@ -14,7 +14,7 @@ public class CreateStudentCommand : IRequest<CreatedStudentResponse>
     public int BranchId { get; set; }
     public int ClassroomId { get; set; }
     public string StudentNo { get; set; }
-    public DateTime Birthdate { get; set; }
+    public DateOnly Birthdate { get; set; }
     public string Birthplace { get; set; }
     public required UserForRegisterCommand UserForRegisterCommand { get; set; }
 

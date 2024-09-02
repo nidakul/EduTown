@@ -15,7 +15,7 @@ public class UpdateStudentCommand : IRequest<UpdatedStudentResponse>
     public int BranchId { get; set; }
     public int ClassroomId { get; set; }
     public string StudentNo { get; set; }
-    public DateTime Birthdate { get; set; }
+    public DateOnly Birthdate { get; set; }
     public string Birthplace { get; set; }
     public required UserForRegisterCommand UserForRegisterCommand { get; set; }
 
@@ -37,7 +37,7 @@ public class UpdateStudentCommand : IRequest<UpdatedStudentResponse>
 
         public async Task<UpdatedStudentResponse> Handle(UpdateStudentCommand request, CancellationToken cancellationToken)
         {
-            Student? student = await _studentRepository.GetAsync(predicate: s => s.Id == request.Id, cancellationToken: cancellationToken);
+            Student? student = await _studentRepository.GetAsync(predicate: s => s.UserId == request.UserId, cancellationToken: cancellationToken);
             await _studentBusinessRules.StudentShouldExistWhenSelected(student);
             student = _mapper.Map(request, student);
 

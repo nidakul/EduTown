@@ -18,14 +18,14 @@ namespace Application.Features.Students.Queries.GetStudentDetail
         public string StudentNo { get; set; }
         public string Gender { get; set; }
         public string ClassroomName { get; set; }
-        public DateTime Birthdate { get; set; }
+        public DateOnly Birthdate { get; set; }
         public string Birthplace { get; set; }
 
         public GetListStudentDetailResponse()
         {
         }
 
-        public GetListStudentDetailResponse(Guid id, int schoolId, int classroomId, int branchId, string schoolName, string branchName, string nationalIdentity, string firstName, string lastName, string email, string imageUrl, string studentNo, string gender, string classroomName, DateTime birthdate, string birthplace): this()
+        public GetListStudentDetailResponse(Guid id, int schoolId, int classroomId, int branchId, string schoolName, string branchName, string nationalIdentity, string firstName, string lastName, string email, string imageUrl, string studentNo, string gender, string classroomName, DateOnly birthdate, string birthplace): this()
         {
             Id = id;
             SchoolId = schoolId;

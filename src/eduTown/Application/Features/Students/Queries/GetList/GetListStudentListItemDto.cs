@@ -14,7 +14,7 @@ public class GetListStudentListItemDto : IDto
     public string FirstName { get; set; }
     public string LastName { get; set; }
     public string Email { get; set; }
-    public DateTime Birthdate { get; set; }
+    public DateOnly Birthdate { get; set; }
     public string Birthplace { get; set; }
     public string ImageUrl { get; set; }
 }

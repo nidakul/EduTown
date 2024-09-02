@@ -21,7 +21,7 @@ namespace Application.Features.Users.Queries.GetStudentByUserId
         public string ImageUrl { get; set; }
         public string StudentNo { get; set; }
         public string Gender { get; set; }
-        public DateTime Birthdate { get; set; }
+        public DateOnly Birthdate { get; set; }
         public string Birthplace { get; set; }
 
         public GetStudentByUserIdResponse()
