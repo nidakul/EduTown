@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 using Application.Features.Users.Queries.GetStudentByUserId;
 using Application.Features.Students.Queries.GetStudentDetail;
 using Application.Features.Students.Queries.GetStudentGradesByStudentId;
+using Application.Features.Students.Queries.GetListStudentsSchoolIdClassIdBranchId;
 
 namespace WebAPI.Controllers;
 
@@ -79,5 +80,11 @@ public class StudentsController : BaseController
         return Ok(response);
     }
 
+    [HttpGet("getListStudentsBySchoolIdClassIdBranchId/{schoolId}/{classroomId}/{branchId}")]
+    public async Task<IActionResult> GetListStudentsBySchoolIdClassIdBranchId([FromRoute] int schoolId, [FromRoute] int classroomId, [FromRoute] int branchId)
+    {
+        GetListStudentsSchoolIdClassIdBranchIdResponse response = await Mediator.Send(new GetListStudentsSchoolIdClassIdBranchIdQuery { SchoolId = schoolId, ClassroomId = classroomId, BranchId = branchId });
+            return Ok(response);
+    }
 }
 

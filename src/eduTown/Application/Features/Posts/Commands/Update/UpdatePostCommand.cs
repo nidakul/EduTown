@@ -16,6 +16,7 @@ public class UpdatePostCommand : IRequest<UpdatedPostResponse>
     public required int LikeCount { get; set; }
     public required string Message { get; set; }
     public required bool IsCommentable { get; set; }
+    public List<string> FilePath { get; set; }
 
     public class UpdatePostCommandHandler : IRequestHandler<UpdatePostCommand, UpdatedPostResponse>
     {

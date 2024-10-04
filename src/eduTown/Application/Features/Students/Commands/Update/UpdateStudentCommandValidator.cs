@@ -10,4 +10,4 @@ public class UpdateStudentCommandValidator : AbstractValidator<UpdateStudentComm
         RuleFor(c => c.UserId).NotEmpty();
         RuleFor(c => c.StudentNo).NotEmpty();
     }
-}
+} 

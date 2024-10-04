@@ -9,6 +9,7 @@ using Domain.Entities;
 using NArchitecture.Core.Persistence.Paging;
 using Application.Features.Students.Queries.GetStudentDetail;
 using Application.Features.Students.Queries.GetStudentGradesByStudentId;
+using Application.Features.Students.Queries.GetListStudentsSchoolIdClassIdBranchId;
 
 namespace Application.Features.Students.Profiles;
 
@@ -45,6 +46,14 @@ public class MappingProfiles : Profile
             .ForMember(s => s.Gender, opt => opt.MapFrom(s => s.User.Gender))
             .ForMember(s => s.ClassroomName, opt => opt.MapFrom(s => s.Classroom.Name))
             .ReverseMap();
+
+        CreateMap<Paginate<Student>, GetListStudentsSchoolIdClassIdBranchIdResponse>()
+            .ForMember(dest => dest.Students, opt => opt.MapFrom(p => p.Items
+            .Select(s => new StudentDto
+            {
+                FirstName = s.User.FirstName,
+                LastName = s.User.LastName
+            }).ToList()));
 
         CreateMap<Student, GetStudentGradesByStudentIdResponse>()
      .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id))

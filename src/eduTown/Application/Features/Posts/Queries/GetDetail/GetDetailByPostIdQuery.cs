@@ -25,7 +25,7 @@ namespace Application.Features.Posts.Queries.GetDetail
             }
             public async Task<GetDetailByPostIdResponse> Handle(GetDetailByPostIdQuery request, CancellationToken cancellationToken)
             {
-                Post? post = await _postRepository.GetAsync(predicate: p => p.Id.Equals(request.Id),
+                Post? post = await _postRepository.GetAsync( withDeleted:false,predicate: p => p.Id.Equals(request.Id),
                     include: p => p.Include(p => p.User).ThenInclude(p => p.Student.Classroom)
                     .Include(p => p.User.School)
                     .Include(p => p.User)

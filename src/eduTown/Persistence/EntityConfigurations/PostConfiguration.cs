@@ -21,9 +21,9 @@ public class PostConfiguration : IEntityTypeConfiguration<Post>
         builder.Property(p => p.FilePath).HasColumnName("FilePath");
         builder.Property(p => p.CreatedDate).HasColumnName("CreatedDate").IsRequired();
         builder.Property(p => p.UpdatedDate).HasColumnName("UpdatedDate");
-        builder.Property(p => p.DeletedDate).HasColumnName("DeletedDate");
+        builder.Property(p => p.DeletedDate).HasColumnName("DeletedDate"); 
 
-        builder.HasQueryFilter(p => !p.DeletedDate.HasValue);
+        builder.HasQueryFilter(p => !p.DeletedDate.HasValue); 
     }
 }
 

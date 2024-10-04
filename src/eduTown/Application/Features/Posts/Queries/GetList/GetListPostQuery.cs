@@ -23,13 +23,15 @@ public class GetListPostQuery : IRequest<GetListResponse<GetListPostListItemDto>
             _mapper = mapper;
         }
 
-        public async Task<GetListResponse<GetListPostListItemDto>> Handle(GetListPostQuery request, CancellationToken cancellationToken)
+        public async Task<GetListResponse<GetListPostListItemDto>> Handle(GetListPostQuery request,CancellationToken cancellationToken)
         {
             IPaginate<Post> posts = await _postRepository.GetListAsync(
+                withDeleted: false,
                 index: request.PageRequest.PageIndex,
-                size: request.PageRequest.PageSize, 
+                size: request.PageRequest.PageSize,
+
                 cancellationToken: cancellationToken
-            );
+            ) ; 
 
             GetListResponse<GetListPostListItemDto> response = _mapper.Map<GetListResponse<GetListPostListItemDto>>(posts);
             return response;

@@ -37,6 +37,7 @@
     <Folder Include="Features\Posts\Queries\GetDetail\" />
     <Folder Include="Features\Posts\Queries\GetCommentByPostId\" />
     <Folder Include="Features\Posts\Queries\GetPostsBySchoolIdClassIdBranchId\" />
+    <Folder Include="Features\Students\Queries\GetListStudentsSchoolIdClassIdBranchId\" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="Features\Users\Queries\GetStudentByUserId\" />
@@ -53,6 +54,7 @@
     <None Remove="Features\Posts\Queries\GetDetail\" />
     <None Remove="Features\Posts\Queries\GetCommentByPostId\" />
     <None Remove="Features\Posts\Queries\GetPostsBySchoolIdClassIdBranchId\" />
+    <None Remove="Features\Students\Queries\GetListStudentsSchoolIdClassIdBranchId\" />
   </ItemGroup>
   <ItemGroup>
     <None Update="Features\**\Resources\Locales\*.*.yaml">
