@@ -7,5 +7,6 @@ public class GetListPostCommentListItemDto : IDto
     public int Id { get; set; }
     public Guid UserId { get; set; }
     public int PostId { get; set; }
+    public int? ParentCommentId { get; set; }
     public string Comment { get; set; }
 }

@@ -7,8 +7,8 @@ public class CreatedPostCommentResponse : IResponse
 {
     public int Id { get; set; }
     public Guid UserId { get; set; }
-    public List<Guid> TaggedUserId { get; set; }
     public int PostId { get; set; }
     public string Comment { get; set; }
+    public int? ParentCommentId { get; set; }
 }
 

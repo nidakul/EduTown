@@ -9,9 +9,9 @@ namespace Application.Features.PostComments.Commands.Create;
 public class CreatePostCommentCommand : IRequest<CreatedPostCommentResponse>
 {
     public required Guid UserId { get; set; }
-    public List<Guid>? TaggedUserId { get; set; }
     public required int PostId { get; set; }
     public required string Comment { get; set; }
+    public int? ParentCommentId { get; set; }
 
     public class CreatePostCommentCommandHandler : IRequestHandler<CreatePostCommentCommand, CreatedPostCommentResponse>
     {
