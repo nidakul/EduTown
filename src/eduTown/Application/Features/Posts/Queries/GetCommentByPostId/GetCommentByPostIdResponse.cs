@@ -4,14 +4,16 @@ namespace Application.Features.Posts.Queries.GetCommentByPostId
 {
     public class GetCommentByPostIdResponse : IResponse
     {
+        public int CommentId { get; set; }
         public Guid CommenterUserId { get; set; }
+        public string CommenterImgUrl { get; set; }
         public string CommenterFirstName { get; set; }
         public string CommenterLastName { get; set; }
-        public List<Guid> TaggedUserId { get; set; }
-        public List<string> TaggedFirstName { get; set; }
-        public List<string> TaggedLastName { get; set; }
-        public List<string> Comments { get; set; }
+        public string Comment { get; set; }
         public DateTime CommentCreatedDate { get; set; }
+        public int? ParentCommentId { get; set; } // Parent yorumu varsa onun ID'sini tutacak.
+        public List<TaggedUserResponse> TaggedUsers { get; set; } // Etiketlenen kullanıcıların listesi
+        public List<GetCommentByPostIdResponse> Replies { get; set; } // Bu yoruma yapılmış cevaplar
 
         public GetCommentByPostIdResponse()
         {

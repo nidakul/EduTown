@@ -57,6 +57,7 @@ public class BaseDbContext : DbContext
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
         optionsBuilder.UseSqlServer("Server = localhost; Database = EduTown; User Id = SA; Password = rentacardb; TrustServerCertificate=true");                       
+        public DbSet<PostCommentTaggedUser> PostCommentTaggedUsers { get; set; }
         
         
         
