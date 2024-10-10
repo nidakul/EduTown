@@ -6,7 +6,6 @@ namespace Application.Features.Posts.Queries.GetCommentByPostId
     {
         public int CommentId { get; set; }
         public Guid CommenterUserId { get; set; }
-        public string CommenterImgUrl { get; set; }
         public string CommenterFirstName { get; set; }
         public string CommenterLastName { get; set; }
         public string Comment { get; set; }
@@ -17,7 +16,16 @@ namespace Application.Features.Posts.Queries.GetCommentByPostId
 
         public GetCommentByPostIdResponse()
         {
+            TaggedUsers = new List<TaggedUserResponse>();
+            Replies = new List<GetCommentByPostIdResponse>();
         }
+    }
+
+    public class TaggedUserResponse
+    {
+        public Guid TaggedUserId { get; set; }
+        public string TaggedFirstName { get; set; }
+        public string TaggedLastName { get; set; }
     }
 }
 
