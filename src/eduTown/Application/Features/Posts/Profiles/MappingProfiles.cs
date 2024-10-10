@@ -33,15 +33,27 @@ public class MappingProfiles : Profile
         CreateMap<IPaginate<Post>, GetListResponse<GetListPostListItemDto>>();
 
         CreateMap<Post, GetCommentByPostIdResponse>()
-            .ForMember(p => p.CommenterUserId, opt => opt.MapFrom(p => p.PostComments.Select(p=> p.Post.User.Id).FirstOrDefault()))
-            .ForMember(p => p.CommenterFirstName, opt => opt.MapFrom(p => p.PostComments.Select(p => p.Post.User.FirstName).FirstOrDefault()))
-            .ForMember(p => p.CommenterLastName, opt => opt.MapFrom(p => p.PostComments.Select(p => p.Post.User.LastName).FirstOrDefault()))
-            .ForMember(p => p.TaggedUserId, opt => opt.MapFrom(p => p.PostComments.Select(p => p.Post.User.Id).ToList()))
-            .ForMember(p => p.TaggedFirstName,opt=> opt.MapFrom(p => p.PostComments.Select(p => p.Post.User.FirstName).ToList()))
-            .ForMember(p => p.TaggedLastName, opt=>opt.MapFrom(p => p.PostComments.Select(p => p.Post.User.LastName).ToList()))
-            .ForMember(p => p.Comments, opt => opt.MapFrom(p => p.PostComments.Select(p => p.Comment).ToList()))
-            .ForMember(p => p.CommentCreatedDate, opt => opt.MapFrom(p => p.PostComments.Select(p => p.CreatedDate).FirstOrDefault()))
+            //.ForMember(p => p.CommentId, opt => opt.MapFrom(p => p.PostComments.Select(p => p.Id)))
+            //.ForMember(p => p.ParentCommentId, opt => opt.MapFrom(p => p.PostComments.Select(p => p.ParentCommentId)))
+
+            .ForMember(dest => dest.Commenters, opt => opt.MapFrom(p => p.PostComments.Select(cr => new CommenterResponse
+            {
+                CommenterUserId = cr.Post.User.Id,
+                CommenterImageUrl = cr.Post.User.ImageUrl,  
+                CommenterFirstName = cr.Post.User.FirstName,
+                CommenterLastName = cr.Post.User.LastName,  
+                Comment = cr.Comment, 
+                CommentCreatedDate = cr.CreatedDate
+            })))
+            .ForMember(dest => dest.TaggedUsers, opt => opt.MapFrom(p => p.PostComments.Select(tu => new TaggedUserResponse
+            {
+                TaggedUserId = tu.Post.User.Id,
+                TaggedFirstName = tu.Post.User.FirstName,
+                TaggedLastName = tu.Post.User.LastName
+            })))
+            //.ForMember(dest => dest.Replies, opt => opt.MapFrom(src => src.PostComments.Select(src => src.Replies)))
             .ReverseMap();
+
 
         CreateMap<Post, GetDetailByPostIdResponse>()
            .ForMember(p => p.AuthorUserId, opt => opt.MapFrom(p => p.User.Id))

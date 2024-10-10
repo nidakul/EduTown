@@ -23,6 +23,8 @@ public class StudentGradeConfiguration : IEntityTypeConfiguration<StudentGrade>
         builder.Property(sg => sg.DeletedDate).HasColumnName("DeletedDate");
 
         builder.HasQueryFilter(sg => !sg.DeletedDate.HasValue);
+
+
     }
 }
  

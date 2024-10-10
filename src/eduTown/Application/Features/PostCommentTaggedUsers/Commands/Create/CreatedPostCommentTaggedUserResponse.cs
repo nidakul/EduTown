@@ -7,4 +7,4 @@ public class CreatedPostCommentTaggedUserResponse : IResponse
     public int Id { get; set; }
     public int PostCommentId { get; set; }
     public Guid TaggedUserId { get; set; }
-}
+}      

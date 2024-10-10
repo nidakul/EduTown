@@ -450,8 +450,6 @@ namespace Persistence.Migrations
 
                     b.HasIndex("PostId");
 
-                    b.HasIndex("UserId");
-
                     b.ToTable("PostComments");
                 });
 
@@ -482,7 +480,7 @@ namespace Persistence.Migrations
 
                     b.HasIndex("PostCommentId");
 
-                    b.ToTable("PostCommentTaggedUser");
+                    b.ToTable("PostCommentTaggedUsers");
                 });
 
             modelBuilder.Entity("Domain.Entities.PostInteraction", b =>
@@ -867,7 +865,7 @@ namespace Persistence.Migrations
                     b.Property<int>("LessonId")
                         .HasColumnType("int");
 
-                    b.Property<Guid>("StudentId")
+                    b.Property<Guid?>("StudentId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<int>("TermId")
@@ -1128,17 +1126,9 @@ namespace Persistence.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Domain.Entities.User", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.Navigation("ParentComment");
 
                     b.Navigation("Post");
-
-                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Domain.Entities.PostCommentTaggedUser", b =>
@@ -1337,9 +1327,7 @@ namespace Persistence.Migrations
 
                     b.HasOne("Domain.Entities.Student", null)
                         .WithMany("StudentGrades")
-                        .HasForeignKey("StudentId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("StudentId");
 
                     b.HasOne("Domain.Entities.Term", "Term")
                         .WithMany("StudentGrades")

@@ -37,6 +37,7 @@ public class BaseDbContext : DbContext
     public DbSet<Post> Posts { get; set; }
     public DbSet<PostInteraction> PostInteractions { get; set; }
     public DbSet<PostComment> PostComments { get; set; }
+    public DbSet<PostCommentTaggedUser> PostCommentTaggedUsers { get; set; }
 
     public BaseDbContext() 
     { 
@@ -57,10 +58,6 @@ public class BaseDbContext : DbContext
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
         optionsBuilder.UseSqlServer("Server = localhost; Database = EduTown; User Id = SA; Password = rentacardb; TrustServerCertificate=true");                       
-        public DbSet<PostCommentTaggedUser> PostCommentTaggedUsers { get; set; }
-        
-        
-        
 
     }
 }

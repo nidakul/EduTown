@@ -10,7 +10,7 @@ public class CreatePostCommentTaggedUserCommand : IRequest<CreatedPostCommentTag
 {
     public required int PostCommentId { get; set; }
     public required Guid TaggedUserId { get; set; }
-
+     
     public class CreatePostCommentTaggedUserCommandHandler : IRequestHandler<CreatePostCommentTaggedUserCommand, CreatedPostCommentTaggedUserResponse>
     {
         private readonly IMapper _mapper;

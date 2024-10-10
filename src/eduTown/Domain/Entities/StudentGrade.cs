@@ -13,17 +13,17 @@ namespace Domain.Entities
         public int ExamCount { get; set; } //GradeType ile ilişkili
         public double Grade { get; set; } 
          
-        //public virtual Student Student { get; set; } 
+        //public virtual Student Student { get; set; }
         public virtual GradeType GradeType { get; set; } 
         public virtual Classroom Classroom { get; set; }
         public virtual Lesson Lesson { get; set; }
         public virtual Term Term { get; set; }
 
-        public StudentGrade()
+        public StudentGrade() 
         {
         } 
     }   
-} 
+}  
 
 
 

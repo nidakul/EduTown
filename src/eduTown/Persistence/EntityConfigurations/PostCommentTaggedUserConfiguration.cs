@@ -19,4 +19,4 @@ public class PostCommentTaggedUserConfiguration : IEntityTypeConfiguration<PostC
 
         builder.HasQueryFilter(pctu => !pctu.DeletedDate.HasValue);
     }
-}
+}  
