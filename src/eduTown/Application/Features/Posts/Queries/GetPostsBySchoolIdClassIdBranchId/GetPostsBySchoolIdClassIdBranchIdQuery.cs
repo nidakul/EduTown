@@ -45,7 +45,7 @@ namespace Application.Features.Posts.Queries.GetPostsBySchoolIdClassIdBranchId
                 .Include(p => p.User),
                 enableTracking: false, cancellationToken: cancellationToken,
                 index: 0,
-                size: int.MaxValue);
+                size: int.MaxValue); 
 
                 await _schoolBusinessRules.SchoolIdShouldExistWhenSelected(request.SchoolId, cancellationToken);
                 await _classroomBusinessRules.ClassroomIdShouldExistWhenSelected(request.ClassroomId, cancellationToken);

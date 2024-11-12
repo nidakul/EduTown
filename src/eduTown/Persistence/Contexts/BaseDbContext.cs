@@ -53,6 +53,12 @@ public class BaseDbContext : DbContext
     //{
     //    modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
     //}
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.Entity<Post>().HasQueryFilter(s => s.DeletedDate == null);
+
+        base.OnModelCreating(modelBuilder);
+    }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
