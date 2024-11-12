@@ -29,7 +29,6 @@ using Application.Features.SchoolClassBranches.Constants;
 using Application.Features.Posts.Constants;
 using Application.Features.PostInteractions.Constants;
 using Application.Features.PostComments.Constants;
-using Application.Features.PostCommentTaggedUsers.Constants;
 
 namespace Persistence.EntityConfigurations;
 
@@ -515,18 +514,6 @@ public class OperationClaimConfiguration : IEntityTypeConfiguration<OperationCla
         #endregion
         
         
-        #region PostCommentTaggedUsers CRUD
-        featureOperationClaims.AddRange(
-            [
-                new() { Id = ++lastId, Name = PostCommentTaggedUsersOperationClaims.Admin },
-                new() { Id = ++lastId, Name = PostCommentTaggedUsersOperationClaims.Read },
-                new() { Id = ++lastId, Name = PostCommentTaggedUsersOperationClaims.Write },
-                new() { Id = ++lastId, Name = PostCommentTaggedUsersOperationClaims.Create },
-                new() { Id = ++lastId, Name = PostCommentTaggedUsersOperationClaims.Update },
-                new() { Id = ++lastId, Name = PostCommentTaggedUsersOperationClaims.Delete },
-            ]
-        );
-        #endregion
         
         return featureOperationClaims;
     }

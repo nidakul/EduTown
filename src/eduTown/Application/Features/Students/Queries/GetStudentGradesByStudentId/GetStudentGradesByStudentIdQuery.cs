@@ -30,10 +30,10 @@ namespace Application.Features.Students.Queries.GetStudentGradesByStudentId
             public async Task<GetStudentGradesByStudentIdResponse> Handle(GetStudentGradesByStudentIdQuery request, CancellationToken cancellationToken)
             {
                 Student? student = await _studentRepository.GetAsync(predicate: u => u.Id.Equals(request.Id),
-                   include: u => u.Include(u => u.StudentGrades).ThenInclude(u => u.Lesson)
-                   .Include(u => u.StudentGrades).ThenInclude(u => u.GradeType)
-                   .Include(u => u.StudentGrades).ThenInclude(u => u.Term)
-                   .Include(u => u.StudentGrades).ThenInclude(u => u.Classroom),
+                   //include: u => u.Include(u => u.StudentGrades).ThenInclude(u => u.Lesson)
+                   //.Include(u => u.StudentGrades).ThenInclude(u => u.GradeType)
+                   //.Include(u => u.StudentGrades).ThenInclude(u => u.Term)
+                   //.Include(u => u.StudentGrades).ThenInclude(u => u.Classroom),
                    //.Include(u => u.Classroom),
                    enableTracking: false,
                    cancellationToken: cancellationToken);

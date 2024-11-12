@@ -43,7 +43,6 @@ using Application.Services.SchoolClassBranches;
 using Application.Services.Posts;
 using Application.Services.PostInteractions;
 using Application.Services.PostComments;
-using Application.Services.PostCommentTaggedUsers;
 
 namespace Application;
 
@@ -112,7 +111,6 @@ public static class ApplicationServiceRegistration
         services.AddScoped<IPostService, PostManager>();
         services.AddScoped<IPostInteractionService, PostInteractionManager>();
         services.AddScoped<IPostCommentService, PostCommentManager>();
-        services.AddScoped<IPostCommentTaggedUserService, PostCommentTaggedUserManager>();
         return services;
     }
 

@@ -27,8 +27,9 @@ namespace Application.Features.Posts.Queries.GetCommentByPostId
             public async Task<GetCommentByPostIdResponse> Handle(GetCommentByPostIdQuery request, CancellationToken cancellationToken)
             {
                 Post? post = await _postRepository.GetAsync(predicate: p => p.Id.Equals(request.Id),
-                    include: p => p.Include(p => p.PostComments)
-                    .Include(p => p.User),
+                    //include: p => p.Include(p => p.PostComments).ThenInclude(p => p.TaggedUsers)
+                    //.Include(p => p.PostComments)
+                    //.Include(p => p.User), 
                     enableTracking: false,
                     cancellationToken: cancellationToken);
 

@@ -702,13 +702,13 @@ namespace Persistence.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    GradeTypeId = table.Column<int>(type: "int", nullable: false),
-                    LessonId = table.Column<int>(type: "int", nullable: false),
-                    ClassroomId = table.Column<int>(type: "int", nullable: false),
-                    TermId = table.Column<int>(type: "int", nullable: false),
                     ExamCount = table.Column<int>(type: "int", nullable: false),
                     Grade = table.Column<double>(type: "float", nullable: false),
+                    ClassroomId = table.Column<int>(type: "int", nullable: true),
+                    GradeTypeId = table.Column<int>(type: "int", nullable: true),
+                    LessonId = table.Column<int>(type: "int", nullable: true),
                     StudentId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    TermId = table.Column<int>(type: "int", nullable: true),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UpdatedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     DeletedDate = table.Column<DateTime>(type: "datetime2", nullable: true)
@@ -720,20 +720,17 @@ namespace Persistence.Migrations
                         name: "FK_StudentGrades_Classrooms_ClassroomId",
                         column: x => x.ClassroomId,
                         principalTable: "Classrooms",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_StudentGrades_GradeTypes_GradeTypeId",
                         column: x => x.GradeTypeId,
                         principalTable: "GradeTypes",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_StudentGrades_Lessons_LessonId",
                         column: x => x.LessonId,
                         principalTable: "Lessons",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_StudentGrades_Students_StudentId",
                         column: x => x.StudentId,
@@ -743,31 +740,7 @@ namespace Persistence.Migrations
                         name: "FK_StudentGrades_Terms_TermId",
                         column: x => x.TermId,
                         principalTable: "Terms",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "PostCommentTaggedUsers",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    PostCommentId = table.Column<int>(type: "int", nullable: false),
-                    TaggedUserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    UpdatedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    DeletedDate = table.Column<DateTime>(type: "datetime2", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_PostCommentTaggedUsers", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_PostCommentTaggedUsers_PostComments_PostCommentId",
-                        column: x => x.PostCommentId,
-                        principalTable: "PostComments",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateIndex(
@@ -810,11 +783,6 @@ namespace Persistence.Migrations
                 name: "IX_PostComments_PostId",
                 table: "PostComments",
                 column: "PostId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_PostCommentTaggedUsers_PostCommentId",
-                table: "PostCommentTaggedUsers",
-                column: "PostCommentId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_PostInteractions_PostId",
@@ -979,7 +947,7 @@ namespace Persistence.Migrations
                 name: "OtpAuthenticators");
 
             migrationBuilder.DropTable(
-                name: "PostCommentTaggedUsers");
+                name: "PostComments");
 
             migrationBuilder.DropTable(
                 name: "PostInteractions");
@@ -1009,7 +977,7 @@ namespace Persistence.Migrations
                 name: "UserOperationClaims");
 
             migrationBuilder.DropTable(
-                name: "PostComments");
+                name: "Posts");
 
             migrationBuilder.DropTable(
                 name: "SchoolClasses");
@@ -1034,9 +1002,6 @@ namespace Persistence.Migrations
 
             migrationBuilder.DropTable(
                 name: "OperationClaims");
-
-            migrationBuilder.DropTable(
-                name: "Posts");
 
             migrationBuilder.DropTable(
                 name: "Branches");

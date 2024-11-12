@@ -54,43 +54,43 @@ public class MappingProfiles : Profile
                 FirstName = s.User.FirstName,
                 LastName = s.User.LastName
             }).ToList()));
-
-        CreateMap<Student, GetStudentGradesByStudentIdResponse>()
-     .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id))
-     .ForMember(dest => dest.StudentGrades, opt => opt.MapFrom(src => src.StudentGrades
-         .GroupBy(sg => new { sg.Classroom.Id, sg.Classroom.Name })
-         .Select(g => new StudentGradesByClassroomDto
-         {
-             ClassroomId = g.Key.Id,
-             ClassroomName = g.Key.Name,
-             TermNames = g.GroupBy(cl => new { cl.Term.Id, cl.Term.Name })
-                 .Select(gl => new StudentGradesByTermDto
-                 {
-                     TermId = gl.Key.Id,
-                     TermName = gl.Key.Name,
-                     Lessons = gl.GroupBy(lesson => new { lesson.Lesson.Id, lesson.Lesson.Name })
-                         .Select(lessonGroup => new StudentGradesByLessonDto
-                         {
-                             LessonId = lessonGroup.Key.Id,
-                             LessonName = lessonGroup.Key.Name,
-                             Grades = lessonGroup.GroupBy(grade => new { grade.GradeType.Id, grade.GradeType.Name })
-                                 .Select(gradeGroup => new StudentGradeDetailsDto
-                                 {
-                                     GradeTypeId = gradeGroup.Key.Id,
-                                     GradeTypeName = gradeGroup.Key.Name,
-                                     GradesDto = gradeGroup.Select(gr => new GradeDto
-                                     {
-                                         ExamCount = gr.ExamCount,
-                                         Grade = gr.Grade
-                                     })
-                                     .OrderBy(gd => gd.ExamCount)
-                                     .ToList()
-                                 }).ToList()
-                         }).ToList()
-                 }).ToList()
-         }).ToList()
-     ))
-     .ReverseMap();
+        
+     //   CreateMap<Student, GetStudentGradesByStudentIdResponse>()
+     //.ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id))
+     //.ForMember(dest => dest.StudentGrades, opt => opt.MapFrom(src => src.StudentGrades
+     //    //.GroupBy(sg => new { sg.Classroom.Id, sg.Classroom.Name })
+     //    .Select(g => new StudentGradesByClassroomDto
+     //    { 
+     //        ClassroomId = g.Key.Id,
+     //        ClassroomName = g.Key.Name,
+     //        TermNames = g.GroupBy(cl => new { cl.Term.Id, cl.Term.Name }) 
+     //            .Select(gl => new StudentGradesByTermDto
+     //            {
+     //                TermId = gl.Key.Id,
+     //                TermName = gl.Key.Name,
+     //                Lessons = gl.GroupBy(lesson => new { lesson.Lesson.Id, lesson.Lesson.Name })
+     //                    .Select(lessonGroup => new StudentGradesByLessonDto
+     //                    {
+     //                        LessonId = lessonGroup.Key.Id,
+     //                        LessonName = lessonGroup.Key.Name,
+     //                        Grades = lessonGroup.GroupBy(grade => new { grade.GradeType.Id, grade.GradeType.Name })
+     //                            .Select(gradeGroup => new StudentGradeDetailsDto
+     //                            {
+     //                                GradeTypeId = gradeGroup.Key.Id,
+     //                                GradeTypeName = gradeGroup.Key.Name,
+     //                                GradesDto = gradeGroup.Select(gr => new GradeDto
+     //                                {
+     //                                    ExamCount = gr.ExamCount,
+     //                                    Grade = gr.Grade
+     //                                })
+     //                                .OrderBy(gd => gd.ExamCount)
+     //                                .ToList()
+     //                            }).ToList()
+     //                    }).ToList()
+     //            }).ToList()
+     //    }).ToList()
+     //))
+     //.ReverseMap();
 
 
     }

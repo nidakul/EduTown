@@ -49,7 +49,6 @@ public static class PersistenceServiceRegistration
         services.AddScoped<IPostRepository, PostRepository>();
         services.AddScoped<IPostInteractionRepository, PostInteractionRepository>();
         services.AddScoped<IPostCommentRepository, PostCommentRepository>();
-        services.AddScoped<IPostCommentTaggedUserRepository, PostCommentTaggedUserRepository>();
         return services;
     }
 }

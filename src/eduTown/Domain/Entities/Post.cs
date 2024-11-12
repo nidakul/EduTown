@@ -19,7 +19,7 @@ namespace Domain.Entities
         public virtual ICollection<PostInteraction> PostInteractions { get; set; }
         public virtual ICollection<PostComment> PostComments { get; set; }
 
-        public Post()
+        public Post() 
         {
         }
     }
