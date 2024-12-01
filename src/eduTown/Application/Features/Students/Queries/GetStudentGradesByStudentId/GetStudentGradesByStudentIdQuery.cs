@@ -35,6 +35,7 @@ namespace Application.Features.Students.Queries.GetStudentGradesByStudentId
                    //.Include(u => u.StudentGrades).ThenInclude(u => u.Term)
                    //.Include(u => u.StudentGrades).ThenInclude(u => u.Classroom),
                    //.Include(u => u.Classroom),
+                   include: u => u.Include(u => u.Classroom),
                    enableTracking: false,
                    cancellationToken: cancellationToken);
                 await _studentBusinessRules.StudentShouldExistWhenSelected(student);

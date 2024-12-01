@@ -15,7 +15,7 @@ namespace Domain.Entities
          
         //public virtual Student Student { get; set; }
         //public virtual GradeType GradeType { get; set; } 
-        //public virtual Classroom Classroom { get; set; }
+        public virtual Classroom Classroom { get; set; }
         //public virtual Lesson Lesson { get; set; }
         //public virtual Term Term { get; set; }
 

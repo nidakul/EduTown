@@ -54,16 +54,16 @@ public class MappingProfiles : Profile
                 FirstName = s.User.FirstName,
                 LastName = s.User.LastName
             }).ToList()));
-        
+
      //   CreateMap<Student, GetStudentGradesByStudentIdResponse>()
      //.ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id))
      //.ForMember(dest => dest.StudentGrades, opt => opt.MapFrom(src => src.StudentGrades
-     //    //.GroupBy(sg => new { sg.Classroom.Id, sg.Classroom.Name })
+     //    .GroupBy(sg => new { sg.Classroom.Id, sg.Classroom.Name })
      //    .Select(g => new StudentGradesByClassroomDto
-     //    { 
+     //    {
      //        ClassroomId = g.Key.Id,
      //        ClassroomName = g.Key.Name,
-     //        TermNames = g.GroupBy(cl => new { cl.Term.Id, cl.Term.Name }) 
+     //        TermNames = g.GroupBy(cl => new { cl.Term.Id, cl.Term.Name })
      //            .Select(gl => new StudentGradesByTermDto
      //            {
      //                TermId = gl.Key.Id,
