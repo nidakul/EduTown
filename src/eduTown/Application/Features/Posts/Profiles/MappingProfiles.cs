@@ -44,13 +44,13 @@ public class MappingProfiles : Profile
                 CommenterLastName = pc.Post.User.LastName,
                 Comment = pc.Comment,
                 CommentCreatedDate = pc.CreatedDate,
-                TaggedUsers = pc.TaggedUsers.Select(tu => new TaggedUserResponse
-                {
-                    TaggedUserId = tu.User.Id,
-                    TaggedFirstName = tu.User.FirstName,  // Burada ilgili kullanıcıdan FirstName alınacak
-                    TaggedLastName = tu.User.LastName,  // Burada ilgili kullanıcıdan FirstName alınacak
+                //TaggedUsers = pc.TaggedUsers.Select(tu => new TaggedUserResponse
+                //{
+                //    TaggedUserId = tu.User.Id,
+                //    TaggedFirstName = tu.User.FirstName,  // Burada ilgili kullanıcıdan FirstName alınacak
+                //    TaggedLastName = tu.User.LastName,  // Burada ilgili kullanıcıdan FirstName alınacak
 
-                }).ToList()
+                //}).ToList()
             }).ToList()
             ))
 

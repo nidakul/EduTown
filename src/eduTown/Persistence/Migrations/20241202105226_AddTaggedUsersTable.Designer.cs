@@ -12,8 +12,8 @@ using Persistence.Contexts;
 namespace Persistence.Migrations
 {
     [DbContext(typeof(BaseDbContext))]
-    [Migration("20241112111128_initial")]
-    partial class initial
+    [Migration("20241202105226_AddTaggedUsersTable")]
+    partial class AddTaggedUsersTable
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -456,6 +456,33 @@ namespace Persistence.Migrations
                     b.ToTable("PostComments");
                 });
 
+            modelBuilder.Entity("Domain.Entities.PostCommentTaggedUser", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DeletedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("PostCommentId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("UpdatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("PostCommentId");
+
+                    b.ToTable("PostCommentTaggedUsers");
+                });
+
             modelBuilder.Entity("Domain.Entities.PostInteraction", b =>
                 {
                     b.Property<int>("Id")
@@ -817,7 +844,7 @@ namespace Persistence.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int?>("ClassroomId")
+                    b.Property<int>("ClassroomId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedDate")
@@ -1104,6 +1131,13 @@ namespace Persistence.Migrations
                     b.Navigation("Post");
                 });
 
+            modelBuilder.Entity("Domain.Entities.PostCommentTaggedUser", b =>
+                {
+                    b.HasOne("Domain.Entities.PostComment", null)
+                        .WithMany("TaggedUsers")
+                        .HasForeignKey("PostCommentId");
+                });
+
             modelBuilder.Entity("Domain.Entities.PostInteraction", b =>
                 {
                     b.HasOne("Domain.Entities.Post", "Post")
@@ -1269,9 +1303,11 @@ namespace Persistence.Migrations
 
             modelBuilder.Entity("Domain.Entities.StudentGrade", b =>
                 {
-                    b.HasOne("Domain.Entities.Classroom", null)
+                    b.HasOne("Domain.Entities.Classroom", "Classroom")
                         .WithMany("StudentGrades")
-                        .HasForeignKey("ClassroomId");
+                        .HasForeignKey("ClassroomId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("Domain.Entities.GradeType", null)
                         .WithMany("StudentGrades")
@@ -1288,6 +1324,8 @@ namespace Persistence.Migrations
                     b.HasOne("Domain.Entities.Term", null)
                         .WithMany("StudentGrades")
                         .HasForeignKey("TermId");
+
+                    b.Navigation("Classroom");
                 });
 
             modelBuilder.Entity("Domain.Entities.User", b =>
@@ -1404,6 +1442,8 @@ namespace Persistence.Migrations
             modelBuilder.Entity("Domain.Entities.PostComment", b =>
                 {
                     b.Navigation("Replies");
+
+                    b.Navigation("TaggedUsers");
                 });
 
             modelBuilder.Entity("Domain.Entities.School", b =>

@@ -37,6 +37,8 @@ public class BaseDbContext : DbContext
     public DbSet<Post> Posts { get; set; }
     public DbSet<PostInteraction> PostInteractions { get; set; }
     public DbSet<PostComment> PostComments { get; set; }
+    public DbSet<PostCommentTaggedUser> PostCommentTaggedUsers { get; set; }
+
 
     public BaseDbContext() 
     { 

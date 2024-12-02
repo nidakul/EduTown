@@ -18,6 +18,6 @@ public class PostCommentConfiguration : IEntityTypeConfiguration<PostComment>
         builder.Property(pc => pc.UpdatedDate).HasColumnName("UpdatedDate");
         builder.Property(pc => pc.DeletedDate).HasColumnName("DeletedDate");
 
-        builder.HasQueryFilter(pc => !pc.DeletedDate.HasValue);
+        builder.HasQueryFilter(pc => !pc.DeletedDate.HasValue); 
     }
-}
+}  
