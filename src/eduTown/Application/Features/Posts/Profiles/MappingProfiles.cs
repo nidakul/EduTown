@@ -35,6 +35,7 @@ public class MappingProfiles : Profile
         CreateMap<Post, GetCommentByPostIdResponse>()
             //.ForMember(dest => dest.CommentId, opt=> opt.MapFrom(p => p.PostComments.Select(p => p.Id).ToList()))
             .ForMember(dest => dest.Commenters, opt => opt.MapFrom(p => p.PostComments
+            .OrderByDescending(dest => dest.CreatedDate)
             //.ForMember(dest => dest.ParentCommentId, opt=> opt.MapFrom(p => p.PostComments.Select(p => p.ParentCommentId)))
             .Select(pc => new CommenterDto
             {
