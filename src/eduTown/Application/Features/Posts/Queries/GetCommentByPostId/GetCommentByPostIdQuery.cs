@@ -29,8 +29,9 @@ namespace Application.Features.Posts.Queries.GetCommentByPostId
                 Post? post = await _postRepository.GetAsync(predicate: p => p.Id.Equals(request.Id),
                     //include: p => p.Include(p => p.PostComments).ThenInclude(p => p.TaggedUsers)
                     include: p => p.Include(p => p.PostComments)
-                    .Include(p => p.User),
-                    enableTracking: false,
+                    .Include(p => p.User)
+                    .Include(p => p.PostComments).ThenInclude(p => p.User),
+                    enableTracking: false, 
                     cancellationToken: cancellationToken);
 
                 await _postBusinessRules.PostShouldExistWhenSelected(post);

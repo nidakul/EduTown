@@ -14,7 +14,7 @@ public class CreatedUserResponse : IResponse
     public string Email { get; set; }
     public string Gender { get; set; }
     public bool Status { get; set; }
-    public string ImageUrl { get; set; }
+    public string ImageUrl { get; set; } 
 
     public CreatedUserResponse()
     {

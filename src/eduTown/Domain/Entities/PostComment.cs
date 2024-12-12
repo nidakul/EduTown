@@ -14,10 +14,11 @@ namespace Domain.Entities
 
         public virtual ICollection<PostCommentTaggedUser> TaggedUsers { get; set; } // Etiketlenen kullanıcılar
         public virtual Post Post { get; set; }
-        
+        public virtual User User { get; set; }
+
         public PostComment() 
         {
-        }  
+        }   
     }
 }
   

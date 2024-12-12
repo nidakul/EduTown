@@ -12,8 +12,8 @@ namespace Domain.Entities
         public string Message { get; set; }
         public bool IsCommentable { get; set; }
         public List<string>? FilePath { get; set; }
-
-
+        
+        
         public virtual User User { get; set; }
 
         public virtual ICollection<PostInteraction> PostInteractions { get; set; }

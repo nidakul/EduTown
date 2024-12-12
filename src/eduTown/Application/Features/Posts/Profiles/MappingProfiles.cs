@@ -33,15 +33,16 @@ public class MappingProfiles : Profile
         CreateMap<IPaginate<Post>, GetListResponse<GetListPostListItemDto>>();
 
         CreateMap<Post, GetCommentByPostIdResponse>()
-            //.ForMember(dest => dest.CommentId, opt=> opt.MapFrom(p => p.PostComments.Select(p => p.Id)))
+            //.ForMember(dest => dest.CommentId, opt=> opt.MapFrom(p => p.PostComments.Select(p => p.Id).ToList()))
             .ForMember(dest => dest.Commenters, opt => opt.MapFrom(p => p.PostComments
             //.ForMember(dest => dest.ParentCommentId, opt=> opt.MapFrom(p => p.PostComments.Select(p => p.ParentCommentId)))
             .Select(pc => new CommenterDto
             {
-                CommenterUserId = pc.Post.User.Id,
-                CommenterImageUrl = pc.Post.User.ImageUrl,
-                CommenterFirstName = pc.Post.User.FirstName,
-                CommenterLastName = pc.Post.User.LastName,
+                CommentId = pc.Id,
+                CommenterUserId = pc.User.Id,
+                CommenterImageUrl = pc.User.ImageUrl,
+                CommenterFirstName = pc.User.FirstName,
+                CommenterLastName = pc.User.LastName,
                 Comment = pc.Comment,
                 CommentCreatedDate = pc.CreatedDate,
                 //TaggedUsers = pc.TaggedUsers.Select(tu => new TaggedUserResponse
@@ -53,7 +54,6 @@ public class MappingProfiles : Profile
                 //}).ToList()
             }).ToList()
             ))
-
         .ReverseMap();
 
 
@@ -69,37 +69,7 @@ public class MappingProfiles : Profile
            .ForMember(p => p.BranchName, opt => opt.MapFrom(p => p.User.Student.Branch.Name))
            .ForMember(p => p.CreatedDate, opt => opt.MapFrom(p => p.CreatedDate))
            .ReverseMap();
-
-        //CreateMap<Paginate<Post>, GetPostsBySchoolIdClassIdBranchIdResponse>()
-
-        //          .ForMember(p => p.SchoolId, opt => opt.MapFrom(p => p.User.School.Id))
-        //  .ForMember(p => p.ClassroomId, opt => opt.MapFrom(p => p.User.Student.Classroom.Id))
-        //  .ForMember(p => p.ClassroomName, opt => opt.MapFrom(p => p.User.Student.Classroom.Name))
-        //  .ForMember(p => p.BranchId, opt => opt.MapFrom(p => p.User.Student.Branch.Id))
-        //  .ForMember(p => p.BranchName, opt => opt.MapFrom(p => p.User.Student.Branch.Name))
-        //  .ForMember(p => p.UserId, opt => opt.MapFrom(p => p.User.Id))
-        //   .ForMember(p => p.FirstName, opt => opt.MapFrom(p => p.User.FirstName))
-        //   .ForMember(p => p.LastName, opt => opt.MapFrom(p => p.User.LastName))
-        //   .ForMember(p => p.ImageUrl, opt => opt.MapFrom(p => p.User.ImageUrl))
-        //   .ForMember(p => p.PostId, opt => opt.MapFrom(p => p.Id))
-        //   .ForMember(p => p.LikeCount, opt => opt.MapFrom(p => p.LikeCount))
-        //   .ForMember(p => p.Message, opt => opt.MapFrom(p => p.Message))
-        //   .ForMember(p => p.IsCommentable, opt => opt.MapFrom(p => p.IsCommentable))
-        //   .ForMember(p => p.CreatedDate, opt => opt.MapFrom(p => p.CreatedDate))
-        //  //.ForMember(p => p.Posts, opt => opt.MapFrom(p => p.User.Posts
-        //  //.Select(p => new PostDto
-        //  //{
-        //  //    UserId = p.User.Id,
-        //  //    FirstName = p.User.FirstName,
-        //  //    LastName = p.User.LastName,
-        //  //    ImageUrl = p.User.ImageUrl,
-        //  //    PostId = p.Id,
-        //  //    LikeCount = p.LikeCount,
-        //  //    Message = p.Message,
-        //  //    IsCommentable = p.IsCommentable,
-        //  //    CreatedDate = p.CreatedDate
-        //  //}).ToList()))
-        //  .ReverseMap();
+   
 
         CreateMap<Paginate<Post>, GetPostsBySchoolIdClassIdBranchIdResponse>()
             .ForMember(dest => dest.Posts, opt => opt.MapFrom(p => p.Items
@@ -131,19 +101,3 @@ public class MappingProfiles : Profile
 
 
 
-//public class GetDetailByPostIdResponse : IResponse
-//{
-//    //postu yayınlayan
-//    public Guid AuthorUserId { get; set; }
-//    public string AuthorFirstName { get; set; }
-//    public string AuthorLastName { get; set; }
-//    public int SchoolId { get; set; }
-//    public string SchoolName { get; set; }
-//    public int ClassroomId { get; set; }
-//    public string ClassroomName { get; set; }
-//    public int BranchId { get; set; }
-//    public string BranchName { get; set; }
-//    public int LikeCount { get; set; }
-//    public string Message { get; set; }
-//    public bool IsCommentable { get; set; }
-//    public DateTime CreatedDate { get; set; }
